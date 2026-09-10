@@ -27,6 +27,7 @@ data class TrainingExercise(
     val forbiddenSnippets: List<String> = emptyList(),
     val stdin: String = "",
     val referenceSolution: String? = null,
+    val preserveIndentation: Boolean = false,
 ) {
     val isCodeTask: Boolean
         get() = starterCode != null
@@ -43,10 +44,17 @@ object TrainingGrader {
     }
 
     fun checkCode(exercise: TrainingExercise, submittedCode: String): TrainingCheckResult {
-        val normalized = submittedCode.normalizeForTraining()
-        val starter = exercise.starterCode.orEmpty().normalizeForTraining()
+        val normalize: (String) -> String = { value ->
+            if (exercise.preserveIndentation) {
+                value.trimIndent().trim()
+            } else {
+                value.normalizeForTraining()
+            }
+        }
+        val normalized = normalize(submittedCode)
+        val starter = normalize(exercise.starterCode.orEmpty())
         val forbidden = exercise.forbiddenSnippets.firstOrNull { snippet ->
-            normalized.contains(snippet.normalizeForTraining())
+            normalized.contains(normalize(snippet))
         }
         if (forbidden != null) {
             return TrainingCheckResult(false, "代码里仍然保留了错误写法：$forbidden")
@@ -57,7 +65,7 @@ object TrainingGrader {
         }
 
         val missing = exercise.requiredSnippets.filterNot { snippet ->
-            normalized.contains(snippet.normalizeForTraining())
+            normalized.contains(normalize(snippet))
         }
         if (missing.isNotEmpty()) {
             return TrainingCheckResult(
@@ -433,6 +441,105 @@ object TrainingCatalog {
             requiredSnippets = listOf("scores.append(100)", "print"),
             forbiddenSnippets = listOf("scores.add(100)"),
             referenceSolution = "scores = [80, 90]\nscores.append(100)\nprint(scores)",
+        ),
+        TrainingExercise(
+            id = "debug-type-conversion",
+            lessonId = "types",
+            type = TrainingType.DEBUG_LAB,
+            title = "输入数字不能直接相加",
+            prompt = "程序需要读取年龄并与 1 相加，现在会报 TypeError。",
+            code = """
+                age = input("年龄：")
+                print(age + 1)
+            """.trimIndent(),
+            question = "请修复类型转换。",
+            explanation = "input() 返回字符串，计算结果前应使用 int() 转换为整数。",
+            hints = listOf(
+                "先判断 input 返回值是什么类型。",
+                "需要整数计算时使用 int()。",
+            ),
+            starterCode = """
+                age = input("年龄：")
+                print(age + 1)
+            """.trimIndent(),
+            requiredSnippets = listOf("int(input(", "print"),
+            forbiddenSnippets = listOf("age=input("),
+            referenceSolution = "age = int(input(\"年龄：\"))\nprint(age + 1)",
+        ),
+        TrainingExercise(
+            id = "debug-dict-get",
+            lessonId = "dict",
+            type = TrainingType.DEBUG_LAB,
+            title = "字典键不存在",
+            prompt = "查询一个可能不存在的电话字段，不要因为 KeyError 崩溃。",
+            code = """
+                person = {"name": "小林"}
+                print(person["phone"])
+            """.trimIndent(),
+            question = "请使用安全的字典读取方式。",
+            explanation = "get() 在键不存在时返回指定默认值，不会抛出 KeyError。",
+            hints = listOf(
+                "字典方括号要求键一定存在。",
+                "使用 get 并为未知号码设置默认值。",
+            ),
+            starterCode = """
+                person = {"name": "小林"}
+                print(person["phone"])
+            """.trimIndent(),
+            requiredSnippets = listOf("person.get(\"phone\",\"未记录\")", "print"),
+            forbiddenSnippets = listOf("person[\"phone\"]"),
+            referenceSolution = "person = {\"name\": \"小林\"}\nprint(person.get(\"phone\", \"未记录\"))",
+        ),
+        TrainingExercise(
+            id = "debug-indentation",
+            lessonId = "if",
+            type = TrainingType.DEBUG_LAB,
+            title = "缩进层级错误",
+            prompt = "让“通过”只在成绩达标时输出。",
+            code = """
+                score = 80
+                if score >= 60:
+                print("通过")
+            """.trimIndent(),
+            question = "请修复代码块的缩进。",
+            explanation = "if 下面的代码必须统一缩进，Python 通过缩进判断代码属于哪个代码块。",
+            hints = listOf(
+                "报错通常是 IndentationError。",
+                "print 需要缩进到 if 代码块内部。",
+            ),
+            starterCode = """
+                score = 80
+                if score >= 60:
+                print("通过")
+            """.trimIndent(),
+            requiredSnippets = listOf("if score >= 60:\n    print(\"通过\")"),
+            referenceSolution = "score = 80\nif score >= 60:\n    print(\"通过\")",
+            preserveIndentation = true,
+        ),
+        TrainingExercise(
+            id = "debug-file-exists",
+            lessonId = "file",
+            type = TrainingType.DEBUG_LAB,
+            title = "读取前检查文件",
+            prompt = "文件不存在时给出提示，不要直接抛出 FileNotFoundError。",
+            code = """
+                from pathlib import Path
+                path = Path("note.txt")
+                print(path.read_text(encoding="utf-8"))
+            """.trimIndent(),
+            question = "请增加文件存在检查。",
+            explanation = "读取前使用 path.exists() 判断，并给用户明确提示。",
+            hints = listOf(
+                "Path 对象提供 exists()。",
+                "else 分支告诉用户需要先创建文件。",
+            ),
+            starterCode = """
+                from pathlib import Path
+                path = Path("note.txt")
+                print(path.read_text(encoding="utf-8"))
+            """.trimIndent(),
+            requiredSnippets = listOf("ifpath.exists():", "read_text", "else:"),
+            referenceSolution = "from pathlib import Path\npath = Path(\"note.txt\")\nif path.exists():\n    print(path.read_text(encoding=\"utf-8\"))\nelse:\n    print(\"请先创建 note.txt\")",
         ),
     )
 

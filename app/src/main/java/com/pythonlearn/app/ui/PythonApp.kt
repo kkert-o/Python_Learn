@@ -2,6 +2,7 @@ package com.pythonlearn.app.ui
 
 import android.content.Intent
 import android.net.Uri
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -43,17 +44,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.draw.blur
 import coil.compose.AsyncImage
+import com.pythonlearn.app.data.AiIndependenceEngine
 import com.pythonlearn.app.data.CourseCatalog
+import com.pythonlearn.app.data.LearningDashboard
+import com.pythonlearn.app.data.ReviewTargetType
 import com.pythonlearn.app.ui.screens.AppearanceScreen
+import com.pythonlearn.app.ui.screens.AiIndependenceScreen
 import com.pythonlearn.app.ui.screens.AiTeacherScreen
 import com.pythonlearn.app.ui.screens.CourseScreen
 import com.pythonlearn.app.ui.screens.CodeWorkbenchScreen
+import com.pythonlearn.app.ui.screens.ErrorMuseumScreen
 import com.pythonlearn.app.ui.screens.HomeScreen
+import com.pythonlearn.app.ui.screens.LearningHubScreen
 import com.pythonlearn.app.ui.screens.LessonScreen
 import com.pythonlearn.app.ui.screens.PracticeScreen
 import com.pythonlearn.app.ui.screens.ProfileScreen
 import com.pythonlearn.app.ui.screens.ProjectScreen
+import com.pythonlearn.app.ui.screens.ReleaseCheckScreen
+import com.pythonlearn.app.ui.screens.SearchLibraryScreen
 import com.pythonlearn.app.ui.screens.WallpaperScreen
+import com.pythonlearn.app.ui.screens.toWorkbenchCode
 import com.pythonlearn.app.runtime.AiConfig
 import com.pythonlearn.app.ui.theme.AccentOption
 import com.pythonlearn.app.ui.theme.ThemePreference
@@ -73,6 +83,11 @@ private enum class ProfilePanel {
     MAIN,
     APPEARANCE,
     WALLPAPER,
+    LEARNING,
+    SEARCH,
+    ERRORS,
+    AI_INDEPENDENCE,
+    RELEASE,
 }
 
 @Composable
@@ -95,6 +110,13 @@ fun PythonLearningApp(
     onTrainingResult: (exerciseId: String, correct: Boolean) -> Unit,
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
+    learningDashboard: LearningDashboard,
+    favoriteIds: Set<String>,
+    onToggleFavorite: (String) -> Unit,
+    aiFreeChallengeIds: Set<String>,
+    onToggleAiFreeChallenge: (String) -> Unit,
+    aiPromptCount: Int,
+    onAiPrompt: () -> Unit,
     customWallpaperUri: Uri?,
     onImportWallpaper: (Uri) -> Unit,
     aiConfig: AiConfig,
@@ -152,6 +174,22 @@ fun PythonLearningApp(
         workbenchOpen = false
         workbenchInitialCode = null
     }
+    val openProfilePanel: (ProfilePanel) -> Unit = { panel ->
+        aiOpen = false
+        openLessonId = null
+        workbenchOpen = false
+        profilePanel = panel
+    }
+    BackHandler(
+        enabled = aiOpen || openLessonId != null || workbenchOpen || profilePanel != ProfilePanel.MAIN,
+    ) {
+        when {
+            aiOpen -> aiOpen = false
+            openLessonId != null -> openLessonId = null
+            workbenchOpen -> closeWorkbench()
+            profilePanel != ProfilePanel.MAIN -> profilePanel = ProfilePanel.MAIN
+        }
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         if (wallpaper.isCustom && customWallpaperUri != null) {
@@ -186,6 +224,7 @@ fun PythonLearningApp(
                     onBack = { aiOpen = false },
                     aiConfig = aiConfig,
                     onAiConfigChange = onAiConfigChange,
+                    onAiPrompt = onAiPrompt,
                 )
             }
         } else if (lesson != null) {
@@ -228,6 +267,78 @@ fun PythonLearningApp(
                     },
                 )
             }
+        } else if (profilePanel == ProfilePanel.LEARNING) {
+            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+                LearningHubScreen(
+                    dashboard = learningDashboard,
+                    onBack = { profilePanel = ProfilePanel.MAIN },
+                    onOpenLesson = { lessonId ->
+                        profilePanel = ProfilePanel.MAIN
+                        openLesson(lessonId)
+                    },
+                    onOpenReview = { review ->
+                        if (review.targetType == ReviewTargetType.LESSON) {
+                            profilePanel = ProfilePanel.MAIN
+                            openLesson(review.targetId)
+                        } else {
+                            review.toWorkbenchCode()?.let(openWorkbench)
+                        }
+                    },
+                )
+            }
+        } else if (profilePanel == ProfilePanel.SEARCH) {
+            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+                SearchLibraryScreen(
+                    favoriteIds = favoriteIds,
+                    onToggleFavorite = onToggleFavorite,
+                    completedProjectIds = completedProjectIds,
+                    onCompleteProject = onCompleteProject,
+                    onBack = { profilePanel = ProfilePanel.MAIN },
+                    onOpenLesson = { lessonId ->
+                        profilePanel = ProfilePanel.MAIN
+                        openLesson(lessonId)
+                    },
+                    onOpenWorkbench = openWorkbench,
+                    onTrainingResult = onTrainingResult,
+                )
+            }
+        } else if (profilePanel == ProfilePanel.ERRORS) {
+            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+                ErrorMuseumScreen(
+                    onBack = { profilePanel = ProfilePanel.MAIN },
+                    onOpenWorkbench = openWorkbench,
+                    onOpenLesson = { lessonId ->
+                        profilePanel = ProfilePanel.MAIN
+                        openLesson(lessonId)
+                    },
+                )
+            }
+        } else if (profilePanel == ProfilePanel.AI_INDEPENDENCE) {
+            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+                AiIndependenceScreen(
+                    profile = AiIndependenceEngine.build(
+                        completedLessons = completedLessonIds.size,
+                        completedProjects = completedProjectIds.size,
+                        completedTraining = completedTrainingIds.size,
+                        aiPromptCount = aiPromptCount,
+                        aiFreeCompletedIds = aiFreeChallengeIds,
+                    ),
+                    completedChallengeIds = aiFreeChallengeIds,
+                    aiPromptCount = aiPromptCount,
+                    onToggleChallenge = onToggleAiFreeChallenge,
+                    onOpenAi = { aiOpen = true },
+                    onBack = { profilePanel = ProfilePanel.MAIN },
+                )
+            }
+        } else if (profilePanel == ProfilePanel.RELEASE) {
+            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
+                ReleaseCheckScreen(
+                    completedLessons = completedLessonIds.size,
+                    completedProjects = completedProjectIds.size,
+                    completedTraining = completedTrainingIds.size,
+                    onBack = { profilePanel = ProfilePanel.MAIN },
+                )
+            }
         } else {
             MainShell(
                 destination = destination,
@@ -247,6 +358,17 @@ fun PythonLearningApp(
                 onLegalRegionChange = onLegalRegionChange,
                 onOpenAppearance = { profilePanel = ProfilePanel.APPEARANCE },
                 onOpenWallpaper = { profilePanel = ProfilePanel.WALLPAPER },
+                learningDashboard = learningDashboard,
+                onOpenLearningHub = { openProfilePanel(ProfilePanel.LEARNING) },
+                favoriteIds = favoriteIds,
+                onToggleFavorite = onToggleFavorite,
+                onOpenSearch = { openProfilePanel(ProfilePanel.SEARCH) },
+                onOpenErrorMuseum = { openProfilePanel(ProfilePanel.ERRORS) },
+                aiFreeChallengeIds = aiFreeChallengeIds,
+                onOpenAiIndependence = { openProfilePanel(ProfilePanel.AI_INDEPENDENCE) },
+                onOpenReleaseCheck = { openProfilePanel(ProfilePanel.RELEASE) },
+                aiPromptCount = aiPromptCount,
+                onAiPrompt = onAiPrompt,
                 workbenchOpen = workbenchOpen,
                 workbenchInitialCode = workbenchInitialCode,
                 onOpenWorkbench = openWorkbench,
@@ -275,6 +397,17 @@ private fun MainShell(
     onLegalRegionChange: (LegalRegion) -> Unit,
     onOpenAppearance: () -> Unit,
     onOpenWallpaper: () -> Unit,
+    learningDashboard: LearningDashboard,
+    onOpenLearningHub: () -> Unit,
+    favoriteIds: Set<String>,
+    onToggleFavorite: (String) -> Unit,
+    onOpenSearch: () -> Unit,
+    onOpenErrorMuseum: () -> Unit,
+    aiFreeChallengeIds: Set<String>,
+    onOpenAiIndependence: () -> Unit,
+    onOpenReleaseCheck: () -> Unit,
+    aiPromptCount: Int,
+    onAiPrompt: () -> Unit,
     workbenchOpen: Boolean,
     workbenchInitialCode: String?,
     onOpenWorkbench: (String?) -> Unit,
@@ -331,11 +464,14 @@ private fun MainShell(
                         Destination.HOME -> HomeScreen(
                             onOpenLesson = onOpenLesson,
                             onOpenAi = onOpenAi,
+                            onOpenLearningHub = onOpenLearningHub,
                             completedLessonIds = completedLessonIds,
+                            dashboard = learningDashboard,
                         )
                         Destination.COURSES -> CourseScreen(
                             onOpenLesson = onOpenLesson,
                             completedLessonIds = completedLessonIds,
+                            onOpenLearningHub = onOpenLearningHub,
                         )
                         Destination.PRACTICE -> PracticeScreen(
                             onOpenWorkbench = onOpenWorkbench,
@@ -345,6 +481,10 @@ private fun MainShell(
                             onRecordWrong = onRecordWrong,
                             onResolveWrong = onResolveWrong,
                             onTrainingResult = onTrainingResult,
+                            dueReviewCount = learningDashboard.dueReviews.size,
+                            onOpenLearningHub = onOpenLearningHub,
+                            onOpenErrorMuseum = onOpenErrorMuseum,
+                            onOpenSearch = onOpenSearch,
                         )
                         Destination.PROJECTS -> ProjectScreen(
                             onOpenLesson = onOpenLesson,
@@ -356,6 +496,11 @@ private fun MainShell(
                             onOpenAi = onOpenAi,
                             onOpenAppearance = onOpenAppearance,
                             onOpenWallpaper = onOpenWallpaper,
+                            onOpenLearningHub = onOpenLearningHub,
+                            onOpenSearch = onOpenSearch,
+                            onOpenErrorMuseum = onOpenErrorMuseum,
+                            onOpenAiIndependence = onOpenAiIndependence,
+                            onOpenReleaseCheck = onOpenReleaseCheck,
                             legalRegion = legalRegion,
                             onLegalRegionChange = onLegalRegionChange,
                             completedLessonIds = completedLessonIds,
@@ -363,6 +508,9 @@ private fun MainShell(
                             wrongQuizIds = wrongQuizIds,
                             completedTrainingIds = completedTrainingIds,
                             wrongTrainingIds = wrongTrainingIds,
+                            favoriteCount = favoriteIds.size,
+                            aiFreeCompleted = aiFreeChallengeIds.size,
+                            aiPromptCount = aiPromptCount,
                         )
                     }
                 }

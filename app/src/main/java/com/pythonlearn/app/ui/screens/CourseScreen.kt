@@ -46,6 +46,7 @@ import com.pythonlearn.app.ui.components.Tag
 fun CourseScreen(
     onOpenLesson: (String) -> Unit,
     completedLessonIds: Set<String>,
+    onOpenLearningHub: () -> Unit,
 ) {
     var expandedIds by remember {
         mutableStateOf(setOf(CourseCatalog.stages[0].name))
@@ -99,6 +100,29 @@ fun CourseScreen(
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
+            }
+        }
+
+        item {
+            GlassCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onOpenLearningHub),
+            ) {
+                Row(
+                    modifier = Modifier.padding(14.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(text = "查看知识树与掌握度", fontWeight = FontWeight.Bold)
+                        MutedText(text = "按知识点查看状态、到期复习和下一步推荐")
+                    }
+                    Icon(
+                        imageVector = Icons.Filled.ChevronRight,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
+                }
             }
         }
 

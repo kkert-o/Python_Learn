@@ -19,14 +19,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ManageSearch
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Gavel
 import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.SmartToy
+import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.Icon
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
@@ -70,6 +74,11 @@ fun ProfileScreen(
     onOpenAi: () -> Unit,
     onOpenAppearance: () -> Unit,
     onOpenWallpaper: () -> Unit,
+    onOpenLearningHub: () -> Unit,
+    onOpenSearch: () -> Unit,
+    onOpenErrorMuseum: () -> Unit,
+    onOpenAiIndependence: () -> Unit,
+    onOpenReleaseCheck: () -> Unit,
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
     completedLessonIds: Set<String>,
@@ -77,6 +86,9 @@ fun ProfileScreen(
     wrongQuizIds: Set<String>,
     completedTrainingIds: Set<String>,
     wrongTrainingIds: Set<String>,
+    favoriteCount: Int,
+    aiFreeCompleted: Int,
+    aiPromptCount: Int,
 ) {
     var legalDialogOpen by remember { mutableStateOf(false) }
     if (legalDialogOpen) {
@@ -204,6 +216,53 @@ fun ProfileScreen(
         }
 
         item {
+            SectionTitle(title = "学习工具")
+        }
+
+        item {
+            GlassCard {
+                Column {
+                    SettingsRow(
+                        title = "学习中心",
+                        subtitle = "知识树 · 到期复习 · 下一步推荐",
+                        imageVector = Icons.Filled.School,
+                        onClick = onOpenLearningHub,
+                    )
+                    androidx.compose.material3.HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    )
+                    SettingsRow(
+                        title = "搜索与收藏",
+                        subtitle = "$favoriteCount 项收藏 · 第三方库与工程实践",
+                        imageVector = Icons.AutoMirrored.Filled.ManageSearch,
+                        onClick = onOpenSearch,
+                    )
+                    androidx.compose.material3.HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    )
+                    SettingsRow(
+                        title = "错误博物馆",
+                        subtitle = "报错类型、原因、修复与预防",
+                        imageVector = Icons.Filled.BugReport,
+                        onClick = onOpenErrorMuseum,
+                    )
+                    androidx.compose.material3.HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    )
+                    SettingsRow(
+                        title = "AI 独立能力",
+                        subtitle = "$aiFreeCompleted 项 AI-Free 已完成 · $aiPromptCount 次 AI 提问",
+                        imageVector = Icons.Filled.Psychology,
+                        onClick = onOpenAiIndependence,
+                    )
+                }
+            }
+        }
+
+        item {
             SectionTitle(title = "外观与设置")
         }
 
@@ -230,6 +289,16 @@ fun ProfileScreen(
                         subtitle = "${legalRegion.label} · 本模块不构成法律意见",
                         imageVector = Icons.Filled.Gavel,
                         onClick = { legalDialogOpen = true },
+                    )
+                    androidx.compose.material3.HorizontalDivider(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    )
+                    SettingsRow(
+                        title = "发布与设备检查",
+                        subtitle = "运行时、性能、设备与签名配置状态",
+                        imageVector = Icons.Filled.Verified,
+                        onClick = onOpenReleaseCheck,
                     )
                 }
             }

@@ -21,6 +21,18 @@ val contentManifestUrl = providers.gradleProperty("contentManifestUrl")
     .getOrElse("")
     .replace("\\", "\\\\")
     .replace("\"", "\\\"")
+val releaseSigningProperties = Properties().apply {
+    val signingFile = rootProject.file("keystore.properties")
+    if (signingFile.exists()) {
+        signingFile.inputStream().use { load(it) }
+    }
+}
+val releaseSigningConfigured = listOf(
+    "storeFile",
+    "storePassword",
+    "keyAlias",
+    "keyPassword",
+).all { !releaseSigningProperties.getProperty(it).isNullOrBlank() }
 
 android {
     namespace = "com.pythonlearn.app"
@@ -30,9 +42,10 @@ android {
         applicationId = "com.pythonlearn.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
         buildConfigField("String", "CONTENT_MANIFEST_URL", "\"$contentManifestUrl\"")
+        buildConfigField("boolean", "RELEASE_SIGNING_CONFIGURED", releaseSigningConfigured.toString())
         ndk {
             abiFilters += listOf("arm64-v8a", "x86_64")
         }
@@ -42,6 +55,14 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            if (releaseSigningConfigured) {
+                signingConfig = signingConfigs.create("release") {
+                    storeFile = rootProject.file(releaseSigningProperties.getProperty("storeFile"))
+                    storePassword = releaseSigningProperties.getProperty("storePassword")
+                    keyAlias = releaseSigningProperties.getProperty("keyAlias")
+                    keyPassword = releaseSigningProperties.getProperty("keyPassword")
+                }
+            }
         }
     }
 

@@ -10,3 +10,6 @@ gradle/gradle-daemon-jvm.properties
 .externalNativeBuild/
 .cxx/
 app/build/
+/keystore.properties
+*.jks
+*.keystore

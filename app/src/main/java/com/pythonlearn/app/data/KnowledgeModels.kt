@@ -250,7 +250,7 @@ object KnowledgeTreeEngine {
                 .minByOrNull { it.dueAt }
             val needsReview = hasWrongTraining || hasWrongQuiz || dueSchedule != null
 
-            val score = buildList {
+            val rawScore = buildList {
                 if (completed) add(40)
                 if (training.isEmpty()) {
                     add(15)
@@ -266,10 +266,15 @@ object KnowledgeTreeEngine {
             val state = when {
                 !previousCompleted && !completed && !hasStarted -> KnowledgeState.LOCKED
                 needsReview -> KnowledgeState.NEEDS_REVIEW
-                completed && score >= 80 -> KnowledgeState.MASTERED
+                completed && rawScore >= 80 -> KnowledgeState.MASTERED
                 completed -> KnowledgeState.COMPLETED
                 hasStarted -> KnowledgeState.LEARNING
                 else -> KnowledgeState.NOT_STARTED
+            }
+            val score = if (state == KnowledgeState.LOCKED || state == KnowledgeState.NOT_STARTED) {
+                0
+            } else {
+                rawScore
             }
             val nextReviewAt = reviewKeys
                 .mapNotNull(scheduleByKey::get)

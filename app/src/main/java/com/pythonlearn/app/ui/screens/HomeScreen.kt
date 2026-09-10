@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.CourseCatalog
+import com.pythonlearn.app.data.LearningDashboard
 import com.pythonlearn.app.ui.components.GlassCard
 import com.pythonlearn.app.ui.components.IconAvatar
 import com.pythonlearn.app.ui.components.MutedText
@@ -43,7 +44,9 @@ import com.pythonlearn.app.ui.components.Tag
 fun HomeScreen(
     onOpenLesson: (String) -> Unit,
     onOpenAi: () -> Unit,
+    onOpenLearningHub: () -> Unit,
     completedLessonIds: Set<String>,
+    dashboard: LearningDashboard,
 ) {
     val completedCount = completedLessonIds.size
     val nextLessonId = remember(completedLessonIds) {
@@ -118,6 +121,39 @@ fun HomeScreen(
                     }
                     Spacer(modifier = Modifier.height(12.dp))
                     ProgressTrack(progress = CourseCatalog.overallProgress(completedLessonIds))
+                }
+            }
+        }
+
+        item {
+            GlassCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onOpenLearningHub),
+            ) {
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    IconAvatar(
+                        imageVector = Icons.Filled.School,
+                        contentDescription = "学习中心",
+                        modifier = Modifier.width(46.dp),
+                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        MutedText(text = "知识树 · 复习 · 推荐")
+                        Text(
+                            text = dashboard.recommendation.title,
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
+                        MutedText(text = dashboard.recommendation.reason)
+                    }
+                    Tag(
+                        text = if (dashboard.dueReviews.isEmpty()) "推荐" else "复习 ${dashboard.dueReviews.size}",
+                        active = true,
+                    )
                 }
             }
         }

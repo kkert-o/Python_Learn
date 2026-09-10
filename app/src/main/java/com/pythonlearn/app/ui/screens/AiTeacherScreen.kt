@@ -59,6 +59,7 @@ fun AiTeacherScreen(
     onBack: () -> Unit,
     aiConfig: AiConfig,
     onAiConfigChange: (AiConfig) -> Unit,
+    onAiPrompt: () -> Unit,
 ) {
     var mode by remember { mutableStateOf("老师模式") }
     var input by remember { mutableStateOf("") }
@@ -80,6 +81,7 @@ fun AiTeacherScreen(
         if (waiting) return
         val trimmed = text.trim()
         if (trimmed.isEmpty()) return
+        onAiPrompt()
         val history = messages.map { it.role to it.text }
         messages = messages + ChatMessage("user", trimmed)
         input = ""

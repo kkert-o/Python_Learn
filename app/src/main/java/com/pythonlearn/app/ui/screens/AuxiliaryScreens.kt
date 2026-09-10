@@ -22,16 +22,20 @@ import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.graphics.Color
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ManageSearch
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
+import androidx.compose.material.icons.filled.School
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.background
 import com.pythonlearn.app.data.CourseCatalog
@@ -54,6 +58,10 @@ fun PracticeScreen(
     onRecordWrong: (String) -> Unit,
     onResolveWrong: (String) -> Unit,
     onTrainingResult: (exerciseId: String, correct: Boolean) -> Unit,
+    dueReviewCount: Int,
+    onOpenLearningHub: () -> Unit,
+    onOpenErrorMuseum: () -> Unit,
+    onOpenSearch: () -> Unit,
 ) {
     var showQuiz by remember { mutableStateOf(false) }
     var trainingExercises by remember { mutableStateOf<List<TrainingExercise>?>(null) }
@@ -210,6 +218,36 @@ fun PracticeScreen(
         }
         item {
             SectionTitle(
+                title = "学习工具",
+                trailing = if (dueReviewCount == 0) "复习已清空" else "$dueReviewCount 项到期",
+            )
+        }
+        item {
+            GlassCard {
+                Column(modifier = Modifier.padding(10.dp)) {
+                    ToolEntryRow(
+                        title = "知识树与复习队列",
+                        subtitle = "查看掌握度、到期复习和下一步推荐",
+                        icon = Icons.Filled.School,
+                        onClick = onOpenLearningHub,
+                    )
+                    ToolEntryRow(
+                        title = "错误博物馆",
+                        subtitle = "按错误类型查找原因、修复方式和预防方法",
+                        icon = Icons.Filled.BugReport,
+                        onClick = onOpenErrorMuseum,
+                    )
+                    ToolEntryRow(
+                        title = "全局搜索与收藏",
+                        subtitle = "搜索课程、项目、训练、第三方库和工程实践",
+                        icon = Icons.AutoMirrored.Filled.ManageSearch,
+                        onClick = onOpenSearch,
+                    )
+                }
+            }
+        }
+        item {
+            SectionTitle(
                 title = "能力训练",
                 trailing = "已完成 ${completedTrainingIds.size}/${TrainingCatalog.all.size}",
             )
@@ -317,6 +355,39 @@ fun PracticeScreen(
 }
 
 @Composable
+private fun ToolEntryRow(
+    title: String,
+    subtitle: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 6.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.width(24.dp),
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(text = title, fontWeight = FontWeight.Bold)
+            MutedText(text = subtitle)
+        }
+        Icon(
+            imageVector = Icons.Filled.ChevronRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+    }
+}
+
+@Composable
 private fun TrainingTypeRow(
     type: TrainingType,
     completed: Int,
@@ -366,12 +437,13 @@ fun ProjectScreen(
         )
         return
     }
-    val rows = listOf(
-        ProjectRowData("Lv.1", "calculator", "用 input、if、float 完成加减乘除"),
-        ProjectRowData("Lv.1", "guess", "巩固 random、input、if、while"),
-        ProjectRowData("Lv.1", "bmi", "输入身高体重并输出分类结果"),
-        ProjectRowData("Lv.2", "contacts", "用字典保存并查询联系人"),
-    )
+    val rows = ProjectCatalog.all.map { project ->
+        ProjectRowData(
+            level = project.level,
+            id = project.id,
+            subtitle = project.goal,
+        )
+    }
     LazyColumn(
         contentPadding = PaddingValues(start = 18.dp, end = 18.dp, top = 18.dp, bottom = 18.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -419,7 +491,13 @@ fun ProjectScreen(
                                 ) {
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(text = project.title, fontWeight = FontWeight.Bold)
-                                        MutedText(text = row.subtitle)
+                                        Text(
+                                            text = row.subtitle,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            maxLines = 2,
+                                            overflow = TextOverflow.Ellipsis,
+                                        )
                                     }
                                     Tag(
                                         text = if (project.id in completedProjectIds) "已完成" else "开始",

@@ -11,6 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.lifecycleScope
+import com.pythonlearn.app.data.LearningDashboard
+import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.ui.PythonLearningApp
 import com.pythonlearn.app.runtime.AiConfig
 import com.pythonlearn.app.ui.theme.AccentOption
@@ -72,6 +74,24 @@ class MainActivity : ComponentActivity() {
                     } ?: legalRegionOptions.first(),
                 )
             }
+            var learningDashboard by remember {
+                mutableStateOf(
+                    LearningDashboardEngine.build(
+                        completedLessonIds = completedLessonIds,
+                        trainingProgress = emptyList(),
+                        quizProgress = emptyList(),
+                        reviewSchedules = emptyList(),
+                        now = System.currentTimeMillis(),
+                    ),
+                )
+            }
+            var favoriteIds by remember {
+                mutableStateOf(prefs.getStringSet(KEY_FAVORITES, emptySet())?.toSet() ?: emptySet())
+            }
+            var aiFreeChallengeIds by remember {
+                mutableStateOf(prefs.getStringSet(KEY_AI_FREE_CHALLENGES, emptySet())?.toSet() ?: emptySet())
+            }
+            var aiPromptCount by remember { mutableStateOf(prefs.getInt(KEY_AI_PROMPT_COUNT, 0)) }
             var customWallpaperUri by remember {
                 mutableStateOf(
                     prefs.getString(KEY_CUSTOM_WALLPAPER, null)?.let(Uri::parse),
@@ -104,6 +124,12 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
+            LaunchedEffect(Unit) {
+                progressRepository.observeLearningDashboard().collect { dashboard ->
+                    learningDashboard = dashboard
+                }
+            }
+
             LaunchedEffect(
                 themePreference,
                 accent,
@@ -114,6 +140,9 @@ class MainActivity : ComponentActivity() {
                 completedTrainingIds,
                 wrongTrainingIds,
                 legalRegion,
+                favoriteIds,
+                aiFreeChallengeIds,
+                aiPromptCount,
                 customWallpaperUri,
                 aiConfig,
             ) {
@@ -127,6 +156,9 @@ class MainActivity : ComponentActivity() {
                     .putStringSet(KEY_COMPLETED_TRAINING, completedTrainingIds)
                     .putStringSet(KEY_WRONG_TRAINING, wrongTrainingIds)
                     .putString(KEY_LEGAL_REGION, legalRegion.id)
+                    .putStringSet(KEY_FAVORITES, favoriteIds)
+                    .putStringSet(KEY_AI_FREE_CHALLENGES, aiFreeChallengeIds)
+                    .putInt(KEY_AI_PROMPT_COUNT, aiPromptCount)
                     .putString(KEY_CUSTOM_WALLPAPER, customWallpaperUri?.toString())
                     .putString(KEY_AI_ENDPOINT, aiConfig.endpoint)
                     .putString(KEY_AI_API_KEY, aiConfig.apiKey)
@@ -187,6 +219,21 @@ class MainActivity : ComponentActivity() {
                     },
                     legalRegion = legalRegion,
                     onLegalRegionChange = { legalRegion = it },
+                    learningDashboard = learningDashboard,
+                    favoriteIds = favoriteIds,
+                    onToggleFavorite = { key ->
+                        favoriteIds = if (key in favoriteIds) favoriteIds - key else favoriteIds + key
+                    },
+                    aiFreeChallengeIds = aiFreeChallengeIds,
+                    onToggleAiFreeChallenge = { id ->
+                        aiFreeChallengeIds = if (id in aiFreeChallengeIds) {
+                            aiFreeChallengeIds - id
+                        } else {
+                            aiFreeChallengeIds + id
+                        }
+                    },
+                    aiPromptCount = aiPromptCount,
+                    onAiPrompt = { aiPromptCount += 1 },
                     customWallpaperUri = customWallpaperUri,
                     onImportWallpaper = { uri ->
                         customWallpaperUri = uri
@@ -208,6 +255,9 @@ class MainActivity : ComponentActivity() {
         const val KEY_COMPLETED_TRAINING = "completed_training_ids"
         const val KEY_WRONG_TRAINING = "wrong_training_ids"
         const val KEY_LEGAL_REGION = "legal_region"
+        const val KEY_FAVORITES = "favorites"
+        const val KEY_AI_FREE_CHALLENGES = "ai_free_challenges"
+        const val KEY_AI_PROMPT_COUNT = "ai_prompt_count"
         const val KEY_CUSTOM_WALLPAPER = "custom_wallpaper_uri"
         const val KEY_AI_ENDPOINT = "ai_endpoint"
         const val KEY_AI_API_KEY = "ai_api_key"

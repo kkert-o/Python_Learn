@@ -284,9 +284,18 @@ class CatalogAndRunnerTest {
             .toDomain()
         val contentLessonIds = content.stages.flatMap { stage -> stage.lessons.map { it.id } }
 
-        assertEquals(CourseCatalog.orderedLessonIds, contentLessonIds)
-        assertEquals(CourseCatalog.allLessons.size, content.lessons.size)
-        assertEquals(ProjectCatalog.all.size, content.projects.size)
+        assertEquals(contentLessonIds, content.lessons.keys.toList())
+        assertTrue(content.lessons.size >= CourseCatalog.allLessons.size)
+        assertTrue(content.projects.size >= ProjectCatalog.all.size)
+        assertEquals(content.projects.map { it.id }, content.projects.map { it.id }.distinct())
+        assertTrue(content.stages.any { it.name == "数据分析" })
+        assertTrue(content.stages.any { it.name == "数据库与持久化" })
+        assertTrue(content.stages.any { it.name == "Web 与 API 服务" })
+        assertTrue(content.stages.any { it.name == "AI 与智能应用" })
+        assertTrue(content.stages.any { it.name == "测试、Git 与代码质量" })
+        assertTrue(content.projects.any { it.level.contains("Lv.3") })
+        assertTrue(content.projects.any { it.level.contains("Lv.4") })
+        assertTrue(content.projects.any { it.level.contains("Lv.5 毕业项目") })
     }
 }
 

@@ -203,6 +203,61 @@
           "state": "TODO"
         }
       ]
+    },
+    {
+      "label": "数据分析",
+      "name": "数据分析",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        { "id": "numpy", "title": "NumPy 数值计算", "minutes": 20, "state": "LOCKED" },
+        { "id": "pandas", "title": "pandas 表格处理", "minutes": 24, "state": "LOCKED" },
+        { "id": "visualization", "title": "数据可视化", "minutes": 18, "state": "LOCKED" }
+      ]
+    },
+    {
+      "label": "数据库",
+      "name": "数据库与持久化",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        { "id": "sql", "title": "SQL 查询基础", "minutes": 22, "state": "LOCKED" },
+        { "id": "sqlite", "title": "SQLite 与 Python", "minutes": 25, "state": "LOCKED" },
+        { "id": "data-model", "title": "数据建模与事务", "minutes": 23, "state": "LOCKED" }
+      ]
+    },
+    {
+      "label": "Web 开发",
+      "name": "Web 与 API 服务",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        { "id": "fastapi", "title": "FastAPI 接口", "minutes": 24, "state": "LOCKED" },
+        { "id": "rest-api", "title": "REST API 设计", "minutes": 20, "state": "LOCKED" },
+        { "id": "deployment", "title": "服务部署与安全", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    {
+      "label": "AI 应用",
+      "name": "AI 与智能应用",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        { "id": "machine-learning", "title": "机器学习入门", "minutes": 26, "state": "LOCKED" },
+        { "id": "ai-api", "title": "接入 AI API", "minutes": 22, "state": "LOCKED" },
+        { "id": "responsible-ai", "title": "负责任地使用 AI", "minutes": 18, "state": "LOCKED" }
+      ]
+    },
+    {
+      "label": "工程化",
+      "name": "测试、Git 与代码质量",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        { "id": "git", "title": "Git 版本管理", "minutes": 22, "state": "LOCKED" },
+        { "id": "testing", "title": "pytest 自动化测试", "minutes": 24, "state": "LOCKED" },
+        { "id": "quality", "title": "代码质量与重构", "minutes": 20, "state": "LOCKED" }
+      ]
     }
   ],
   "lessons": {
@@ -2176,6 +2231,627 @@
       "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法、著作权法、民法典；日本/美国/欧盟另有相应规则",
       "legalUpdated": "2026-09-05",
       "next": []
+    },
+    "numpy": {
+      "id": "numpy",
+      "title": "NumPy 数值计算",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 20,
+      "knowledge": [
+        "NumPy 用 ndarray 保存同类型的大批数据，整组运算不需要写 for 循环。",
+        "shape 表示数组形状，索引和切片可以取出行、列或一部分数据。"
+      ],
+      "why": [
+        "大量数值数据使用 Python 列表逐项计算会慢且啰嗦。NumPy 能把运算交给优化后的底层实现。",
+        "pandas、机器学习和科学计算都建立在数组思维之上。"
+      ],
+      "purpose": "批量计算成绩、归一化数据、处理矩阵，以及为机器学习准备数值特征。",
+      "example": "import numpy as np\nscores = np.array([72, 88, 95, 61])\nprint(scores.mean())\nprint((scores - scores.mean()).round(2))",
+      "exampleNotes": [
+        { "left": "np.array([...])", "right": "把普通列表变成数组" },
+        { "left": "scores.mean()", "right": "一次计算平均值" },
+        { "left": "scores - scores.mean()", "right": "整组数据同时减去平均值" }
+      ],
+      "quiz": {
+        "question": "NumPy 数组相比 Python 列表最主要的优势是什么？",
+        "code": "values = np.array([1, 2, 3])",
+        "options": ["适合批量数值运算", "可以保存无限数据", "不需要安装", "自动联网"],
+        "answerIndex": 0,
+        "explanation": "NumPy 的优势是高效的批量数值计算和清晰的多维数组操作。"
+      },
+      "errors": [
+        { "title": "把数组当列表逐项追加", "detail": "频繁 append 会失去向量化优势。应尽量用数组运算或预分配结果。", "code": "values = values * 2  # 整组计算\n# 不要习惯性逐项循环" },
+        { "title": "忽略形状", "detail": "矩阵运算前要确认 shape，形状不兼容会报维度错误。", "code": "print(a.shape, b.shape)" }
+      ],
+      "projectCode": "import numpy as np\n\nscores = np.array([72, 88, 95, 61])\nprint(\"平均分\", scores.mean())\nprint(\"高于平均\", scores[scores > scores.mean()])",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "数值计算属于通用技术。分析真实数据时仍需确认数据来源、授权和处理目的。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "pandas", "title": "pandas 表格处理", "minutes": 24, "state": "LOCKED" },
+        { "id": "visualization", "title": "数据可视化", "minutes": 18, "state": "LOCKED" }
+      ]
+    },
+    "pandas": {
+      "id": "pandas",
+      "title": "pandas 表格处理",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 24,
+      "knowledge": [
+        "DataFrame 是带行列标签的二维表格，Series 是其中一列数据。",
+        "read_csv 读取数据，head / info / describe 先理解数据，再进行筛选和聚合。"
+      ],
+      "why": [
+        "真实数据经常有缺失、重复和类型不一致，直接写循环很难维护。",
+        "pandas 把筛选、分组、聚合和连接变成可以连续阅读的代码。"
+      ],
+      "purpose": "分析 CSV 和 Excel，清洗记录，按班级或月份汇总，生成报告数据。",
+      "example": "import pandas as pd\n\ndf = pd.DataFrame({\"class\": [\"A\", \"A\", \"B\"], \"score\": [82, 91, 77]})\nprint(df.groupby(\"class\")[\"score\"].mean())",
+      "exampleNotes": [
+        { "left": "pd.DataFrame(...)", "right": "创建带列名的表格" },
+        { "left": "groupby(\"class\")", "right": "按班级分组" },
+        { "left": "mean()", "right": "计算每组成绩平均值" }
+      ],
+      "quiz": {
+        "question": "读取 CSV 后，最先检查数据结构常用哪组代码？",
+        "code": "df = pd.read_csv(path)",
+        "options": ["df.head(); df.info()", "df.delete()", "print(CSV)", "open(path)"],
+        "answerIndex": 0,
+        "explanation": "head 查看样例，info 查看列、类型和缺失情况，是分析前的基础检查。"
+      },
+      "errors": [
+        { "title": "直接计算而不看缺失值", "detail": "缺失值可能影响平均值和分组结果。计算前先检查并明确如何处理。", "code": "print(df.isna().sum())" },
+        { "title": "修改切片触发警告", "detail": "对筛选结果直接赋值可能没有改到原表。优先使用 loc 和明确的赋值规则。", "code": "df.loc[df[\"score\"] < 60, \"status\"] = \"补考\"" }
+      ],
+      "projectCode": "import pandas as pd\n\ndf = pd.DataFrame({\"name\": [\"小林\", \"小王\"], \"score\": [88, 56]})\ndf[\"passed\"] = df[\"score\"] >= 60\nprint(df)",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "处理含姓名、成绩等个人数据时，应明确使用目的、访问范围和保存期限，避免不必要的数据复制。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "visualization", "title": "数据可视化", "minutes": 18, "state": "LOCKED" },
+        { "id": "sql", "title": "SQL 查询基础", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "visualization": {
+      "id": "visualization",
+      "title": "数据可视化",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 18,
+      "knowledge": [
+        "图表不是装饰，而是帮助读者比较大小、观察趋势和发现异常。",
+        "折线图适合时间趋势，柱状图适合分类比较，散点图适合观察两个变量的关系。"
+      ],
+      "why": [
+        "同样的数据，选错图表会误导读者。",
+        "一张清晰图表往往比一段长篇数字更快传达结论。"
+      ],
+      "purpose": "生成成绩分布、使用趋势、销量比较和相关性分析图。",
+      "example": "import matplotlib.pyplot as plt\n\nmonths = [\"1月\", \"2月\", \"3月\"]\nminutes = [120, 180, 160]\nplt.plot(months, minutes)\nplt.title(\"学习时间\")\nplt.savefig(\"study.png\")",
+      "exampleNotes": [
+        { "left": "plt.plot(...)", "right": "绘制折线" },
+        { "left": "plt.title(...)", "right": "添加标题" },
+        { "left": "plt.savefig(...)", "right": "保存图片便于验证" }
+      ],
+      "quiz": {
+        "question": "展示一年中每月体重的变化，最适合哪种图？",
+        "code": "# 选择图表类型",
+        "options": ["折线图", "饼图", "散点图", "热力图"],
+        "answerIndex": 0,
+        "explanation": "随时间变化的连续趋势优先使用折线图。"
+      },
+      "errors": [
+        { "title": "图表没有标题和单位", "detail": "读者无法确定时间和数值含义。标题、坐标轴和单位应完整。", "code": "plt.xlabel(\"月份\")\nplt.ylabel(\"分钟\")" },
+        { "title": "用饼图比较太多分类", "detail": "分类过多时饼图难以阅读，可改用排序后的柱状图。", "code": "plt.bar(labels, values)" }
+      ],
+      "projectCode": "import matplotlib.pyplot as plt\n\nlabels = [\"周一\", \"周二\", \"周三\"]\nvalues = [25, 40, 30]\nplt.bar(labels, values)\nplt.title(\"每日学习分钟\")\nplt.savefig(\"weekly.png\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "可视化本身风险较低。发布包含个人信息的图表前应匿名化并确认展示权限。",
+      "legalBasis": "参考原则：个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "sql", "title": "SQL 查询基础", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "sql": {
+      "id": "sql",
+      "title": "SQL 查询基础",
+      "stage": "数据库与持久化",
+      "level": "进阶",
+      "minutes": 22,
+      "knowledge": [
+        "关系数据库用表保存记录，每行是一条记录，每列有确定的数据含义。",
+        "SELECT 查询，WHERE 筛选，ORDER BY 排序，GROUP BY 聚合，JOIN 组合多张表。"
+      ],
+      "why": [
+        "数据量变大后，靠文本文件查找会变慢且容易出错。",
+        "SQL 是 Python 后端、数据分析和数据采集项目的通用数据接口。"
+      ],
+      "purpose": "保存用户、订单、学习记录，并按条件查询和统计。",
+      "example": "SELECT name, score\nFROM students\nWHERE score >= 60\nORDER BY score DESC;",
+      "exampleNotes": [
+        { "left": "SELECT", "right": "选择要返回的列" },
+        { "left": "WHERE", "right": "筛选满足条件的记录" },
+        { "left": "ORDER BY", "right": "按成绩从高到低排序" }
+      ],
+      "quiz": {
+        "question": "只想返回 score 大于等于 60 的记录，应使用哪个子句？",
+        "code": "SELECT * FROM students ?",
+        "options": ["WHERE score >= 60", "ORDER BY score", "LIMIT 60", "JOIN score"],
+        "answerIndex": 0,
+        "explanation": "WHERE 用于筛选行；ORDER BY 只负责排序。"
+      },
+      "errors": [
+        { "title": "忘记 WHERE 导致全表更新或删除", "detail": "UPDATE 和 DELETE 前先用 SELECT 验证条件，并确认备份或事务策略。", "code": "SELECT * FROM students WHERE id = 1;" },
+        { "title": "用字符串拼接 SQL", "detail": "直接拼接用户输入会引入 SQL 注入。应使用参数化查询。", "code": "cursor.execute(\"SELECT * FROM users WHERE name = ?\", (name,))" }
+      ],
+      "projectCode": "SELECT category, COUNT(*) AS total\nFROM study_records\nGROUP BY category\nORDER BY total DESC;",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "数据库可能保存个人信息和业务数据。权限、最小必要、备份和删除策略都需要明确。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "sqlite", "title": "SQLite 与 Python", "minutes": 25, "state": "LOCKED" },
+        { "id": "data-model", "title": "数据建模与事务", "minutes": 23, "state": "LOCKED" }
+      ]
+    },
+    "sqlite": {
+      "id": "sqlite",
+      "title": "SQLite 与 Python",
+      "stage": "数据库与持久化",
+      "level": "进阶",
+      "minutes": 25,
+      "knowledge": [
+        "SQLite 是无需单独服务器的嵌入式数据库，适合移动应用、桌面工具和小型项目。",
+        "Python 标准库 sqlite3 可以建立连接、执行 SQL、提交事务和关闭连接。"
+      ],
+      "why": [
+        "程序第一次结束就丢失数据，无法成为真正可用的工具。",
+        "SQLite 让本地项目立刻拥有持久化能力，不需要额外安装数据库服务。"
+      ],
+      "purpose": "保存学习记录、通讯录、记账数据和桌面项目配置。",
+      "example": "import sqlite3\n\nwith sqlite3.connect(\"study.db\") as connection:\n    connection.execute(\"CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, text TEXT)\")\n    connection.execute(\"INSERT INTO notes(text) VALUES (?)\", (\"学习 SQLite\",))",
+      "exampleNotes": [
+        { "left": "sqlite3.connect(...)", "right": "连接数据库文件" },
+        { "left": "CREATE TABLE IF NOT EXISTS", "right": "安全地创建表" },
+        { "left": "?", "right": "参数占位符，避免 SQL 注入" }
+      ],
+      "quiz": {
+        "question": "写入 SQLite 时，为什么使用 ? 占位符？",
+        "code": "connection.execute(sql, values)",
+        "options": ["避免 SQL 注入并正确转义", "让执行速度变成无限快", "自动联网", "不需要提交"],
+        "answerIndex": 0,
+        "explanation": "参数化查询把 SQL 结构和数据分开，是数据库操作的基本安全措施。"
+      },
+      "errors": [
+        { "title": "忘记提交事务", "detail": "某些连接模式下不 commit 就不会持久保存。使用 with 连接上下文或明确 commit。", "code": "connection.commit()" },
+        { "title": "拼接用户输入", "detail": "不要把变量直接拼进 SQL 字符串，必须使用参数占位符。", "code": "execute(\"INSERT INTO notes(text) VALUES (?)\", (text,))" }
+      ],
+      "projectCode": "import sqlite3\n\nwith sqlite3.connect(\"study.db\") as db:\n    db.execute(\"CREATE TABLE IF NOT EXISTS records(id INTEGER PRIMARY KEY, minutes INTEGER)\")\n    db.execute(\"INSERT INTO records(minutes) VALUES (?)\", (30,))\n    print(db.execute(\"SELECT SUM(minutes) FROM records\").fetchone()[0])",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "本地数据库也可能保存敏感信息。应减少收集、限制访问，并为备份、导出和删除建立明确规则。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "data-model", "title": "数据建模与事务", "minutes": 23, "state": "LOCKED" },
+        { "id": "fastapi", "title": "FastAPI 接口", "minutes": 24, "state": "LOCKED" }
+      ]
+    },
+    "data-model": {
+      "id": "data-model",
+      "title": "数据建模与事务",
+      "stage": "数据库与持久化",
+      "level": "高级",
+      "minutes": 23,
+      "knowledge": [
+        "数据建模先确定实体、字段和关系，再决定表和主键，避免把所有内容塞进一张大表。",
+        "事务保证一组操作要么全部成功，要么全部回滚，常见于转账、订单和批量导入。"
+      ],
+      "why": [
+        "结构清晰的数据表更容易查询、校验和扩展。",
+        "事务能防止程序中途失败后留下半完成数据。"
+      ],
+      "purpose": "设计订单、记账、课程进度和带关联关系的数据系统。",
+      "example": "BEGIN TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;",
+      "exampleNotes": [
+        { "left": "BEGIN TRANSACTION", "right": "开始一组原子操作" },
+        { "left": "两条 UPDATE", "right": "转账出账和入账" },
+        { "left": "COMMIT", "right": "全部成功后提交" }
+      ],
+      "quiz": {
+        "question": "事务最重要的保证是什么？",
+        "code": "BEGIN; ... COMMIT;",
+        "options": ["一组操作要么全部成功要么回滚", "永久不产生错误", "自动替用户做决定", "不需要数据库"],
+        "answerIndex": 0,
+        "explanation": "事务的原子性确保中途失败时不会留下部分完成的数据。"
+      },
+      "errors": [
+        { "title": "一张表保存所有内容", "detail": "重复字段和混乱关系会让查询与更新变难。应按实体拆分并建立外键。", "code": "orders / order_items / products" },
+        { "title": "没有回滚路径", "detail": "事务中发生异常应回滚，避免半完成写入。", "code": "try:\n    ...\n    connection.commit()\nexcept:\n    connection.rollback()" }
+      ],
+      "projectCode": "# 设计三张表：\n# students(id, name)\n# courses(id, title)\n# records(student_id, course_id, score)\n# 先写字段、主键和关系，再开始写 Python。",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "数据建模涉及收集必要性、访问权限和保留期限。不要为了“以后可能有用”而收集无关个人数据。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "fastapi", "title": "FastAPI 接口", "minutes": 24, "state": "LOCKED" }
+      ]
+    },
+    "fastapi": {
+      "id": "fastapi",
+      "title": "FastAPI 接口",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 24,
+      "knowledge": [
+        "FastAPI 使用 Python 类型提示声明请求和响应结构，并自动生成接口文档。",
+        "路由函数接收参数、调用业务逻辑并返回字典或模型，过程清晰可测试。"
+      ],
+      "why": [
+        "把 Python 能力做成接口后，网页、手机 App 和其他程序都能调用。",
+        "类型提示和自动文档能减少参数错误，让接口更容易维护。"
+      ],
+      "purpose": "为学习 App、数据工具和 AI 应用提供后端接口。",
+      "example": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True}",
+      "exampleNotes": [
+        { "left": "FastAPI()", "right": "创建应用" },
+        { "left": "@app.get", "right": "声明 GET 路由" },
+        { "left": "return {...}", "right": "返回 JSON 响应" }
+      ],
+      "quiz": {
+        "question": "FastAPI 中，@app.get(\"/health\") 的作用是什么？",
+        "code": "@app.get(\"/health\")",
+        "options": ["注册 GET 路由", "启动数据库", "下载文件", "删除代码"],
+        "answerIndex": 0,
+        "explanation": "装饰器把下面的函数注册为 /health 路径的 GET 接口。"
+      },
+      "errors": [
+        { "title": "同步函数中执行长时间阻塞任务", "detail": "耗时任务会拖住请求。应控制耗时，必要时使用后台任务或异步方案。", "code": "# 对请求设置合理超时和并发限制" },
+        { "title": "直接返回数据库密码或内部异常", "detail": "接口错误不应暴露密钥、路径和堆栈。对外返回受控错误信息。", "code": "raise HTTPException(status_code=500, detail=\"服务暂时不可用\")" }
+      ],
+      "projectCode": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True, \"service\": \"python-learning\"}",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "公开接口需要身份验证、访问频率控制、日志脱敏和隐私说明。不要收集与服务无关的个人信息。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "rest-api", "title": "REST API 设计", "minutes": 20, "state": "LOCKED" },
+        { "id": "deployment", "title": "服务部署与安全", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "rest-api": {
+      "id": "rest-api",
+      "title": "REST API 设计",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 20,
+      "knowledge": [
+        "REST 用资源路径和 HTTP 方法表达操作：GET 读取、POST 创建、PUT/PATCH 更新、DELETE 删除。",
+        "状态码表达请求结果，200 成功、201 创建、400 参数错误、401 未认证、404 不存在、409 冲突。"
+      ],
+      "why": [
+        "一致接口让前后端和第三方开发者能预测行为，减少沟通成本。",
+        "清晰状态码能让客户端准确处理成功与失败。"
+      ],
+      "purpose": "设计学习记录、项目任务、用户资料等增删改查接口。",
+      "example": "GET    /api/lessons\nPOST   /api/lessons/{lesson_id}/progress\nDELETE /api/favorites/{item_id}",
+      "exampleNotes": [
+        { "left": "GET /api/lessons", "right": "读取课程列表" },
+        { "left": "POST .../progress", "right": "创建学习进度" },
+        { "left": "DELETE .../favorites", "right": "删除收藏" }
+      ],
+      "quiz": {
+        "question": "创建一条新记录通常使用哪个 HTTP 方法？",
+        "code": "? /api/projects",
+        "options": ["POST", "GET", "DELETE", "HEAD"],
+        "answerIndex": 0,
+        "explanation": "POST 常用于创建资源；GET 用于读取。"
+      },
+      "errors": [
+        { "title": "所有错误都返回 200", "detail": "客户端无法区分成功和失败。应使用准确状态码和稳定错误结构。", "code": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"...\"}}" },
+        { "title": "接口可以访问其他用户数据", "detail": "每个资源操作都要校验当前身份和资源所有权。", "code": "# 检查 resource.user_id == current_user.id" }
+      ],
+      "projectCode": "# 设计接口清单：\n# GET /api/projects\n# GET /api/projects/{id}\n# POST /api/projects\n# PATCH /api/projects/{id}\n# DELETE /api/projects/{id}\n# 每个接口写清权限、输入、输出和错误。",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "接口权限和授权范围是合规基础。不得通过可猜测 ID 或缺少鉴权的方式访问他人数据。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "deployment", "title": "服务部署与安全", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "deployment": {
+      "id": "deployment",
+      "title": "服务部署与安全",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 22,
+      "knowledge": [
+        "部署需要固定依赖版本、配置环境变量、准备启动命令并观察日志。",
+        "HTTPS、鉴权、限流、备份和最小权限是上线后的基础安全边界。"
+      ],
+      "why": [
+        "在电脑上能运行不等于服务能稳定对外运行。",
+        "配置、密钥、日志和依赖都可能成为安全风险。"
+      ],
+      "purpose": "把自己完成的 API 部署到受控服务器，并提供可恢复的运行环境。",
+      "example": "# requirements.txt\nfastapi==0.115.0\nuvicorn==0.30.6\n\n# 启动\nuvicorn app:app --host 127.0.0.1 --port 8000",
+      "exampleNotes": [
+        { "left": "requirements.txt", "right": "记录可复现依赖" },
+        { "left": "环境变量", "right": "保存数据库地址和密钥，不写进仓库" },
+        { "left": "127.0.0.1", "right": "只监听本机，再由受控反向代理对外" }
+      ],
+      "quiz": {
+        "question": "API Key 和数据库密码应该放在哪里？",
+        "code": "app = FastAPI()",
+        "options": ["服务端环境变量或密钥管理", "公开 GitHub 仓库", "聊天记录", "前端代码"],
+        "answerIndex": 0,
+        "explanation": "敏感配置应放在服务端安全配置中，不能进入公开代码或客户端。"
+      },
+      "errors": [
+        { "title": "使用 latest 依赖版本", "detail": "线上环境可能因依赖更新突然变化。应固定版本并验证升级。", "code": "fastapi==0.115.0" },
+        { "title": "日志记录密码和 Token", "detail": "日志可能被多人查看。敏感字段必须脱敏或不记录。", "code": "# log user_id 和错误码，不记录 Authorization" }
+      ],
+      "projectCode": "# 部署检查表\n# 固定依赖\n# 环境变量保存密钥\n# 开启 HTTPS\n# 设置限流和日志脱敏\n# 准备备份与回滚方案",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "对公众提供服务可能涉及网络安全、隐私政策、数据跨境和日志留存义务，应在上线前进行专项评估。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "machine-learning", "title": "机器学习入门", "minutes": 26, "state": "LOCKED" }
+      ]
+    },
+    "machine-learning": {
+      "id": "machine-learning",
+      "title": "机器学习入门",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 26,
+      "knowledge": [
+        "机器学习从示例数据中寻找规律，再用规律预测新数据。",
+        "训练集用于学习，测试集用于评估泛化能力，不能只看训练集准确率。"
+      ],
+      "why": [
+        "理解数据、特征、模型和评估，才能判断 AI 结果是否可信。",
+        "AI 应用不是只调用接口，还需要知道模型适合解决什么问题。"
+      ],
+      "purpose": "完成分类、回归和推荐系统的第一版，并正确评估结果。",
+      "example": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\nprint(model.score(X_test, y_test))",
+      "exampleNotes": [
+        { "left": "train_test_split", "right": "划分训练和测试数据" },
+        { "left": "model.fit", "right": "用训练集学习" },
+        { "left": "model.score", "right": "在未见数据上评估" }
+      ],
+      "quiz": {
+        "question": "为什么不能只用训练集准确率判断模型好坏？",
+        "code": "model.score(X_train, y_train)",
+        "options": ["模型可能记住训练数据，无法保证新数据表现", "训练集不能计算", "准确率没有意义", "必须使用 GPU"],
+        "answerIndex": 0,
+        "explanation": "测试集衡量模型对未见数据的泛化能力，是评估模型的关键。"
+      },
+      "errors": [
+        { "title": "测试数据混入训练", "detail": "数据泄漏会高估效果。任何预处理都应在训练集上拟合，再应用到测试集。", "code": "train_test_split(..., stratify=y)" },
+        { "title": "只追求准确率", "detail": "类别不平衡时，准确率可能掩盖问题。应同时看召回率、精确率和混淆矩阵。", "code": "confusion_matrix(y_test, predictions)" }
+      ],
+      "projectCode": "# 用 scikit-learn 完成一个小分类任务：\n# 1. 明确标签是什么\n# 2. 查看类别是否平衡\n# 3. 划分训练集和测试集\n# 4. 训练模型并报告测试指标",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "训练数据可能包含个人信息或受版权保护内容。必须确认来源、授权和用途，并避免用敏感特征做不公平决策。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法、著作权法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "ai-api", "title": "接入 AI API", "minutes": 22, "state": "LOCKED" },
+        { "id": "responsible-ai", "title": "负责任地使用 AI", "minutes": 18, "state": "LOCKED" }
+      ]
+    },
+    "ai-api": {
+      "id": "ai-api",
+      "title": "接入 AI API",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 22,
+      "knowledge": [
+        "AI API 通常接收提示词和上下文，返回文本、结构化数据或向量。",
+        "密钥、超时、重试、成本和输入输出校验都属于应用设计的一部分。"
+      ],
+      "why": [
+        "AI 能力只有在应用约束下才可靠：输入要验证，输出要检查，失败要降级。",
+        "把模型密钥放在服务端可以避免客户端泄露。"
+      ],
+      "purpose": "在写作、总结、分类和学习助手应用中接入大模型。",
+      "example": "from openai import OpenAI\nimport os\n\nclient = OpenAI(api_key=os.environ[\"OPENAI_API_KEY\"])\nreply = client.chat.completions.create(\n    model=\"gpt-4.1-mini\",\n    messages=[{\"role\": \"user\", \"content\": \"解释变量\"}],\n)\nprint(reply.choices[0].message.content)",
+      "exampleNotes": [
+        { "left": "os.environ", "right": "从环境变量读取密钥" },
+        { "left": "messages", "right": "向模型提供对话上下文" },
+        { "left": "choices[0]", "right": "解析返回结果前仍需校验结构" }
+      ],
+      "quiz": {
+        "question": "客户端 App 需要调用 AI 时，最安全的基本做法是什么？",
+        "code": "# 架构选择题",
+        "options": ["通过自己的服务端代理并保护密钥", "把服务商主密钥写进 APK", "公开密钥方便调试", "不使用鉴权"],
+        "answerIndex": 0,
+        "explanation": "服务端代理可以隐藏密钥、控制权限、限流并记录必要日志。"
+      },
+      "errors": [
+        { "title": "把模型输出直接当可信数据", "detail": "模型可能产生错误或格式不符。必须校验、限制长度并处理失败。", "code": "if not isinstance(result, dict): ..." },
+        { "title": "无限重试导致费用失控", "detail": "网络失败应有限重试并设置超时、预算和降级路径。", "code": "# max_retries=2, timeout=20" }
+      ],
+      "projectCode": "# AI 功能需求模板\n# 输入：用户提供什么？\n# 输出：需要什么结构？\n# 限制：长度、费用、敏感数据？\n# 失败：超时和格式错误时怎么办？\n# 隐私：哪些内容不能发送给第三方？",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "将数据发送给第三方模型服务前，应确认服务条款、数据用途、保存位置和是否用于训练；敏感个人信息应避免上传。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "responsible-ai", "title": "负责任地使用 AI", "minutes": 18, "state": "LOCKED" },
+        { "id": "git", "title": "Git 版本管理", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "responsible-ai": {
+      "id": "responsible-ai",
+      "title": "负责任地使用 AI",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 18,
+      "knowledge": [
+        "AI 输出是概率生成的建议，不天然等于事实、正确答案或有权限使用的内容。",
+        "偏见、幻觉、隐私、版权和过度依赖都需要在功能设计时主动处理。"
+      ],
+      "why": [
+        "学习 App 的目标是增强能力，不是替代思考。",
+        "AI 应用一旦影响他人权益，错误结果的成本会明显提高。"
+      ],
+      "purpose": "为 AI 功能设计风险提示、数据边界、人工复核和独立练习机制。",
+      "example": "# AI 功能上线前：\n# 1. 明确它回答什么、绝不回答什么\n# 2. 提示用户核对高风险结论\n# 3. 设置独立完成模式\n# 4. 不收集与功能无关的敏感数据",
+      "exampleNotes": [
+        { "left": "能力边界", "right": "说明适用和不适用范围" },
+        { "left": "人工复核", "right": "重要结论不能完全依赖模型" },
+        { "left": "独立练习", "right": "保留用户自己分析和编码的机会" }
+      ],
+      "quiz": {
+        "question": "AI 给出一个看似完整的法律分析，最合理的做法是什么？",
+        "code": "# 选择更负责的做法",
+        "options": ["核对可靠来源并说明不构成专业意见", "直接当作最终法律结论", "删除所有来源", "公开用户隐私数据验证"],
+        "answerIndex": 0,
+        "explanation": "AI 不能代替专业法律意见，高风险结论必须核对权威来源。"
+      },
+      "errors": [
+        { "title": "把 AI 输出署名为自己原创", "detail": "生成内容可能涉及版权和学术诚信问题。应遵守使用平台规则和发布场景要求。", "code": "# 明确标注 AI 辅助并人工审核" },
+        { "title": "为了效果收集全部聊天记录", "detail": "过度收集增加泄露风险。只保留完成功能所需的数据并明确保存期限。", "code": "# data minimization by default" }
+      ],
+      "projectCode": "# 我的 AI 使用原则\n# 先自己分析\n# 用 AI 检查遗漏\n# 对高风险信息查权威来源\n# 不向 AI 发送密钥和个人隐私",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "AI 应用可能涉及隐私、版权、歧视、消费者保护和行业监管。上线前应根据地区和场景进行专项评估。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法、著作权法；不同地区另有 AI 规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "git", "title": "Git 版本管理", "minutes": 22, "state": "LOCKED" }
+      ]
+    },
+    "git": {
+      "id": "git",
+      "title": "Git 版本管理",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 22,
+      "knowledge": [
+        "Git 保存项目在每次提交时的快照，让修改有历史、可比较、可回退。",
+        "工作区保存当前修改，暂存区选择本次提交内容，仓库保存已经提交的历史。"
+      ],
+      "why": [
+        "没有版本管理，错误修改可能覆盖可用代码，也无法解释某次变化为什么发生。",
+        "分支让新功能可以独立开发，测试通过后再合并。"
+      ],
+      "purpose": "管理个人项目、多人协作、发布版本和排查“哪天改坏了什么”。",
+      "example": "git status\ngit diff\ngit add app.py\ngit commit -m \"Fix score validation\"\ngit log --oneline",
+      "exampleNotes": [
+        { "left": "git status", "right": "查看工作区状态" },
+        { "left": "git diff", "right": "检查具体修改" },
+        { "left": "git commit", "right": "保存一组完整修改" }
+      ],
+      "quiz": {
+        "question": "提交前最应该先执行什么？",
+        "code": "git ?",
+        "options": ["git status 和 git diff", "git reset --hard", "删除 .git", "git push --force"],
+        "answerIndex": 0,
+        "explanation": "先确认变更范围和内容，才能避免把密钥、临时文件或错误修改提交进去。"
+      },
+      "errors": [
+        { "title": "把密钥提交到仓库", "detail": "一旦提交可能永久留在历史。使用 .gitignore，泄漏后立即吊销并更换密钥。", "code": ".env\nkeystore.properties\nlocal.properties" },
+        { "title": "所有修改挤在一个提交", "detail": "提交范围过大难以审查和回退。一次提交只做一个明确目的。", "code": "git add -p" }
+      ],
+      "projectCode": "# 功能分支流程\n# git switch -c feature/project-filter\n# 完成修改并测试\n# git diff\n# git add <files>\n# git commit -m \"Add project filter\"\n# 合并前再次运行测试",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "版本库中不要保存密钥、个人信息和未授权数据。公开仓库前必须检查提交历史。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "testing", "title": "pytest 自动化测试", "minutes": 24, "state": "LOCKED" },
+        { "id": "quality", "title": "代码质量与重构", "minutes": 20, "state": "LOCKED" }
+      ]
+    },
+    "testing": {
+      "id": "testing",
+      "title": "pytest 自动化测试",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 24,
+      "knowledge": [
+        "测试用可重复的代码验证函数、接口或流程是否保持预期行为。",
+        "一个测试通常包含准备数据、执行操作和断言结果三个阶段。"
+      ],
+      "why": [
+        "手动点击只能证明某一次运行正常，自动化测试可以在每次修改后快速重验。",
+        "测试能提前暴露边界和回归问题，降低修一个功能坏另一个功能的风险。"
+      ],
+      "purpose": "验证计算函数、数据清洗规则、API 状态码和项目关键流程。",
+      "example": "def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(2, 3) == 5\n    assert add(-1, 1) == 0",
+      "exampleNotes": [
+        { "left": "test_ 开头", "right": "pytest 默认发现测试函数" },
+        { "left": "assert", "right": "断言实际结果符合预期" },
+        { "left": "多个用例", "right": "覆盖正常和边界输入" }
+      ],
+      "quiz": {
+        "question": "断言 add(2, 3) 得到 5，正确写法是什么？",
+        "code": "def test_add():",
+        "options": ["assert add(2, 3) == 5", "print(add(2, 3))", "return 5", "if add(2, 3): pass"],
+        "answerIndex": 0,
+        "explanation": "测试使用 assert 明确验证结果，失败时 pytest 会给出定位信息。"
+      },
+      "errors": [
+        { "title": "只测试正常输入", "detail": "空值、零、负数、超长文本往往才是错误来源。应补边界测试。", "code": "assert add(0, 0) == 0" },
+        { "title": "测试依赖执行顺序", "detail": "每个测试应能独立运行，不依赖上一个测试留下的状态。", "code": "def test_x():\n    data = create_fresh_data()" }
+      ],
+      "projectCode": "def normalize_score(score):\n    if score < 0 or score > 100:\n        raise ValueError(\"score out of range\")\n    return score\n\n# 为正常值、边界值 0/100 和越界值分别写测试。",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "测试数据应使用虚构或匿名数据，不要复制真实用户隐私到测试仓库。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        { "id": "quality", "title": "代码质量与重构", "minutes": 20, "state": "LOCKED" }
+      ]
+    },
+    "quality": {
+      "id": "quality",
+      "title": "代码质量与重构",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 20,
+      "knowledge": [
+        "高质量代码首先是容易理解和修改的代码，不是行数最少或技巧最多的代码。",
+        "重构是在不改变外部行为的前提下，改善结构、命名和重复逻辑。"
+      ],
+      "why": [
+        "项目功能增加后，坏命名和重复代码会让每次修改都更危险。",
+        "先有测试，再重构，可以在改结构时确认行为没有变化。"
+      ],
+      "purpose": "整理毕业项目、减少重复、拆分长函数并提高后续开发速度。",
+      "example": "def average(values):\n    if not values:\n        raise ValueError(\"values cannot be empty\")\n    return sum(values) / len(values)",
+      "exampleNotes": [
+        { "left": "清晰函数名", "right": "直接说明职责" },
+        { "left": "边界检查", "right": "空列表有明确行为" },
+        { "left": "单一职责", "right": "只做平均值计算" }
+      ],
+      "quiz": {
+        "question": "重构的正确前提是什么？",
+        "code": "# 重构顺序",
+        "options": ["先有测试确认现有行为", "先删除所有旧代码", "先改变功能需求", "先关闭版本控制"],
+        "answerIndex": 0,
+        "explanation": "测试提供行为基线，使重构可以安全地改善结构而不改变功能。"
+      },
+      "errors": [
+        { "title": "一个函数负责所有事情", "detail": "读取输入、计算、打印和保存混在一起会难以测试。按职责拆分。", "code": "parse_input()\ncalculate()\nrender_result()" },
+        { "title": "复制粘贴后分别修改", "detail": "重复逻辑容易修一处漏一处。提取参数化函数或数据配置。", "code": "def calculate_total(items, tax_rate): ..." }
+      ],
+      "projectCode": "# 重构检查\n# 1. 函数名是否说明职责\n# 2. 是否存在复制粘贴逻辑\n# 3. 错误路径是否明确\n# 4. 测试是否全部通过\n# 5. 每次只做一个小改动",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "代码质量属于通用工程实践。使用第三方代码或模板时仍需遵守许可证和归属要求。",
+      "legalBasis": "参考原则：著作权法及开源许可证条款；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": []
     }
   },
   "projects": [
@@ -2281,6 +2957,188 @@
         "先实现新增和列出，再补查询。"
       ],
       "starter": "contacts = {}\nprint(\"欢迎使用通讯录\")\n# 用 while True 提供菜单\n# 输入 1 新增，2 列出，3 查询，0 退出"
+    },
+    {
+      "id": "sqlite-manager",
+      "title": "SQLite 学习记录系统",
+      "level": "Lv.3 综合项目",
+      "goal": "把课程完成记录、学习分钟和训练结果保存到 SQLite，并提供查询和统计。",
+      "requirements": [
+        "设计学习记录表并说明字段和主键",
+        "支持新增一条学习记录",
+        "支持按日期和知识点查询",
+        "支持统计总时长、连续天数和完成数量",
+        "所有 SQL 使用参数化查询"
+      ],
+      "knowledge": ["sqlite", "sql", "函数", "异常处理", "datetime"],
+      "hints": [
+        "先画清楚一条学习记录包含哪些字段，再建表。",
+        "把数据库连接、插入和查询拆成独立函数。",
+        "统计可以先在 SQL 中做，也可以读出后用 Python 聚合，比较两种方式。"
+      ],
+      "starter": "import sqlite3\n\n# 1. 设计 records 表\n# 2. 实现 add_record / query_records / summary\n# 3. 为正常、空数据和错误日期写测试"
+    },
+    {
+      "id": "weather-api",
+      "title": "天气 API 查询工具",
+      "level": "Lv.3 综合项目",
+      "goal": "读取天气服务 API 文档，根据用户输入查询天气并格式化显示结果。",
+      "requirements": [
+        "从环境变量读取 API Key",
+        "设置请求超时并检查状态码",
+        "解析 JSON 中的温度和天气描述",
+        "处理城市不存在、网络超时和服务限流",
+        "输出不包含任何密钥"
+      ],
+      "knowledge": ["api", "requests", "dict", "异常处理", "环境变量"],
+      "hints": [
+        "先用最小请求确认响应结构，再写展示逻辑。",
+        "把网络请求和格式化输出分成两个函数，便于测试。",
+        "错误信息要告诉用户下一步，例如检查城市名或稍后重试。"
+      ],
+      "starter": "import os\nimport requests\n\n# 1. 从环境变量读取 Key\n# 2. 请求天气接口\n# 3. 检查状态码\n# 4. 提取并显示天气信息"
+    },
+    {
+      "id": "excel-automation",
+      "title": "Excel 报表自动化",
+      "level": "Lv.3 综合项目",
+      "goal": "读取成绩表，清洗重复和缺失数据，生成班级统计报表。",
+      "requirements": [
+        "读取 CSV 或 Excel 数据",
+        "统计重复学号和缺失成绩",
+        "按班级计算平均分和及格率",
+        "输出新的报表文件",
+        "处理空表和字段缺失"
+      ],
+      "knowledge": ["pandas", "file", "data-model", "testing"],
+      "hints": [
+        "先检查列名、数据类型和缺失值数量。",
+        "把清洗规则写成小函数，并为边界情况写测试。",
+        "输出后重新读取文件验证，而不是只看程序成功结束。"
+      ],
+      "starter": "# 1. 读取表格\n# 2. 校验字段\n# 3. 清洗缺失和重复\n# 4. 分组统计\n# 5. 输出并重新验证"
+    },
+    {
+      "id": "crawler-project",
+      "title": "合规数据采集工具",
+      "level": "Lv.4 高级项目",
+      "goal": "在获得授权或使用公开 API 的前提下，采集结构化数据并保存为 CSV。",
+      "requirements": [
+        "先写数据来源、授权依据和用途说明",
+        "优先使用官方 API",
+        "控制请求频率并设置超时",
+        "记录失败项目并支持有限重试",
+        "输出字段稳定且不包含无关个人信息"
+      ],
+      "knowledge": ["requests", "api", "pandas", "file", "legal"],
+      "hints": [
+        "先采集 5 条数据并人工核对，再扩大到完整范围。",
+        "每个字段都要有来源和含义，不抓取用不到的隐私数据。",
+        "把采集、解析、清洗和保存拆开，任何一步失败都容易定位。"
+      ],
+      "starter": "# 采集前检查\n# 数据源：\n# 授权方式：\n# 请求频率：\n# 字段用途：\n# 保存期限：\n\n# 再开始写采集代码"
+    },
+    {
+      "id": "gui-app",
+      "title": "桌面 GUI 工具",
+      "level": "Lv.4 高级项目",
+      "goal": "把一个小型 Python 工具做成有输入框、按钮、结果区和错误提示的桌面应用。",
+      "requirements": [
+        "窗口包含输入区、操作按钮和结果区",
+        "耗时操作不能阻塞界面",
+        "输入错误必须给出可理解提示",
+        "核心业务逻辑与界面代码分离",
+        "核心函数有自动化测试"
+      ],
+      "knowledge": ["oop", "function", "testing", "errors", "quality"],
+      "hints": [
+        "先实现不含界面的核心函数和测试。",
+        "界面只负责收集输入和展示输出，不把业务规则塞进按钮回调。",
+        "错误提示说明发生了什么和用户可以怎么处理。"
+      ],
+      "starter": "# 选择 Tkinter、PySide 或 Flet\n# 1. 画最小界面\n# 2. 接入已完成的核心函数\n# 3. 增加输入校验和错误提示\n# 4. 补自动化测试"
+    },
+    {
+      "id": "web-api-project",
+      "title": "学习数据 Web API",
+      "level": "Lv.4 高级项目",
+      "goal": "实现带数据库、身份识别、输入校验和自动文档的 REST API。",
+      "requirements": [
+        "提供课程、进度和统计接口",
+        "使用请求模型校验输入",
+        "实现基本鉴权和资源归属检查",
+        "统一错误结构与状态码",
+        "提供 API 文档和最小测试集"
+      ],
+      "knowledge": ["fastapi", "rest-api", "sqlite", "testing", "deployment"],
+      "hints": [
+        "先定义资源、接口和数据库表，再写路由。",
+        "从 /health 和一个只读接口开始，逐步增加写操作。",
+        "每个接口都问：谁可以调用、可以操作谁的数据、失败返回什么。"
+      ],
+      "starter": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True}\n\n# 继续设计课程与进度资源"
+    },
+    {
+      "id": "complete-crawler",
+      "title": "完整合规采集与报告系统",
+      "level": "Lv.5 毕业方向",
+      "goal": "从合法数据源采集数据，清洗后生成可复现的数据报告和图表。",
+      "requirements": [
+        "有明确授权依据和数据用途说明",
+        "采集、解析、清洗、分析和报告分层",
+        "支持断点恢复和有限重试",
+        "数据质量检查覆盖缺失、重复和异常值",
+        "附带运行记录、测试和合规自查清单"
+      ],
+      "knowledge": ["requests", "pandas", "visualization", "sqlite", "testing", "legal"],
+      "hints": [
+        "先做 10 条数据的端到端小版本，再扩大范围。",
+        "报告中的每个结论都要能追溯到原始字段和清洗规则。",
+        "先以官方 API 或自己的测试站点完成流程，再考虑真实数据。"
+      ],
+      "starter": "# pipeline.py\n# fetch -> validate -> clean -> store -> analyze -> report\n# 每一步保存输入规模、输出规模和失败原因"
+    },
+    {
+      "id": "ai-app",
+      "title": "AI 学习助手",
+      "level": "Lv.5 毕业方向",
+      "goal": "构建一个能解释代码、出题和检查思路，并保留用户独立练习的 AI 应用。",
+      "requirements": [
+        "AI 密钥只保存在服务端",
+        "提供老师模式、只给思路和只指出错误三种策略",
+        "输入和模型输出都进行长度、格式与敏感信息检查",
+        "超时或模型失败时提供本地引导或明确错误",
+        "记录 AI 使用频率和独立完成数据，不训练用户产生依赖"
+      ],
+      "knowledge": ["ai-api", "responsible-ai", "fastapi", "testing", "quality"],
+      "hints": [
+        "先做“解释一段报错”的单一功能，并记录完整输入输出。",
+        "系统提示词控制教学策略，服务端负责敏感信息过滤和费用限制。",
+        "不要用 AI 结果替代核心业务的数据校验和测试。"
+      ],
+      "starter": "# AI 功能最小闭环\n# 输入 -> 敏感信息检查 -> 提示词策略 -> 模型调用\n# -> 结构校验 -> 展示 -> 用户反馈"
+    },
+    {
+      "id": "graduation-project",
+      "title": "Python 综合毕业项目",
+      "level": "Lv.5 毕业项目",
+      "goal": "自主选择一个真实需求，完成需求分析、设计、实现、测试、优化和发布。",
+      "requirements": [
+        "需求文档：用户、场景、目标和明确不做的范围",
+        "功能需求：至少包含课程、数据保存、查询和统计中的三类能力",
+        "界面要求：关键流程可操作，错误状态有提示，移动与桌面方案明确",
+        "数据库要求：实体关系、主键、索引、备份和迁移策略",
+        "API 要求：鉴权、输入校验、错误结构、超时和限流",
+        "测试要求：核心逻辑、边界输入、失败路径和端到端流程",
+        "交付要求：README、运行方式、测试结果、已知限制和发布版本"
+      ],
+      "knowledge": ["全部课程", "project", "git", "testing", "quality", "deployment"],
+      "hints": [
+        "先交出只有一项核心功能的可运行版本，再扩展，不要一开始搭空架子。",
+        "先写验收标准，再写代码；每完成一项就运行对应验证。",
+        "让一个不了解项目的人按 README 从零运行，记录所有卡点并修复。"
+      ],
+      "starter": "# 毕业项目工作区\n# 1. 需求分析\n# 2. 架构与数据设计\n# 3. 最小可运行版本\n# 4. 测试与调试\n# 5. 性能与安全检查\n# 6. 发布说明"
     }
   ]
 }
