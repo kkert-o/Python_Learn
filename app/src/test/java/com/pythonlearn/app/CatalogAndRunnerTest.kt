@@ -6,7 +6,17 @@ import com.pythonlearn.app.data.LessonState
 import com.pythonlearn.app.data.TrainingCatalog
 import com.pythonlearn.app.data.TrainingGrader
 import com.pythonlearn.app.data.TrainingType
+import com.pythonlearn.app.data.local.LessonProgressEntity
+import com.pythonlearn.app.data.local.ProgressDao
+import com.pythonlearn.app.data.local.ProjectProgressEntity
+import com.pythonlearn.app.data.local.QuizProgressEntity
+import com.pythonlearn.app.data.local.TrainingProgressEntity
+import com.pythonlearn.app.data.repository.ProgressRepository
 import com.pythonlearn.app.runtime.PythonErrorExplainer
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -132,5 +142,89 @@ class CatalogAndRunnerTest {
         val result = TrainingGrader.checkCode(exercise!!, exercise.starterCode!!)
         assertFalse("未修改的错误代码不应通过", result.correct)
         assertTrue(result.message.contains("错误写法"))
+    }
+
+    @Test
+    fun trainingProgressMovesFromWrongToCompleted() = runBlocking {
+        val dao = FakeProgressDao()
+        val repository = ProgressRepository(dao, now = { 100L })
+
+        repository.recordTrainingResult("train-1", correct = false)
+        val afterWrong = repository.observeProgress().first()
+        assertTrue("train-1" in afterWrong.wrongTrainingIds)
+        assertFalse("train-1" in afterWrong.completedTrainingIds)
+
+        repository.recordTrainingResult("train-1", correct = true)
+        val afterCorrect = repository.observeProgress().first()
+        assertTrue("train-1" in afterCorrect.completedTrainingIds)
+        assertFalse("train-1" in afterCorrect.wrongTrainingIds)
+    }
+
+    @Test
+    fun legacyProgressMigratesIntoRoomSnapshot() = runBlocking {
+        val dao = FakeProgressDao()
+        val repository = ProgressRepository(dao, now = { 200L })
+
+        repository.migrateLegacyProgress(
+            completedLessonIds = setOf("python"),
+            completedProjectIds = setOf("calculator"),
+            completedTrainingIds = setOf("predict-add"),
+            wrongTrainingIds = setOf("debug-name"),
+            wrongQuizIds = setOf("旧错题"),
+        )
+
+        val snapshot = repository.observeProgress().first()
+        assertEquals(setOf("python"), snapshot.completedLessonIds)
+        assertEquals(setOf("calculator"), snapshot.completedProjectIds)
+        assertEquals(setOf("predict-add"), snapshot.completedTrainingIds)
+        assertEquals(setOf("debug-name"), snapshot.wrongTrainingIds)
+        assertEquals(setOf("旧错题"), snapshot.wrongQuizIds)
+    }
+}
+
+private class FakeProgressDao : ProgressDao {
+    private val lessons = MutableStateFlow<List<LessonProgressEntity>>(emptyList())
+    private val projects = MutableStateFlow<List<ProjectProgressEntity>>(emptyList())
+    private val training = MutableStateFlow<List<TrainingProgressEntity>>(emptyList())
+    private val quizzes = MutableStateFlow<List<QuizProgressEntity>>(emptyList())
+
+    override fun observeLessons(): Flow<List<LessonProgressEntity>> = lessons
+
+    override fun observeProjects(): Flow<List<ProjectProgressEntity>> = projects
+
+    override fun observeTraining(): Flow<List<TrainingProgressEntity>> = training
+
+    override fun observeQuizzes(): Flow<List<QuizProgressEntity>> = quizzes
+
+    override suspend fun lesson(lessonId: String): LessonProgressEntity? {
+        return lessons.value.firstOrNull { it.lessonId == lessonId }
+    }
+
+    override suspend fun project(projectId: String): ProjectProgressEntity? {
+        return projects.value.firstOrNull { it.projectId == projectId }
+    }
+
+    override suspend fun training(exerciseId: String): TrainingProgressEntity? {
+        return training.value.firstOrNull { it.exerciseId == exerciseId }
+    }
+
+    override suspend fun quiz(question: String): QuizProgressEntity? {
+        return quizzes.value.firstOrNull { it.question == question }
+    }
+
+    override suspend fun upsertLesson(progress: LessonProgressEntity) {
+        lessons.value = lessons.value.filterNot { it.lessonId == progress.lessonId } + progress
+    }
+
+    override suspend fun upsertProject(progress: ProjectProgressEntity) {
+        projects.value = projects.value.filterNot { it.projectId == progress.projectId } + progress
+    }
+
+    override suspend fun upsertTraining(progress: TrainingProgressEntity) {
+        training.value = training.value.filterNot { it.exerciseId == progress.exerciseId } + progress
+    }
+
+    override suspend fun upsertQuiz(progress: QuizProgressEntity) {
+        quizzes.value = quizzes.value.filterNot { it.question == progress.question } + progress
     }
 }

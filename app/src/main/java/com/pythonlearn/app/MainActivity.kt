@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.lifecycleScope
 import com.pythonlearn.app.ui.PythonLearningApp
 import com.pythonlearn.app.runtime.AiConfig
 import com.pythonlearn.app.ui.theme.AccentOption
@@ -20,6 +21,8 @@ import com.pythonlearn.app.ui.theme.accentOptions
 import com.pythonlearn.app.ui.theme.legalRegionOptions
 import com.pythonlearn.app.ui.theme.customWallpaperOption
 import com.pythonlearn.app.ui.theme.wallpaperOptions
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         val prefs = getSharedPreferences("python_app_settings", MODE_PRIVATE)
+        val progressRepository = (application as PythonLearningApplication).progressRepository
 
         setContent {
             var themePreference by remember {
@@ -83,6 +87,23 @@ class MainActivity : ComponentActivity() {
                 )
             }
 
+            LaunchedEffect(Unit) {
+                progressRepository.migrateLegacyProgress(
+                    completedLessonIds = completedLessonIds,
+                    completedProjectIds = completedProjectIds,
+                    completedTrainingIds = completedTrainingIds,
+                    wrongTrainingIds = wrongTrainingIds,
+                    wrongQuizIds = wrongQuizIds,
+                )
+                progressRepository.observeProgress().collect { snapshot ->
+                    completedLessonIds = snapshot.completedLessonIds
+                    completedProjectIds = snapshot.completedProjectIds
+                    completedTrainingIds = snapshot.completedTrainingIds
+                    wrongTrainingIds = snapshot.wrongTrainingIds
+                    wrongQuizIds = snapshot.wrongQuizIds
+                }
+            }
+
             LaunchedEffect(
                 themePreference,
                 accent,
@@ -127,14 +148,30 @@ class MainActivity : ComponentActivity() {
                     completedLessonIds = completedLessonIds,
                     onCompleteLesson = { lessonId ->
                         completedLessonIds = completedLessonIds + lessonId
+                        lifecycleScope.launch {
+                            progressRepository.completeLesson(lessonId)
+                        }
                     },
                     completedProjectIds = completedProjectIds,
                     onCompleteProject = { projectId ->
                         completedProjectIds = completedProjectIds + projectId
+                        lifecycleScope.launch {
+                            progressRepository.completeProject(projectId)
+                        }
                     },
                     wrongQuizIds = wrongQuizIds,
-                    onRecordWrong = { wrongQuizIds = wrongQuizIds + it },
-                    onResolveWrong = { wrongQuizIds = wrongQuizIds - it },
+                    onRecordWrong = { question ->
+                        wrongQuizIds = wrongQuizIds + question
+                        lifecycleScope.launch {
+                            progressRepository.recordQuizResult(question, correct = false)
+                        }
+                    },
+                    onResolveWrong = { question ->
+                        wrongQuizIds = wrongQuizIds - question
+                        lifecycleScope.launch {
+                            progressRepository.recordQuizResult(question, correct = true)
+                        }
+                    },
                     completedTrainingIds = completedTrainingIds,
                     wrongTrainingIds = wrongTrainingIds,
                     onTrainingResult = { exerciseId, correct ->
@@ -143,6 +180,9 @@ class MainActivity : ComponentActivity() {
                             wrongTrainingIds = wrongTrainingIds - exerciseId
                         } else {
                             wrongTrainingIds = wrongTrainingIds + exerciseId
+                        }
+                        lifecycleScope.launch {
+                            progressRepository.recordTrainingResult(exerciseId, correct)
                         }
                     },
                     legalRegion = legalRegion,
