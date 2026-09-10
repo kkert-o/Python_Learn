@@ -2,6 +2,10 @@
 
 这是根据产品提示词搭建的 Android 原生工程，使用 Kotlin、Jetpack Compose 和 Material 3。
 
+详细的架构、数据模型、扩展步骤、测试和发布说明见：
+
+- [开发文档](docs/development-guide.md)
+
 ## 当前已实现
 
 - App 外壳：首页 / 课程 / 练习 / 项目 / 我的 五个入口
