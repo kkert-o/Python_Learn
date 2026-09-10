@@ -80,3 +80,20 @@ JSON 解析和结构校验
 ```
 
 更新内容不会修改 APK，重新启动 App 后继续读取已安装的新版本。
+
+## 后台自动检查
+
+默认不启用联网检查。发布构建时通过 Gradle 参数或环境变量配置清单地址：
+
+```powershell
+.\gradlew.bat :app:assembleRelease -PcontentManifestUrl="https://example.com/content/manifest.json"
+```
+
+也可以设置：
+
+```text
+CONTENT_MANIFEST_URL=https://example.com/content/manifest.json
+```
+
+启用后由 WorkManager 每 24 小时检查一次，要求网络可用；失败时使用指数退避，最多重试 3 次。
+未配置地址时不会创建后台任务。

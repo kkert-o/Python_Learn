@@ -6,6 +6,7 @@ import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.ProjectCatalog
 import com.pythonlearn.app.data.content.ContentPayloadDto
 import com.pythonlearn.app.data.content.ContentUpdateManager
+import com.pythonlearn.app.data.content.ContentUpdateScheduler
 import com.pythonlearn.app.data.content.HttpContentDownloader
 import com.pythonlearn.app.data.content.JsonCourseContentRepository
 import com.pythonlearn.app.data.local.PythonLearningDatabase
@@ -41,6 +42,7 @@ class PythonLearningApplication : PyApplication() {
         CourseCatalog.install(content)
         ProjectCatalog.install(content.projects)
         contentUpdateManager = manager
+        ContentUpdateScheduler.schedule(this)
         val database = PythonLearningDatabase.getInstance(this)
         progressRepository = ProgressRepository(database.progressDao())
     }
