@@ -1,5 +1,7 @@
 package com.pythonlearn.app.data
 
+import com.pythonlearn.app.data.content.CourseContent
+
 enum class LessonState {
     DONE,
     DOING,
@@ -69,6 +71,8 @@ data class ProjectInfo(
 )
 
 object CourseCatalog {
+    private var installedContent: CourseContent? = null
+
     private val basics = CourseStage(
         label = "第一阶段",
         name = "Python 基础",
@@ -137,10 +141,29 @@ object CourseCatalog {
         special = true,
     )
 
-    val stages = listOf(basics, control, dataStructures, functionsAndFiles, crawler)
-    val orderedLessonIds: List<String> = stages.flatMap { stage -> stage.lessons.map { it.id } }
+    private val fallbackStages = listOf(basics, control, dataStructures, functionsAndFiles, crawler)
 
-    fun lesson(id: String): LessonDetail? = lessons[id]
+    val stages: List<CourseStage>
+        get() = installedContent?.stages ?: fallbackStages
+
+    val orderedLessonIds: List<String>
+        get() = stages.flatMap { stage -> stage.lessons.map { it.id } }
+
+    val allLessons: List<LessonDetail>
+        get() = activeLessons.values.toList()
+
+    fun install(content: CourseContent) {
+        val lessonIds = content.stages.flatMap { stage -> stage.lessons.map { it.id } }
+        require(lessonIds.all { it in content.lessons }) {
+            "Course content contains a lesson without details"
+        }
+        require(content.lessons.keys == lessonIds.toSet()) {
+            "Course content contains unexpected lesson details"
+        }
+        installedContent = content
+    }
+
+    fun lesson(id: String): LessonDetail? = activeLessons[id]
 
     fun lessonState(id: String, completedIds: Set<String>): LessonState {
         if (id in completedIds) return LessonState.DONE
@@ -167,17 +190,20 @@ object CourseCatalog {
     }
 
     val allQuizzes: List<Quiz>
-        get() = lessons.values.map { it.quiz }
+        get() = activeLessons.values.map { it.quiz }
 
     fun quizByQuestion(question: String): Quiz? {
-        return lessons.values.firstOrNull { it.quiz.question == question }?.quiz
+        return activeLessons.values.firstOrNull { it.quiz.question == question }?.quiz
     }
 
     fun lessonIdByQuizQuestion(question: String): String? {
-        return lessons.values.firstOrNull { it.quiz.question == question }?.id
+        return activeLessons.values.firstOrNull { it.quiz.question == question }?.id
     }
 
-    private val lessons: Map<String, LessonDetail> = mapOf(
+    private val activeLessons: Map<String, LessonDetail>
+        get() = installedContent?.lessons ?: fallbackLessons
+
+    private val fallbackLessons: Map<String, LessonDetail> = mapOf(
         "python" to LessonDetail(
             id = "python",
             title = "Python 是什么",
@@ -1522,6 +1548,8 @@ object CourseCatalog {
 }
 
 object ProjectCatalog {
+    private var installedProjects: List<ProjectInfo>? = null
+
     val guess = ProjectInfo(
         id = "guess",
         title = "猜数字",
@@ -1605,7 +1633,18 @@ object ProjectCatalog {
         starter = "contacts = {}\nprint(\"欢迎使用通讯录\")\n# 用 while True 提供菜单\n# 输入 1 新增，2 列出，3 查询，0 退出",
     )
 
-    val all = listOf(guess, calculator, bmi, contacts)
+    private val fallbackAll = listOf(guess, calculator, bmi, contacts)
+
+    val all: List<ProjectInfo>
+        get() = installedProjects ?: fallbackAll
+
+    fun install(projects: List<ProjectInfo>) {
+        require(projects.isNotEmpty()) { "Project content cannot be empty" }
+        require(projects.map { it.id }.distinct().size == projects.size) {
+            "Project content contains duplicate ids"
+        }
+        installedProjects = projects
+    }
 
     fun byId(id: String): ProjectInfo? = all.firstOrNull { it.id == id }
 }

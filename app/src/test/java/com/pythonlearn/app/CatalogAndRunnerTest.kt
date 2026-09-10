@@ -1,16 +1,19 @@
 package com.pythonlearn.app
 
+import com.google.gson.Gson
 import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.KnowledgeState
 import com.pythonlearn.app.data.KnowledgeTreeEngine
 import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.data.LessonState
+import com.pythonlearn.app.data.ProjectCatalog
 import com.pythonlearn.app.data.ReviewTargetType
 import com.pythonlearn.app.data.ReviewScheduler
 import com.pythonlearn.app.data.TrainingCatalog
 import com.pythonlearn.app.data.TrainingGrader
 import com.pythonlearn.app.data.TrainingType
+import com.pythonlearn.app.data.content.ContentPayloadDto
 import com.pythonlearn.app.data.local.LearningEventEntity
 import com.pythonlearn.app.data.local.LessonProgressEntity
 import com.pythonlearn.app.data.local.ProgressDao
@@ -24,6 +27,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import java.io.File
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -269,6 +273,20 @@ class CatalogAndRunnerTest {
 
         assertEquals("python", dashboard.recommendation.lessonId)
         assertEquals(KnowledgeState.NOT_STARTED, dashboard.knowledgeTree.first().state)
+    }
+
+    @Test
+    fun bundledContentMatchesBuiltInCourseShape() {
+        val file = File("src/main/assets/content/course_content.json")
+        assertTrue("缺少课程内容资源", file.exists())
+        val content = Gson()
+            .fromJson(file.readText(Charsets.UTF_8), ContentPayloadDto::class.java)
+            .toDomain()
+        val contentLessonIds = content.stages.flatMap { stage -> stage.lessons.map { it.id } }
+
+        assertEquals(CourseCatalog.orderedLessonIds, contentLessonIds)
+        assertEquals(CourseCatalog.allLessons.size, content.lessons.size)
+        assertEquals(ProjectCatalog.all.size, content.projects.size)
     }
 }
 
