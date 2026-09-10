@@ -1,7 +1,11 @@
 package com.pythonlearn.app.ui.components
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -21,6 +25,8 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -86,17 +92,29 @@ fun ProgressTrack(
     color: Color? = null,
 ) {
     val value = progress.coerceIn(0, 100)
-    Row(
+    val animatedProgress = remember { Animatable(0f) }
+    LaunchedEffect(value) {
+        animatedProgress.animateTo(
+            targetValue = value / 100f,
+            animationSpec = tween(
+                durationMillis = 650,
+                easing = FastOutSlowInEasing,
+            ),
+        )
+    }
+    Box(
         modifier = modifier
             .fillMaxWidth()
             .height(8.dp)
-            .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.28f), RoundedCornerShape(50)),
+            .background(
+                MaterialTheme.colorScheme.outline.copy(alpha = 0.28f),
+                RoundedCornerShape(50),
+            ),
     ) {
-        if (value > 0) {
-            val widthPx = (8f * value / 100f).coerceAtLeast(4f)
-            Spacer(
+        if (animatedProgress.value > 0f) {
+            Box(
                 modifier = Modifier
-                    .width(widthPx.dp)
+                    .fillMaxWidth(animatedProgress.value)
                     .height(8.dp)
                     .background(color ?: MaterialTheme.colorScheme.primary, RoundedCornerShape(50)),
             )

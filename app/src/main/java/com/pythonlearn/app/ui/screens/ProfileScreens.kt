@@ -30,7 +30,6 @@ import androidx.compose.material.icons.filled.Psychology
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.SmartToy
-import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.Icon
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
@@ -78,7 +77,6 @@ fun ProfileScreen(
     onOpenSearch: () -> Unit,
     onOpenErrorMuseum: () -> Unit,
     onOpenAiIndependence: () -> Unit,
-    onOpenReleaseCheck: () -> Unit,
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
     completedLessonIds: Set<String>,
@@ -289,16 +287,6 @@ fun ProfileScreen(
                         subtitle = "${legalRegion.label} · 本模块不构成法律意见",
                         imageVector = Icons.Filled.Gavel,
                         onClick = { legalDialogOpen = true },
-                    )
-                    androidx.compose.material3.HorizontalDivider(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
-                    )
-                    SettingsRow(
-                        title = "发布与设备检查",
-                        subtitle = "运行时、性能、设备与签名配置状态",
-                        imageVector = Icons.Filled.Verified,
-                        onClick = onOpenReleaseCheck,
                     )
                 }
             }

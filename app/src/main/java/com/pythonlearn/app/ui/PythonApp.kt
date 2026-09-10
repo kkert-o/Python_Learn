@@ -60,7 +60,6 @@ import com.pythonlearn.app.ui.screens.LessonScreen
 import com.pythonlearn.app.ui.screens.PracticeScreen
 import com.pythonlearn.app.ui.screens.ProfileScreen
 import com.pythonlearn.app.ui.screens.ProjectScreen
-import com.pythonlearn.app.ui.screens.ReleaseCheckScreen
 import com.pythonlearn.app.ui.screens.SearchLibraryScreen
 import com.pythonlearn.app.ui.screens.WallpaperScreen
 import com.pythonlearn.app.ui.screens.toWorkbenchCode
@@ -87,7 +86,16 @@ private enum class ProfilePanel {
     SEARCH,
     ERRORS,
     AI_INDEPENDENCE,
-    RELEASE,
+}
+
+private sealed interface AppOverlay {
+    data class Lesson(val lessonId: String) : AppOverlay
+
+    data class Workbench(val initialCode: String?) : AppOverlay
+
+    data class Profile(val panel: ProfilePanel) : AppOverlay
+
+    data object AiTeacher : AppOverlay
 }
 
 @Composable
@@ -140,11 +148,7 @@ fun PythonLearningApp(
         }
     }
     var destination by remember { mutableStateOf(Destination.HOME) }
-    var openLessonId by remember { mutableStateOf<String?>(null) }
-    var workbenchOpen by remember { mutableStateOf(false) }
-    var workbenchInitialCode by remember { mutableStateOf<String?>(null) }
-    var profilePanel by remember { mutableStateOf(ProfilePanel.MAIN) }
-    var aiOpen by remember { mutableStateOf(false) }
+    var overlays by remember { mutableStateOf<List<AppOverlay>>(emptyList()) }
 
     val dark = when (themePreference) {
         ThemePreference.SYSTEM -> isSystemInDarkTheme()
@@ -158,37 +162,24 @@ fun PythonLearningApp(
 
     val openLesson: (String) -> Unit = { lessonId ->
         if (CourseCatalog.lesson(lessonId) != null) {
-            workbenchOpen = false
-            openLessonId = lessonId
-            profilePanel = ProfilePanel.MAIN
+            overlays = overlays + AppOverlay.Lesson(lessonId)
         }
     }
     val openWorkbench: (String?) -> Unit = { code ->
-        aiOpen = false
-        openLessonId = null
-        profilePanel = ProfilePanel.MAIN
-        workbenchInitialCode = code
-        workbenchOpen = true
+        overlays = overlays + AppOverlay.Workbench(code)
     }
-    val closeWorkbench: () -> Unit = {
-        workbenchOpen = false
-        workbenchInitialCode = null
+    val pushAi: () -> Unit = {
+        overlays = overlays + AppOverlay.AiTeacher
     }
-    val openProfilePanel: (ProfilePanel) -> Unit = { panel ->
-        aiOpen = false
-        openLessonId = null
-        workbenchOpen = false
-        profilePanel = panel
+    val popOverlay: () -> Unit = {
+        if (overlays.isNotEmpty()) {
+            overlays = overlays.dropLast(1)
+        }
     }
     BackHandler(
-        enabled = aiOpen || openLessonId != null || workbenchOpen || profilePanel != ProfilePanel.MAIN,
+        enabled = overlays.isNotEmpty(),
     ) {
-        when {
-            aiOpen -> aiOpen = false
-            openLessonId != null -> openLessonId = null
-            workbenchOpen -> closeWorkbench()
-            profilePanel != ProfilePanel.MAIN -> profilePanel = ProfilePanel.MAIN
-        }
+        popOverlay()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -217,134 +208,12 @@ fun PythonLearningApp(
             )
         }
 
-        val lesson = openLessonId?.let(CourseCatalog::lesson)
-        if (aiOpen) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                AiTeacherScreen(
-                    onBack = { aiOpen = false },
-                    aiConfig = aiConfig,
-                    onAiConfigChange = onAiConfigChange,
-                    onAiPrompt = onAiPrompt,
-                )
-            }
-        } else if (lesson != null) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                LessonScreen(
-                    lesson = lesson,
-                    onBack = { openLessonId = null },
-                    onOpenLesson = openLesson,
-                    onCompleteLesson = {
-                        onCompleteLesson(lesson.id)
-                        openLessonId = null
-                    },
-                    legalRegionLabel = legalRegion.label,
-                    onOpenWorkbench = { openWorkbench(lesson.example) },
-                    onRecordWrong = onRecordWrong,
-                    onResolveWrong = onResolveWrong,
-                )
-            }
-        } else if (profilePanel == ProfilePanel.APPEARANCE) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                AppearanceScreen(
-                    themePreference = themePreference,
-                    onThemePreferenceChange = onThemePreferenceChange,
-                    accent = accent,
-                    onAccentChange = onAccentChange,
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                )
-            }
-        } else if (profilePanel == ProfilePanel.WALLPAPER) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                WallpaperScreen(
-                    current = wallpaper,
-                    onWallpaperChange = onWallpaperChange,
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                    customWallpaperUri = customWallpaperUri,
-                    onPickWallpaper = {
-                        wallpaperPicker.launch(
-                            "image/*",
-                        )
-                    },
-                )
-            }
-        } else if (profilePanel == ProfilePanel.LEARNING) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                LearningHubScreen(
-                    dashboard = learningDashboard,
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                    onOpenLesson = { lessonId ->
-                        profilePanel = ProfilePanel.MAIN
-                        openLesson(lessonId)
-                    },
-                    onOpenReview = { review ->
-                        if (review.targetType == ReviewTargetType.LESSON) {
-                            profilePanel = ProfilePanel.MAIN
-                            openLesson(review.targetId)
-                        } else {
-                            review.toWorkbenchCode()?.let(openWorkbench)
-                        }
-                    },
-                )
-            }
-        } else if (profilePanel == ProfilePanel.SEARCH) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                SearchLibraryScreen(
-                    favoriteIds = favoriteIds,
-                    onToggleFavorite = onToggleFavorite,
-                    completedProjectIds = completedProjectIds,
-                    onCompleteProject = onCompleteProject,
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                    onOpenLesson = { lessonId ->
-                        profilePanel = ProfilePanel.MAIN
-                        openLesson(lessonId)
-                    },
-                    onOpenWorkbench = openWorkbench,
-                    onTrainingResult = onTrainingResult,
-                )
-            }
-        } else if (profilePanel == ProfilePanel.ERRORS) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                ErrorMuseumScreen(
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                    onOpenWorkbench = openWorkbench,
-                    onOpenLesson = { lessonId ->
-                        profilePanel = ProfilePanel.MAIN
-                        openLesson(lessonId)
-                    },
-                )
-            }
-        } else if (profilePanel == ProfilePanel.AI_INDEPENDENCE) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                AiIndependenceScreen(
-                    profile = AiIndependenceEngine.build(
-                        completedLessons = completedLessonIds.size,
-                        completedProjects = completedProjectIds.size,
-                        completedTraining = completedTrainingIds.size,
-                        aiPromptCount = aiPromptCount,
-                        aiFreeCompletedIds = aiFreeChallengeIds,
-                    ),
-                    completedChallengeIds = aiFreeChallengeIds,
-                    aiPromptCount = aiPromptCount,
-                    onToggleChallenge = onToggleAiFreeChallenge,
-                    onOpenAi = { aiOpen = true },
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                )
-            }
-        } else if (profilePanel == ProfilePanel.RELEASE) {
-            Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
-                ReleaseCheckScreen(
-                    completedLessons = completedLessonIds.size,
-                    completedProjects = completedProjectIds.size,
-                    completedTraining = completedTrainingIds.size,
-                    onBack = { profilePanel = ProfilePanel.MAIN },
-                )
-            }
-        } else {
-            MainShell(
+        when (val overlay = overlays.lastOrNull()) {
+            null -> MainShell(
                 destination = destination,
                 onDestinationChange = { destination = it },
                 onOpenLesson = openLesson,
-                onOpenAi = { aiOpen = true },
+                onOpenAi = pushAi,
                 completedLessonIds = completedLessonIds,
                 completedProjectIds = completedProjectIds,
                 onCompleteProject = onCompleteProject,
@@ -356,24 +225,176 @@ fun PythonLearningApp(
                 onTrainingResult = onTrainingResult,
                 legalRegion = legalRegion,
                 onLegalRegionChange = onLegalRegionChange,
-                onOpenAppearance = { profilePanel = ProfilePanel.APPEARANCE },
-                onOpenWallpaper = { profilePanel = ProfilePanel.WALLPAPER },
+                onOpenAppearance = { overlays = overlays + AppOverlay.Profile(ProfilePanel.APPEARANCE) },
+                onOpenWallpaper = { overlays = overlays + AppOverlay.Profile(ProfilePanel.WALLPAPER) },
                 learningDashboard = learningDashboard,
-                onOpenLearningHub = { openProfilePanel(ProfilePanel.LEARNING) },
+                onOpenLearningHub = { overlays = overlays + AppOverlay.Profile(ProfilePanel.LEARNING) },
                 favoriteIds = favoriteIds,
                 onToggleFavorite = onToggleFavorite,
-                onOpenSearch = { openProfilePanel(ProfilePanel.SEARCH) },
-                onOpenErrorMuseum = { openProfilePanel(ProfilePanel.ERRORS) },
+                onOpenSearch = { overlays = overlays + AppOverlay.Profile(ProfilePanel.SEARCH) },
+                onOpenErrorMuseum = { overlays = overlays + AppOverlay.Profile(ProfilePanel.ERRORS) },
                 aiFreeChallengeIds = aiFreeChallengeIds,
-                onOpenAiIndependence = { openProfilePanel(ProfilePanel.AI_INDEPENDENCE) },
-                onOpenReleaseCheck = { openProfilePanel(ProfilePanel.RELEASE) },
+                onOpenAiIndependence = { overlays = overlays + AppOverlay.Profile(ProfilePanel.AI_INDEPENDENCE) },
                 aiPromptCount = aiPromptCount,
                 onAiPrompt = onAiPrompt,
-                workbenchOpen = workbenchOpen,
-                workbenchInitialCode = workbenchInitialCode,
                 onOpenWorkbench = openWorkbench,
-                onCloseWorkbench = closeWorkbench,
             )
+
+            is AppOverlay.AiTeacher -> Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .systemBarsPadding(),
+            ) {
+                AiTeacherScreen(
+                    onBack = popOverlay,
+                    aiConfig = aiConfig,
+                    onAiConfigChange = onAiConfigChange,
+                    onAiPrompt = onAiPrompt,
+                )
+            }
+
+            is AppOverlay.Lesson -> {
+                val lesson = CourseCatalog.lesson(overlay.lessonId)
+                if (lesson == null) {
+                    popOverlay()
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .systemBarsPadding(),
+                    ) {
+                        LessonScreen(
+                            lesson = lesson,
+                            onBack = popOverlay,
+                            onOpenLesson = openLesson,
+                            onCompleteLesson = {
+                                onCompleteLesson(lesson.id)
+                                popOverlay()
+                            },
+                            legalRegionLabel = legalRegion.label,
+                            onOpenWorkbench = { openWorkbench(lesson.example) },
+                            onRecordWrong = onRecordWrong,
+                            onResolveWrong = onResolveWrong,
+                        )
+                    }
+                }
+            }
+
+            is AppOverlay.Workbench -> Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .systemBarsPadding(),
+            ) {
+                CodeWorkbenchScreen(
+                    onBack = popOverlay,
+                    initialCode = overlay.initialCode,
+                )
+            }
+
+            is AppOverlay.Profile -> when (overlay.panel) {
+                ProfilePanel.MAIN -> {
+                    popOverlay()
+                }
+
+                ProfilePanel.APPEARANCE -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    AppearanceScreen(
+                        themePreference = themePreference,
+                        onThemePreferenceChange = onThemePreferenceChange,
+                        accent = accent,
+                        onAccentChange = onAccentChange,
+                        onBack = popOverlay,
+                    )
+                }
+
+                ProfilePanel.WALLPAPER -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    WallpaperScreen(
+                        current = wallpaper,
+                        onWallpaperChange = onWallpaperChange,
+                        onBack = popOverlay,
+                        customWallpaperUri = customWallpaperUri,
+                        onPickWallpaper = {
+                            wallpaperPicker.launch("image/*")
+                        },
+                    )
+                }
+
+                ProfilePanel.LEARNING -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    LearningHubScreen(
+                        dashboard = learningDashboard,
+                        onBack = popOverlay,
+                        onOpenLesson = openLesson,
+                        onOpenReview = { review ->
+                            if (review.targetType == ReviewTargetType.LESSON) {
+                                openLesson(review.targetId)
+                            } else {
+                                review.toWorkbenchCode()?.let(openWorkbench)
+                            }
+                        },
+                    )
+                }
+
+                ProfilePanel.SEARCH -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    SearchLibraryScreen(
+                        favoriteIds = favoriteIds,
+                        onToggleFavorite = onToggleFavorite,
+                        completedProjectIds = completedProjectIds,
+                        onCompleteProject = onCompleteProject,
+                        onBack = popOverlay,
+                        onOpenLesson = openLesson,
+                        onOpenWorkbench = openWorkbench,
+                        onTrainingResult = onTrainingResult,
+                    )
+                }
+
+                ProfilePanel.ERRORS -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    ErrorMuseumScreen(
+                        onBack = popOverlay,
+                        onOpenWorkbench = openWorkbench,
+                        onOpenLesson = openLesson,
+                    )
+                }
+
+                ProfilePanel.AI_INDEPENDENCE -> Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
+                ) {
+                    AiIndependenceScreen(
+                        profile = AiIndependenceEngine.build(
+                            completedLessons = completedLessonIds.size,
+                            completedProjects = completedProjectIds.size,
+                            completedTraining = completedTrainingIds.size,
+                            aiPromptCount = aiPromptCount,
+                            aiFreeCompletedIds = aiFreeChallengeIds,
+                        ),
+                        completedChallengeIds = aiFreeChallengeIds,
+                        aiPromptCount = aiPromptCount,
+                        onToggleChallenge = onToggleAiFreeChallenge,
+                        onOpenAi = pushAi,
+                        onBack = popOverlay,
+                    )
+                }
+            }
         }
     }
 }
@@ -405,13 +426,9 @@ private fun MainShell(
     onOpenErrorMuseum: () -> Unit,
     aiFreeChallengeIds: Set<String>,
     onOpenAiIndependence: () -> Unit,
-    onOpenReleaseCheck: () -> Unit,
     aiPromptCount: Int,
     onAiPrompt: () -> Unit,
-    workbenchOpen: Boolean,
-    workbenchInitialCode: String?,
     onOpenWorkbench: (String?) -> Unit,
-    onCloseWorkbench: () -> Unit,
 ) {
     Scaffold(
         containerColor = Color.Transparent,
@@ -425,7 +442,6 @@ private fun MainShell(
                     NavigationBarItem(
                         selected = destination == item,
                         onClick = {
-                            onCloseWorkbench()
                             onDestinationChange(item)
                         },
                         icon = {
@@ -454,65 +470,57 @@ private fun MainShell(
     ) { innerPadding ->
         AdaptiveFrame {
             Box(modifier = Modifier.padding(innerPadding)) {
-                if (workbenchOpen) {
-                    CodeWorkbenchScreen(
-                        onBack = onCloseWorkbench,
-                        initialCode = workbenchInitialCode,
+                when (destination) {
+                    Destination.HOME -> HomeScreen(
+                        onOpenLesson = onOpenLesson,
+                        onOpenAi = onOpenAi,
+                        onOpenLearningHub = onOpenLearningHub,
+                        completedLessonIds = completedLessonIds,
+                        dashboard = learningDashboard,
                     )
-                } else {
-                    when (destination) {
-                        Destination.HOME -> HomeScreen(
-                            onOpenLesson = onOpenLesson,
-                            onOpenAi = onOpenAi,
-                            onOpenLearningHub = onOpenLearningHub,
-                            completedLessonIds = completedLessonIds,
-                            dashboard = learningDashboard,
-                        )
-                        Destination.COURSES -> CourseScreen(
-                            onOpenLesson = onOpenLesson,
-                            completedLessonIds = completedLessonIds,
-                            onOpenLearningHub = onOpenLearningHub,
-                        )
-                        Destination.PRACTICE -> PracticeScreen(
-                            onOpenWorkbench = onOpenWorkbench,
-                            wrongQuizIds = wrongQuizIds,
-                            completedTrainingIds = completedTrainingIds,
-                            wrongTrainingIds = wrongTrainingIds,
-                            onRecordWrong = onRecordWrong,
-                            onResolveWrong = onResolveWrong,
-                            onTrainingResult = onTrainingResult,
-                            dueReviewCount = learningDashboard.dueReviews.size,
-                            onOpenLearningHub = onOpenLearningHub,
-                            onOpenErrorMuseum = onOpenErrorMuseum,
-                            onOpenSearch = onOpenSearch,
-                        )
-                        Destination.PROJECTS -> ProjectScreen(
-                            onOpenLesson = onOpenLesson,
-                            onOpenWorkbench = { code -> onOpenWorkbench(code) },
-                            completedProjectIds = completedProjectIds,
-                            onCompleteProject = onCompleteProject,
-                        )
-                        Destination.PROFILE -> ProfileScreen(
-                            onOpenAi = onOpenAi,
-                            onOpenAppearance = onOpenAppearance,
-                            onOpenWallpaper = onOpenWallpaper,
-                            onOpenLearningHub = onOpenLearningHub,
-                            onOpenSearch = onOpenSearch,
-                            onOpenErrorMuseum = onOpenErrorMuseum,
-                            onOpenAiIndependence = onOpenAiIndependence,
-                            onOpenReleaseCheck = onOpenReleaseCheck,
-                            legalRegion = legalRegion,
-                            onLegalRegionChange = onLegalRegionChange,
-                            completedLessonIds = completedLessonIds,
-                            completedProjectIds = completedProjectIds,
-                            wrongQuizIds = wrongQuizIds,
-                            completedTrainingIds = completedTrainingIds,
-                            wrongTrainingIds = wrongTrainingIds,
-                            favoriteCount = favoriteIds.size,
-                            aiFreeCompleted = aiFreeChallengeIds.size,
-                            aiPromptCount = aiPromptCount,
-                        )
-                    }
+                    Destination.COURSES -> CourseScreen(
+                        onOpenLesson = onOpenLesson,
+                        completedLessonIds = completedLessonIds,
+                        onOpenLearningHub = onOpenLearningHub,
+                    )
+                    Destination.PRACTICE -> PracticeScreen(
+                        onOpenWorkbench = onOpenWorkbench,
+                        wrongQuizIds = wrongQuizIds,
+                        completedTrainingIds = completedTrainingIds,
+                        wrongTrainingIds = wrongTrainingIds,
+                        onRecordWrong = onRecordWrong,
+                        onResolveWrong = onResolveWrong,
+                        onTrainingResult = onTrainingResult,
+                        dueReviewCount = learningDashboard.dueReviews.size,
+                        onOpenLearningHub = onOpenLearningHub,
+                        onOpenErrorMuseum = onOpenErrorMuseum,
+                        onOpenSearch = onOpenSearch,
+                    )
+                    Destination.PROJECTS -> ProjectScreen(
+                        onOpenLesson = onOpenLesson,
+                        onOpenWorkbench = { code -> onOpenWorkbench(code) },
+                        completedProjectIds = completedProjectIds,
+                        onCompleteProject = onCompleteProject,
+                    )
+                    Destination.PROFILE -> ProfileScreen(
+                        onOpenAi = onOpenAi,
+                        onOpenAppearance = onOpenAppearance,
+                        onOpenWallpaper = onOpenWallpaper,
+                        onOpenLearningHub = onOpenLearningHub,
+                        onOpenSearch = onOpenSearch,
+                        onOpenErrorMuseum = onOpenErrorMuseum,
+                        onOpenAiIndependence = onOpenAiIndependence,
+                        legalRegion = legalRegion,
+                        onLegalRegionChange = onLegalRegionChange,
+                        completedLessonIds = completedLessonIds,
+                        completedProjectIds = completedProjectIds,
+                        wrongQuizIds = wrongQuizIds,
+                        completedTrainingIds = completedTrainingIds,
+                        wrongTrainingIds = wrongTrainingIds,
+                        favoriteCount = favoriteIds.size,
+                        aiFreeCompleted = aiFreeChallengeIds.size,
+                        aiPromptCount = aiPromptCount,
+                    )
                 }
             }
         }

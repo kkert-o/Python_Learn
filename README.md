@@ -40,8 +40,9 @@
 - 工程实践：Git 工作流、代码质量与最小自动化测试闭环
 - 项目内容：13 个项目覆盖 Lv.1 到 Lv.5，包含最终毕业项目验收要求
 - AI 独立能力：AI 等级、AI 依赖指数和 6 项 AI-Free Challenge
-- 发布检查：把应用版本、设备信息、Python 运行时 smoke test、功能完成情况和 Release 签名配置集中在“我的 > 发布与设备检查”
 - Release 签名：支持通过未提交到 Git 的 `keystore.properties` 注入正式签名，说明见 `docs/release-signing.md`
+- 内置 Python 依赖：除 requests、BeautifulSoup 外，还安装了 httpx、NumPy、pandas、Matplotlib、SQLAlchemy、FastAPI、Uvicorn、pytest、OpenAI SDK、Click 和 Rich，并可在“搜索与工具库”中执行导入检查
+- 层级返回：课程、运行台、搜索详情、项目详情、训练和工具页面使用分层返回关系，系统返回键不会直接退出当前学习上下文
 - 学习数据：我的页面按课程和项目进度实时计算等级、阶段完成度和能力数据
 
 ## 本阶段测试

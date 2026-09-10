@@ -36,7 +36,8 @@ the in-app release check reports that signing is not configured.
    tablet-sized emulator.
 2. Verify light mode, dark mode, wallpaper text contrast, and system back
    navigation across every nested screen.
-3. Run the Python runtime smoke test from `我的 > 发布与设备检查`.
+3. Run `:app:testDebugUnitTest` and use `我的 > 搜索与收藏 > 第三方库生态`
+   to execute the runtime dependency import check.
 4. Back up the keystore and passwords in a secure password manager. Losing the
    release key prevents future updates under the same application identity.
 5. Build the Android App Bundle for distribution:

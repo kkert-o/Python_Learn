@@ -18,8 +18,8 @@
 
 | 项目 | 当前值 |
 | --- | --- |
-| App 版本 | `0.2.0` |
-| versionCode | `2` |
+| App 版本 | `0.3.0` |
+| versionCode | `3` |
 | applicationId | `com.pythonlearn.app` |
 | UI | Kotlin + Jetpack Compose Material 3 |
 | 最低 Android | API 26 |
@@ -165,6 +165,27 @@ adb shell monkey -p com.pythonlearn.app -c android.intent.category.LAUNCHER 1
 | Python 第三方库 | requests 2.32.4、beautifulsoup4 4.13.4 |
 | 单元测试 | JUnit 4 |
 | 构建 | Gradle Kotlin DSL、AGP、KSP |
+
+当前 APK 内置的主要 Python 包：
+
+```text
+requests
+beautifulsoup4
+httpx
+numpy
+pandas
+matplotlib
+SQLAlchemy
+pydantic
+fastapi
+uvicorn
+pytest
+openai
+click
+rich
+```
+
+在“搜索与工具库”中可以运行“检查全部已内置库”，确认当前设备能否成功导入这些包。scikit-learn 和 Ruff 因 Chaquopy Android 轮子限制，标记为开发机工具。
 
 依赖统一声明在：
 
@@ -342,14 +363,11 @@ app/src/main/java/com/pythonlearn/app/MainActivity.kt
 
 ### 6.4 Compose 根导航
 
-当前没有引入 Navigation Compose，根导航由 `PythonLearningApp` 中的状态控制：
+当前没有引入 Navigation Compose。主页面由底部导航控制，详情页使用显式的层级栈：
 
 ```kotlin
 var destination by remember { mutableStateOf(Destination.HOME) }
-var openLessonId by remember { mutableStateOf<String?>(null) }
-var workbenchOpen by remember { mutableStateOf(false) }
-var profilePanel by remember { mutableStateOf(ProfilePanel.MAIN) }
-var aiOpen by remember { mutableStateOf(false) }
+var overlays by remember { mutableStateOf<List<AppOverlay>>(emptyList()) }
 ```
 
 底部导航：
@@ -372,21 +390,39 @@ var aiOpen by remember { mutableStateOf(false) }
 搜索与工具库
 错误博物馆
 AI 独立能力
-发布与设备检查
 ```
 
-系统返回键由 `BackHandler` 逐层处理，顺序是：
+`AppOverlay` 当前包含：
 
 ```text
-AI 老师
+Lesson
+Workbench
+Profile
+AiTeacher
+```
+
+每一层进入时压栈，系统返回键弹出栈顶。页面内部详情还会先使用自己的 `BackHandler`：
+
+```text
+搜索详情或项目详情
+  ↓
+搜索与工具库
+  ↓
+我的
+
+课程详情
+  ↓
+课程运行台
   ↓
 课程详情
   ↓
-代码运行台
+课程列表
+
+学习中心
   ↓
-我的内部页面
+训练或课程详情
   ↓
-系统默认返回
+学习中心
 ```
 
 关键文件：
@@ -1558,7 +1594,6 @@ adb install -r app\build\outputs\apk\debug\app-debug.apk
 - 全局搜索
 - 收藏
 - AI 独立能力
-- 发布与设备检查
 - 系统返回键
 
 ### 23.4 平板检查
@@ -1822,6 +1857,7 @@ $env:CHAQUOPY_PYTHON="C:\Path\To\Python311\python.exe"
 8. `CourseCatalog.kt` 仍保留大型内置兜底内容，后续可拆分。
 9. Room Schema 目前没有导出到版本控制，建议改为 `exportSchema = true`。
 10. Release 签名需要外部密钥，仓库只能提供流程，不能保存正式密钥。
+11. scikit-learn 和 Ruff 当前没有适用于 Chaquopy 3.11 的 Android 轮子，因此标记为开发机工具，不随 APK 打包。
 
 ---
 
@@ -1909,7 +1945,7 @@ $env:CHAQUOPY_PYTHON="C:\Path\To\Python311\python.exe"
 | `ui/PythonApp.kt` | 根导航和页面路由 |
 | `ui/screens/CodeWorkbenchScreen.kt` | 高级代码编辑器 |
 | `ui/screens/LearningHubScreen.kt` | 学习中心 |
-| `ui/screens/V2ToolsScreens.kt` | 搜索、错误、AI、发布检查 |
+| `ui/screens/V2ToolsScreens.kt` | 搜索、错误博物馆、AI 独立能力 |
 | `assets/content/course_content.json` | 当前课程和项目内容 |
 | `docs/content-update.md` | 内容更新接口 |
 | `docs/release-signing.md` | Release 签名 |

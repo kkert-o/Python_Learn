@@ -31,7 +31,7 @@ def run(code, stdin=""):
     state = {"steps": 0}
 
     def trace(frame, event, arg):
-        if event == "line":
+        if event == "line" and frame.f_code.co_filename == "<user_code>":
             state["steps"] += 1
             if state["steps"] > MAX_STEP_COUNT:
                 raise RuntimeError("程序运行次数过多，可能进入了无限循环。请补上循环停止条件后再运行。")

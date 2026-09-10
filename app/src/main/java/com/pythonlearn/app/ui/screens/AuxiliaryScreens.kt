@@ -1,5 +1,6 @@
 package com.pythonlearn.app.ui.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -67,6 +68,19 @@ fun PracticeScreen(
     var trainingExercises by remember { mutableStateOf<List<TrainingExercise>?>(null) }
     var reviewQuestion by remember { mutableStateOf<String?>(null) }
     var reviewSession by remember { mutableStateOf<List<Quiz>?>(null) }
+    BackHandler(
+        enabled = reviewSession != null ||
+            trainingExercises != null ||
+            reviewQuestion != null ||
+            showQuiz,
+    ) {
+        when {
+            reviewSession != null -> reviewSession = null
+            trainingExercises != null -> trainingExercises = null
+            reviewQuestion != null -> reviewQuestion = null
+            showQuiz -> showQuiz = false
+        }
+    }
     val quizzes = remember {
         listOfNotNull(
             CourseCatalog.lesson("if")?.quiz,
@@ -423,6 +437,9 @@ fun ProjectScreen(
     onCompleteProject: (String) -> Unit,
 ) {
     var openProjectId by remember { mutableStateOf<String?>(null) }
+    BackHandler(enabled = openProjectId != null) {
+        openProjectId = null
+    }
     val openProject = openProjectId?.let(ProjectCatalog::byId)
     if (openProject != null) {
         ProjectDetailScreen(

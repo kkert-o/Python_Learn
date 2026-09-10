@@ -3,6 +3,7 @@ package com.pythonlearn.app.ui.screens
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -44,6 +45,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -81,6 +83,7 @@ import com.pythonlearn.app.ui.components.ProgressTrack
 import com.pythonlearn.app.ui.components.SectionTitle
 import com.pythonlearn.app.ui.components.Tag
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.system.measureTimeMillis
 
@@ -92,6 +95,9 @@ fun ErrorMuseumScreen(
 ) {
     var query by remember { mutableStateOf("") }
     var openedId by remember { mutableStateOf<String?>(null) }
+    BackHandler(enabled = openedId != null) {
+        openedId = null
+    }
     val entries = remember(query) { ErrorMuseumCatalog.search(query) }
 
     LazyColumn(
@@ -207,6 +213,24 @@ fun SearchLibraryScreen(
     var selectedErrorId by remember { mutableStateOf<String?>(null) }
     var selectedLibraryId by remember { mutableStateOf<String?>(null) }
     var selectedEngineeringId by remember { mutableStateOf<String?>(null) }
+    var checkingLibraries by remember { mutableStateOf(false) }
+    var libraryCheckMessage by remember { mutableStateOf<String?>(null) }
+    val scope = rememberCoroutineScope()
+    BackHandler(
+        enabled = openProjectId != null ||
+            openTrainingId != null ||
+            selectedErrorId != null ||
+            selectedLibraryId != null ||
+            selectedEngineeringId != null,
+    ) {
+        when {
+            openProjectId != null -> openProjectId = null
+            openTrainingId != null -> openTrainingId = null
+            selectedErrorId != null -> selectedErrorId = null
+            selectedLibraryId != null -> selectedLibraryId = null
+            selectedEngineeringId != null -> selectedEngineeringId = null
+        }
+    }
 
     val openProject = openProjectId?.let(ProjectCatalog::byId)
     if (openProject != null) {
@@ -329,6 +353,58 @@ fun SearchLibraryScreen(
             }
             item {
                 SectionTitle(title = "第三方库生态", trailing = "${libraries.size} 个")
+            }
+            item {
+                GlassCard {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        Text(text = "运行时依赖检查", fontWeight = FontWeight.Bold)
+                        MutedText(
+                            text = "验证当前 APK 已内置的 Python 库是否可以正常导入。",
+                            small = false,
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        ActionButton(
+                            text = if (checkingLibraries) "正在检查..." else "检查全部已内置库",
+                            icon = Icons.Filled.Terminal,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            if (!checkingLibraries) {
+                                checkingLibraries = true
+                                libraryCheckMessage = null
+                                scope.launch {
+                                    val modules = LibraryCatalog.all
+                                        .filter { it.runtimeAvailable }
+                                        .joinToString(",") { libraryImportName(it.id) }
+                                    val result = withContext(Dispatchers.IO) {
+                                        PythonRunner.run(
+                                            code = "import $modules\nprint(\"Python 第三方库导入成功\")",
+                                            stdin = "",
+                                        )
+                                    }
+                                    libraryCheckMessage = if (result.ok) {
+                                        result.lines.lastOrNull { it.contains("导入成功") }
+                                            ?: "Python 第三方库导入成功"
+                                    } else {
+                                        "${result.errorType}: ${result.rawError}"
+                                    }
+                                    checkingLibraries = false
+                                }
+                            }
+                        }
+                        libraryCheckMessage?.let { message ->
+                            Spacer(modifier = Modifier.height(7.dp))
+                            Text(
+                                text = message,
+                                color = if (message.contains("成功")) {
+                                    MaterialTheme.colorScheme.secondary
+                                } else {
+                                    MaterialTheme.colorScheme.error
+                                },
+                                fontSize = 12.sp,
+                            )
+                        }
+                    }
+                }
             }
             item {
                 Row(
@@ -619,7 +695,11 @@ private fun LibraryRow(
         result = GlobalSearchResult(
             id = entry.id,
             title = entry.name,
-            subtitle = entry.summary,
+            subtitle = if (entry.runtimeAvailable) {
+                entry.summary
+            } else {
+                "开发机工具 · ${entry.summary}"
+            },
             kind = SearchResultKind.LIBRARY,
             routeId = entry.id,
             favoriteKey = "library:${entry.id}",
@@ -708,17 +788,58 @@ private fun LibraryDetailDialog(
     onDismiss: () -> Unit,
     onOpenLesson: () -> Unit,
 ) {
+    var checking by remember(entry.id) { mutableStateOf(false) }
+    var checkMessage by remember(entry.id) { mutableStateOf<String?>(null) }
+    val scope = rememberCoroutineScope()
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(text = entry.name) },
         text = {
             Column {
                 Tag(text = entry.category.label, active = true)
+                Spacer(modifier = Modifier.height(6.dp))
+                Tag(
+                    text = if (entry.runtimeAvailable) "APK 已内置" else "需在开发机安装",
+                    active = entry.runtimeAvailable,
+                )
                 Spacer(modifier = Modifier.height(10.dp))
                 DetailLine("适合解决", entry.summary)
                 DetailLine("典型用途", entry.useCase)
                 DetailLine("安装", entry.install)
                 CodePanel(code = entry.example)
+                if (entry.runtimeAvailable) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    ActionButton(
+                        text = if (checking) "正在检查..." else "运行导入测试",
+                        icon = Icons.Filled.Terminal,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        if (!checking) {
+                            checking = true
+                            checkMessage = null
+                            scope.launch {
+                                val module = libraryImportName(entry.id)
+                                val result = withContext(Dispatchers.IO) {
+                                    PythonRunner.run(
+                                        code = "import $module\nprint(\"$module 可用\")",
+                                        stdin = "",
+                                    )
+                                }
+                                checkMessage = if (result.ok) {
+                                    result.lines.lastOrNull { it.contains("可用") }
+                                        ?: "$module 可用"
+                                } else {
+                                    "${result.errorType}: ${result.rawError}"
+                                }
+                                checking = false
+                            }
+                        }
+                    }
+                    checkMessage?.let { message ->
+                        Spacer(modifier = Modifier.height(6.dp))
+                        MutedText(text = message, small = false)
+                    }
+                }
             }
         },
         confirmButton = {
@@ -734,6 +855,12 @@ private fun LibraryDetailDialog(
             }
         },
     )
+}
+
+private fun libraryImportName(id: String): String = when (id) {
+    "beautifulsoup4" -> "bs4"
+    "scikit-learn" -> "sklearn"
+    else -> id
 }
 
 @Composable

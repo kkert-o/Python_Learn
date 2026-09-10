@@ -19,6 +19,7 @@ data class LibraryEntry(
     val install: String,
     val example: String,
     val lessonId: String?,
+    val runtimeAvailable: Boolean = true,
 )
 
 object LibraryCatalog {
@@ -122,6 +123,7 @@ object LibraryCatalog {
             install = "pip install ruff",
             example = "ruff check .\nruff format .",
             lessonId = "quality",
+            runtimeAvailable = false,
         ),
         LibraryEntry(
             id = "click",
@@ -150,7 +152,7 @@ object LibraryCatalog {
             summary = "在 Python 项目中调用大模型接口。",
             useCase = "把总结、分类、问答等 AI 能力接入自己的应用。",
             install = "pip install openai",
-            example = "from openai import OpenAI\nclient = OpenAI()\n# 密钥从环境变量读取",
+            example = "import os\nimport openai\n\nopenai.api_key = os.environ[\"OPENAI_API_KEY\"]\nreply = openai.ChatCompletion.create(\n    model=\"gpt-4.1-mini\",\n    messages=[{\"role\": \"user\", \"content\": \"解释变量\"}],\n)",
             lessonId = "ai-api",
         ),
         LibraryEntry(
@@ -162,6 +164,7 @@ object LibraryCatalog {
             install = "pip install scikit-learn",
             example = "from sklearn.linear_model import LinearRegression\nmodel = LinearRegression()",
             lessonId = "machine-learning",
+            runtimeAvailable = false,
         ),
     )
 

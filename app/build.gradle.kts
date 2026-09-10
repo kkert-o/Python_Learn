@@ -42,8 +42,8 @@ android {
         applicationId = "com.pythonlearn.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
         buildConfigField("String", "CONTENT_MANIFEST_URL", "\"$contentManifestUrl\"")
         buildConfigField("boolean", "RELEASE_SIGNING_CONFIGURED", releaseSigningConfigured.toString())
         ndk {
@@ -84,6 +84,18 @@ chaquopy {
         pip {
             install("requests==2.32.4")
             install("beautifulsoup4==4.13.4")
+            install("httpx==0.27.2")
+            install("numpy==1.26.2")
+            install("pandas==1.5.0")
+            install("matplotlib==3.6.0")
+            install("SQLAlchemy==2.0.36")
+            install("pydantic==1.10.15")
+            install("fastapi==0.115.5")
+            install("uvicorn==0.32.1")
+            install("pytest==8.3.3")
+            install("openai==0.28.1")
+            install("click==8.1.7")
+            install("rich==13.9.4")
         }
     }
 }
