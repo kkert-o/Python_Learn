@@ -20,6 +20,12 @@ interface ProgressDao {
     @Query("SELECT * FROM quiz_progress")
     fun observeQuizzes(): Flow<List<QuizProgressEntity>>
 
+    @Query("SELECT * FROM review_schedule")
+    fun observeReviewSchedules(): Flow<List<ReviewScheduleEntity>>
+
+    @Query("SELECT * FROM learning_event ORDER BY occurredAt DESC")
+    fun observeLearningEvents(): Flow<List<LearningEventEntity>>
+
     @Query("SELECT * FROM lesson_progress WHERE lessonId = :lessonId LIMIT 1")
     suspend fun lesson(lessonId: String): LessonProgressEntity?
 
@@ -31,6 +37,15 @@ interface ProgressDao {
 
     @Query("SELECT * FROM quiz_progress WHERE question = :question LIMIT 1")
     suspend fun quiz(question: String): QuizProgressEntity?
+
+    @Query("SELECT * FROM review_schedule WHERE targetKey = :targetKey LIMIT 1")
+    suspend fun reviewSchedule(targetKey: String): ReviewScheduleEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertReviewSchedule(progress: ReviewScheduleEntity)
+
+    @Insert
+    suspend fun insertLearningEvent(event: LearningEventEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertLesson(progress: LessonProgressEntity)

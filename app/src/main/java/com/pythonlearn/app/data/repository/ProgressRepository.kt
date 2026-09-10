@@ -1,5 +1,9 @@
 package com.pythonlearn.app.data.repository
 
+import com.pythonlearn.app.data.KnowledgeNode
+import com.pythonlearn.app.data.KnowledgeTreeEngine
+import com.pythonlearn.app.data.ReviewScheduler
+import com.pythonlearn.app.data.local.LearningEventEntity
 import com.pythonlearn.app.data.local.LessonProgressEntity
 import com.pythonlearn.app.data.local.ProgressDao
 import com.pythonlearn.app.data.local.ProgressSnapshot
@@ -21,6 +25,23 @@ class ProgressRepository(
             dao.observeQuizzes(),
         ) { lessons, projects, training, quizzes ->
             ProgressSnapshot.from(lessons, projects, training, quizzes)
+        }
+    }
+
+    fun observeKnowledgeTree(): Flow<List<KnowledgeNode>> {
+        return combine(
+            dao.observeLessons(),
+            dao.observeTraining(),
+            dao.observeQuizzes(),
+            dao.observeReviewSchedules(),
+        ) { lessons, training, quizzes, schedules ->
+            KnowledgeTreeEngine.build(
+                completedLessonIds = lessons.filter { it.completed }.map { it.lessonId }.toSet(),
+                trainingProgress = training,
+                quizProgress = quizzes,
+                reviewSchedules = schedules,
+                now = now(),
+            )
         }
     }
 
@@ -75,17 +96,31 @@ class ProgressRepository(
                     updatedAt = timestamp,
                 ),
             )
+            scheduleReview(ReviewScheduler.quizKey(question), correct = false, at = timestamp)
+        }
+        wrongTrainingIds.forEach { exerciseId ->
+            scheduleReview(ReviewScheduler.trainingKey(exerciseId), correct = false, at = timestamp)
         }
     }
 
     suspend fun completeLesson(lessonId: String) {
+        val timestamp = now()
         dao.upsertLesson(
             LessonProgressEntity(
                 lessonId = lessonId,
                 completed = true,
-                updatedAt = now(),
+                updatedAt = timestamp,
             ),
         )
+        dao.insertLearningEvent(
+            LearningEventEntity(
+                eventType = "lesson_completed",
+                targetId = lessonId,
+                correct = true,
+                occurredAt = timestamp,
+            ),
+        )
+        scheduleReview(ReviewScheduler.lessonKey(lessonId), correct = true, at = timestamp)
     }
 
     suspend fun completeProject(projectId: String) {
@@ -100,6 +135,7 @@ class ProgressRepository(
 
     suspend fun recordTrainingResult(exerciseId: String, correct: Boolean) {
         val existing = dao.training(exerciseId)
+        val timestamp = now()
         dao.upsertTraining(
             TrainingProgressEntity(
                 exerciseId = exerciseId,
@@ -107,20 +143,55 @@ class ProgressRepository(
                 needsReview = !correct,
                 correctCount = (existing?.correctCount ?: 0) + if (correct) 1 else 0,
                 wrongCount = (existing?.wrongCount ?: 0) + if (correct) 0 else 1,
-                updatedAt = now(),
+                updatedAt = timestamp,
             ),
         )
+        dao.insertLearningEvent(
+            LearningEventEntity(
+                eventType = "training_result",
+                targetId = exerciseId,
+                correct = correct,
+                occurredAt = timestamp,
+            ),
+        )
+        scheduleReview(ReviewScheduler.trainingKey(exerciseId), correct, timestamp)
     }
 
     suspend fun recordQuizResult(question: String, correct: Boolean) {
         val existing = dao.quiz(question)
+        val timestamp = now()
         dao.upsertQuiz(
             QuizProgressEntity(
                 question = question,
                 resolved = correct,
                 correctCount = (existing?.correctCount ?: 0) + if (correct) 1 else 0,
                 wrongCount = (existing?.wrongCount ?: 0) + if (correct) 0 else 1,
-                updatedAt = now(),
+                updatedAt = timestamp,
+            ),
+        )
+        dao.insertLearningEvent(
+            LearningEventEntity(
+                eventType = "quiz_result",
+                targetId = question,
+                correct = correct,
+                occurredAt = timestamp,
+            ),
+        )
+        scheduleReview(ReviewScheduler.quizKey(question), correct, timestamp)
+    }
+
+    private suspend fun scheduleReview(
+        targetKey: String,
+        correct: Boolean,
+        at: Long,
+    ) {
+        val existing = dao.reviewSchedule(targetKey)
+        dao.upsertReviewSchedule(
+            ReviewScheduler.next(
+                targetKey = targetKey,
+                existing = existing,
+                correct = correct,
+                now = at,
             ),
         )
     }

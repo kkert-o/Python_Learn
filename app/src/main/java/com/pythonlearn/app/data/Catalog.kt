@@ -173,6 +173,10 @@ object CourseCatalog {
         return lessons.values.firstOrNull { it.quiz.question == question }?.quiz
     }
 
+    fun lessonIdByQuizQuestion(question: String): String? {
+        return lessons.values.firstOrNull { it.quiz.question == question }?.id
+    }
+
     private val lessons: Map<String, LessonDetail> = mapOf(
         "python" to LessonDetail(
             id = "python",

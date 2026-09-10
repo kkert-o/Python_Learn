@@ -3,6 +3,23 @@ package com.pythonlearn.app.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "learning_event")
+data class LearningEventEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val eventType: String,
+    val targetId: String,
+    val correct: Boolean,
+    val occurredAt: Long,
+)
+
+@Entity(tableName = "review_schedule")
+data class ReviewScheduleEntity(
+    @PrimaryKey val targetKey: String,
+    val dueAt: Long,
+    val reviewStage: Int,
+    val lastReviewedAt: Long,
+)
+
 @Entity(tableName = "lesson_progress")
 data class LessonProgressEntity(
     @PrimaryKey val lessonId: String,

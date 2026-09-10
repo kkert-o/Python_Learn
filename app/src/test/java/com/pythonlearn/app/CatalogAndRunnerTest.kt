@@ -2,14 +2,19 @@ package com.pythonlearn.app
 
 import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.DemoStats
+import com.pythonlearn.app.data.KnowledgeState
+import com.pythonlearn.app.data.KnowledgeTreeEngine
 import com.pythonlearn.app.data.LessonState
+import com.pythonlearn.app.data.ReviewScheduler
 import com.pythonlearn.app.data.TrainingCatalog
 import com.pythonlearn.app.data.TrainingGrader
 import com.pythonlearn.app.data.TrainingType
+import com.pythonlearn.app.data.local.LearningEventEntity
 import com.pythonlearn.app.data.local.LessonProgressEntity
 import com.pythonlearn.app.data.local.ProgressDao
 import com.pythonlearn.app.data.local.ProjectProgressEntity
 import com.pythonlearn.app.data.local.QuizProgressEntity
+import com.pythonlearn.app.data.local.ReviewScheduleEntity
 import com.pythonlearn.app.data.local.TrainingProgressEntity
 import com.pythonlearn.app.data.repository.ProgressRepository
 import com.pythonlearn.app.runtime.PythonErrorExplainer
@@ -180,6 +185,44 @@ class CatalogAndRunnerTest {
         assertEquals(setOf("debug-name"), snapshot.wrongTrainingIds)
         assertEquals(setOf("旧错题"), snapshot.wrongQuizIds)
     }
+
+    @Test
+    fun reviewScheduleMovesForwardAfterCorrectAnswer() = runBlocking {
+        val dao = FakeProgressDao()
+        val repository = ProgressRepository(dao, now = { 0L })
+
+        repository.recordTrainingResult("predict-add", correct = false)
+        val firstReview = dao.reviewSchedule(ReviewScheduler.trainingKey("predict-add"))
+        assertNotNull(firstReview)
+        assertEquals(0, firstReview?.reviewStage)
+
+        repository.recordTrainingResult("predict-add", correct = true)
+        val secondReview = dao.reviewSchedule(ReviewScheduler.trainingKey("predict-add"))
+        assertNotNull(secondReview)
+        assertEquals(1, secondReview?.reviewStage)
+    }
+
+    @Test
+    fun completedLessonWithQuizCanReachMasteredState() {
+        val lesson = CourseCatalog.lesson("python")!!
+        val nodes = KnowledgeTreeEngine.build(
+            completedLessonIds = setOf(lesson.id),
+            trainingProgress = emptyList(),
+            quizProgress = listOf(
+                QuizProgressEntity(
+                    question = lesson.quiz.question,
+                    resolved = true,
+                    correctCount = 1,
+                    wrongCount = 0,
+                    updatedAt = 10L,
+                ),
+            ),
+            reviewSchedules = emptyList(),
+            now = 20L,
+        )
+        assertEquals(KnowledgeState.MASTERED, nodes.first().state)
+        assertTrue(nodes.first().masteryScore >= 80)
+    }
 }
 
 private class FakeProgressDao : ProgressDao {
@@ -187,6 +230,8 @@ private class FakeProgressDao : ProgressDao {
     private val projects = MutableStateFlow<List<ProjectProgressEntity>>(emptyList())
     private val training = MutableStateFlow<List<TrainingProgressEntity>>(emptyList())
     private val quizzes = MutableStateFlow<List<QuizProgressEntity>>(emptyList())
+    private val reviewSchedules = MutableStateFlow<List<ReviewScheduleEntity>>(emptyList())
+    private val learningEvents = MutableStateFlow<List<LearningEventEntity>>(emptyList())
 
     override fun observeLessons(): Flow<List<LessonProgressEntity>> = lessons
 
@@ -195,6 +240,10 @@ private class FakeProgressDao : ProgressDao {
     override fun observeTraining(): Flow<List<TrainingProgressEntity>> = training
 
     override fun observeQuizzes(): Flow<List<QuizProgressEntity>> = quizzes
+
+    override fun observeReviewSchedules(): Flow<List<ReviewScheduleEntity>> = reviewSchedules
+
+    override fun observeLearningEvents(): Flow<List<LearningEventEntity>> = learningEvents
 
     override suspend fun lesson(lessonId: String): LessonProgressEntity? {
         return lessons.value.firstOrNull { it.lessonId == lessonId }
@@ -210,6 +259,18 @@ private class FakeProgressDao : ProgressDao {
 
     override suspend fun quiz(question: String): QuizProgressEntity? {
         return quizzes.value.firstOrNull { it.question == question }
+    }
+
+    override suspend fun reviewSchedule(targetKey: String): ReviewScheduleEntity? {
+        return reviewSchedules.value.firstOrNull { it.targetKey == targetKey }
+    }
+
+    override suspend fun upsertReviewSchedule(progress: ReviewScheduleEntity) {
+        reviewSchedules.value = reviewSchedules.value.filterNot { it.targetKey == progress.targetKey } + progress
+    }
+
+    override suspend fun insertLearningEvent(event: LearningEventEntity) {
+        learningEvents.value = learningEvents.value + event
     }
 
     override suspend fun upsertLesson(progress: LessonProgressEntity) {
