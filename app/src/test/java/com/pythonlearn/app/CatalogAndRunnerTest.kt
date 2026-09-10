@@ -4,7 +4,9 @@ import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.KnowledgeState
 import com.pythonlearn.app.data.KnowledgeTreeEngine
+import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.data.LessonState
+import com.pythonlearn.app.data.ReviewTargetType
 import com.pythonlearn.app.data.ReviewScheduler
 import com.pythonlearn.app.data.TrainingCatalog
 import com.pythonlearn.app.data.TrainingGrader
@@ -222,6 +224,51 @@ class CatalogAndRunnerTest {
         )
         assertEquals(KnowledgeState.MASTERED, nodes.first().state)
         assertTrue(nodes.first().masteryScore >= 80)
+    }
+
+    @Test
+    fun dueReviewBecomesTheNextLearningRecommendation() {
+        val schedule = ReviewScheduleEntity(
+            targetKey = ReviewScheduler.trainingKey("predict-add"),
+            dueAt = 0L,
+            reviewStage = 0,
+            lastReviewedAt = -1L,
+        )
+        val dashboard = LearningDashboardEngine.build(
+            completedLessonIds = emptySet(),
+            trainingProgress = listOf(
+                TrainingProgressEntity(
+                    exerciseId = "predict-add",
+                    completed = false,
+                    needsReview = true,
+                    correctCount = 0,
+                    wrongCount = 1,
+                    updatedAt = 0L,
+                ),
+            ),
+            quizProgress = emptyList(),
+            reviewSchedules = listOf(schedule),
+            now = 10L,
+        )
+
+        assertEquals(1, dashboard.dueReviews.size)
+        assertEquals(ReviewTargetType.TRAINING, dashboard.dueReviews.first().targetType)
+        assertEquals(schedule.targetKey, dashboard.recommendation.reviewTargetKey)
+        assertTrue(dashboard.recommendation.title.startsWith("复习："))
+    }
+
+    @Test
+    fun freshLearnerIsRecommendedTheFirstLesson() {
+        val dashboard = LearningDashboardEngine.build(
+            completedLessonIds = emptySet(),
+            trainingProgress = emptyList(),
+            quizProgress = emptyList(),
+            reviewSchedules = emptyList(),
+            now = 0L,
+        )
+
+        assertEquals("python", dashboard.recommendation.lessonId)
+        assertEquals(KnowledgeState.NOT_STARTED, dashboard.knowledgeTree.first().state)
     }
 }
 

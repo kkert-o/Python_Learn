@@ -1,7 +1,8 @@
 package com.pythonlearn.app.data.repository
 
 import com.pythonlearn.app.data.KnowledgeNode
-import com.pythonlearn.app.data.KnowledgeTreeEngine
+import com.pythonlearn.app.data.LearningDashboard
+import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.data.ReviewScheduler
 import com.pythonlearn.app.data.local.LearningEventEntity
 import com.pythonlearn.app.data.local.LessonProgressEntity
@@ -12,6 +13,7 @@ import com.pythonlearn.app.data.local.QuizProgressEntity
 import com.pythonlearn.app.data.local.TrainingProgressEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 
 class ProgressRepository(
     private val dao: ProgressDao,
@@ -29,13 +31,17 @@ class ProgressRepository(
     }
 
     fun observeKnowledgeTree(): Flow<List<KnowledgeNode>> {
+        return observeLearningDashboard().map { it.knowledgeTree }
+    }
+
+    fun observeLearningDashboard(): Flow<LearningDashboard> {
         return combine(
             dao.observeLessons(),
             dao.observeTraining(),
             dao.observeQuizzes(),
             dao.observeReviewSchedules(),
         ) { lessons, training, quizzes, schedules ->
-            KnowledgeTreeEngine.build(
+            LearningDashboardEngine.build(
                 completedLessonIds = lessons.filter { it.completed }.map { it.lessonId }.toSet(),
                 trainingProgress = training,
                 quizProgress = quizzes,

@@ -22,6 +22,35 @@ data class KnowledgeNode(
     val nextReviewAt: Long?,
 )
 
+enum class ReviewTargetType {
+    LESSON,
+    TRAINING,
+    QUIZ,
+}
+
+data class ReviewItem(
+    val targetKey: String,
+    val targetType: ReviewTargetType,
+    val targetId: String,
+    val title: String,
+    val dueAt: Long,
+    val overdueDays: Int,
+    val priority: Int,
+)
+
+data class LearningRecommendation(
+    val title: String,
+    val reason: String,
+    val lessonId: String? = null,
+    val reviewTargetKey: String? = null,
+)
+
+data class LearningDashboard(
+    val knowledgeTree: List<KnowledgeNode>,
+    val dueReviews: List<ReviewItem>,
+    val recommendation: LearningRecommendation,
+)
+
 object ReviewScheduler {
     val intervalsInDays: LongArray = longArrayOf(1, 3, 7, 14, 30)
     private const val DAY_MILLIS = 24L * 60L * 60L * 1000L
@@ -48,6 +77,127 @@ object ReviewScheduler {
             dueAt = now + intervalsInDays[nextStage] * DAY_MILLIS,
             reviewStage = nextStage,
             lastReviewedAt = now,
+        )
+    }
+}
+
+object LearningDashboardEngine {
+    private const val DAY_MILLIS = 24L * 60L * 60L * 1000L
+
+    fun build(
+        completedLessonIds: Set<String>,
+        trainingProgress: List<TrainingProgressEntity>,
+        quizProgress: List<QuizProgressEntity>,
+        reviewSchedules: List<ReviewScheduleEntity>,
+        now: Long,
+    ): LearningDashboard {
+        val knowledgeTree = KnowledgeTreeEngine.build(
+            completedLessonIds = completedLessonIds,
+            trainingProgress = trainingProgress,
+            quizProgress = quizProgress,
+            reviewSchedules = reviewSchedules,
+            now = now,
+        )
+        val dueReviews = reviewSchedules
+            .filter { it.dueAt <= now }
+            .mapNotNull { schedule ->
+                toReviewItem(
+                    schedule = schedule,
+                    trainingProgress = trainingProgress,
+                    quizProgress = quizProgress,
+                    now = now,
+                )
+            }
+            .sortedWith(compareByDescending<ReviewItem> { it.priority }.thenBy { it.dueAt })
+
+        val recommendation = when {
+            dueReviews.isNotEmpty() -> {
+                val first = dueReviews.first()
+                LearningRecommendation(
+                    title = "复习：${first.title}",
+                    reason = if (dueReviews.size == 1) {
+                        "这项内容已经到复习时间"
+                    } else {
+                        "今天有 ${dueReviews.size} 项内容需要复习"
+                    },
+                    lessonId = first.targetId.takeIf { first.targetType == ReviewTargetType.LESSON },
+                    reviewTargetKey = first.targetKey,
+                )
+            }
+            else -> {
+                val nextNode = knowledgeTree.firstOrNull {
+                    it.state == KnowledgeState.NOT_STARTED || it.state == KnowledgeState.LEARNING
+                }
+                if (nextNode != null) {
+                    LearningRecommendation(
+                        title = nextNode.title,
+                        reason = if (nextNode.state == KnowledgeState.LEARNING) {
+                            "继续学习这个知识点"
+                        } else {
+                            "完成前置知识后，下一项推荐学习内容"
+                        },
+                        lessonId = nextNode.lessonId,
+                    )
+                } else {
+                    LearningRecommendation(
+                        title = "进入项目实战",
+                        reason = "当前课程已经完成，可以开始练习独立项目",
+                    )
+                }
+            }
+        }
+
+        return LearningDashboard(
+            knowledgeTree = knowledgeTree,
+            dueReviews = dueReviews,
+            recommendation = recommendation,
+        )
+    }
+
+    private fun toReviewItem(
+        schedule: ReviewScheduleEntity,
+        trainingProgress: List<TrainingProgressEntity>,
+        quizProgress: List<QuizProgressEntity>,
+        now: Long,
+    ): ReviewItem? {
+        val separator = schedule.targetKey.indexOf(':')
+        if (separator <= 0) return null
+        val prefix = schedule.targetKey.substring(0, separator)
+        val targetId = schedule.targetKey.substring(separator + 1)
+        val targetType = when (prefix) {
+            "lesson" -> ReviewTargetType.LESSON
+            "training" -> ReviewTargetType.TRAINING
+            "quiz" -> ReviewTargetType.QUIZ
+            else -> return null
+        }
+        val title = when (targetType) {
+            ReviewTargetType.LESSON -> CourseCatalog.lesson(targetId)?.title
+            ReviewTargetType.TRAINING -> TrainingCatalog.byId(targetId)?.title
+            ReviewTargetType.QUIZ -> targetId.take(30)
+        } ?: return null
+        val overdueDays = ((now - schedule.dueAt).coerceAtLeast(0L) / DAY_MILLIS).toInt()
+        val wrongCount = when (targetType) {
+            ReviewTargetType.LESSON -> 0
+            ReviewTargetType.TRAINING -> {
+                trainingProgress.firstOrNull { it.exerciseId == targetId }?.wrongCount ?: 0
+            }
+            ReviewTargetType.QUIZ -> {
+                quizProgress.firstOrNull { it.question == targetId }?.wrongCount ?: 0
+            }
+        }
+        val typeWeight = when (targetType) {
+            ReviewTargetType.LESSON -> 1
+            ReviewTargetType.TRAINING -> 2
+            ReviewTargetType.QUIZ -> 3
+        }
+        return ReviewItem(
+            targetKey = schedule.targetKey,
+            targetType = targetType,
+            targetId = targetId,
+            title = title,
+            dueAt = schedule.dueAt,
+            overdueDays = overdueDays,
+            priority = typeWeight + overdueDays + wrongCount.coerceAtMost(10),
         )
     }
 }
