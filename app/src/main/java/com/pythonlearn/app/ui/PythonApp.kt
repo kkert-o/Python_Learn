@@ -90,6 +90,9 @@ fun PythonLearningApp(
     wrongQuizIds: Set<String>,
     onRecordWrong: (String) -> Unit,
     onResolveWrong: (String) -> Unit,
+    completedTrainingIds: Set<String>,
+    wrongTrainingIds: Set<String>,
+    onTrainingResult: (exerciseId: String, correct: Boolean) -> Unit,
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
     customWallpaperUri: Uri?,
@@ -237,6 +240,9 @@ fun PythonLearningApp(
                 wrongQuizIds = wrongQuizIds,
                 onRecordWrong = onRecordWrong,
                 onResolveWrong = onResolveWrong,
+                completedTrainingIds = completedTrainingIds,
+                wrongTrainingIds = wrongTrainingIds,
+                onTrainingResult = onTrainingResult,
                 legalRegion = legalRegion,
                 onLegalRegionChange = onLegalRegionChange,
                 onOpenAppearance = { profilePanel = ProfilePanel.APPEARANCE },
@@ -262,6 +268,9 @@ private fun MainShell(
     wrongQuizIds: Set<String>,
     onRecordWrong: (String) -> Unit,
     onResolveWrong: (String) -> Unit,
+    completedTrainingIds: Set<String>,
+    wrongTrainingIds: Set<String>,
+    onTrainingResult: (exerciseId: String, correct: Boolean) -> Unit,
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
     onOpenAppearance: () -> Unit,
@@ -329,10 +338,13 @@ private fun MainShell(
                             completedLessonIds = completedLessonIds,
                         )
                         Destination.PRACTICE -> PracticeScreen(
-                            onOpenWorkbench = { onOpenWorkbench(null) },
+                            onOpenWorkbench = onOpenWorkbench,
                             wrongQuizIds = wrongQuizIds,
+                            completedTrainingIds = completedTrainingIds,
+                            wrongTrainingIds = wrongTrainingIds,
                             onRecordWrong = onRecordWrong,
                             onResolveWrong = onResolveWrong,
+                            onTrainingResult = onTrainingResult,
                         )
                         Destination.PROJECTS -> ProjectScreen(
                             onOpenLesson = onOpenLesson,
@@ -349,6 +361,8 @@ private fun MainShell(
                             completedLessonIds = completedLessonIds,
                             completedProjectIds = completedProjectIds,
                             wrongQuizIds = wrongQuizIds,
+                            completedTrainingIds = completedTrainingIds,
+                            wrongTrainingIds = wrongTrainingIds,
                         )
                     }
                 }

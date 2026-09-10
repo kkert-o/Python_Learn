@@ -55,6 +55,12 @@ class MainActivity : ComponentActivity() {
             var wrongQuizIds by remember {
                 mutableStateOf(prefs.getStringSet(KEY_WRONG_QUIZ, emptySet())?.toSet() ?: emptySet())
             }
+            var completedTrainingIds by remember {
+                mutableStateOf(prefs.getStringSet(KEY_COMPLETED_TRAINING, emptySet())?.toSet() ?: emptySet())
+            }
+            var wrongTrainingIds by remember {
+                mutableStateOf(prefs.getStringSet(KEY_WRONG_TRAINING, emptySet())?.toSet() ?: emptySet())
+            }
             var legalRegion by remember {
                 mutableStateOf(
                     legalRegionOptions.firstOrNull {
@@ -84,6 +90,8 @@ class MainActivity : ComponentActivity() {
                 completedLessonIds,
                 completedProjectIds,
                 wrongQuizIds,
+                completedTrainingIds,
+                wrongTrainingIds,
                 legalRegion,
                 customWallpaperUri,
                 aiConfig,
@@ -95,6 +103,8 @@ class MainActivity : ComponentActivity() {
                     .putStringSet(KEY_COMPLETED_LESSONS, completedLessonIds)
                     .putStringSet(KEY_COMPLETED_PROJECTS, completedProjectIds)
                     .putStringSet(KEY_WRONG_QUIZ, wrongQuizIds)
+                    .putStringSet(KEY_COMPLETED_TRAINING, completedTrainingIds)
+                    .putStringSet(KEY_WRONG_TRAINING, wrongTrainingIds)
                     .putString(KEY_LEGAL_REGION, legalRegion.id)
                     .putString(KEY_CUSTOM_WALLPAPER, customWallpaperUri?.toString())
                     .putString(KEY_AI_ENDPOINT, aiConfig.endpoint)
@@ -125,6 +135,16 @@ class MainActivity : ComponentActivity() {
                     wrongQuizIds = wrongQuizIds,
                     onRecordWrong = { wrongQuizIds = wrongQuizIds + it },
                     onResolveWrong = { wrongQuizIds = wrongQuizIds - it },
+                    completedTrainingIds = completedTrainingIds,
+                    wrongTrainingIds = wrongTrainingIds,
+                    onTrainingResult = { exerciseId, correct ->
+                        if (correct) {
+                            completedTrainingIds = completedTrainingIds + exerciseId
+                            wrongTrainingIds = wrongTrainingIds - exerciseId
+                        } else {
+                            wrongTrainingIds = wrongTrainingIds + exerciseId
+                        }
+                    },
                     legalRegion = legalRegion,
                     onLegalRegionChange = { legalRegion = it },
                     customWallpaperUri = customWallpaperUri,
@@ -145,6 +165,8 @@ class MainActivity : ComponentActivity() {
         const val KEY_COMPLETED_LESSONS = "completed_lessons"
         const val KEY_COMPLETED_PROJECTS = "completed_projects"
         const val KEY_WRONG_QUIZ = "wrong_quiz_ids"
+        const val KEY_COMPLETED_TRAINING = "completed_training_ids"
+        const val KEY_WRONG_TRAINING = "wrong_training_ids"
         const val KEY_LEGAL_REGION = "legal_region"
         const val KEY_CUSTOM_WALLPAPER = "custom_wallpaper_uri"
         const val KEY_AI_ENDPOINT = "ai_endpoint"

@@ -37,6 +37,9 @@ import androidx.compose.foundation.background
 import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.ProjectCatalog
 import com.pythonlearn.app.data.Quiz
+import com.pythonlearn.app.data.TrainingCatalog
+import com.pythonlearn.app.data.TrainingExercise
+import com.pythonlearn.app.data.TrainingType
 import com.pythonlearn.app.ui.components.GlassCard
 import com.pythonlearn.app.ui.components.MutedText
 import com.pythonlearn.app.ui.components.SectionTitle
@@ -44,12 +47,16 @@ import com.pythonlearn.app.ui.components.Tag
 
 @Composable
 fun PracticeScreen(
-    onOpenWorkbench: () -> Unit,
+    onOpenWorkbench: (String?) -> Unit,
     wrongQuizIds: Set<String>,
+    completedTrainingIds: Set<String>,
+    wrongTrainingIds: Set<String>,
     onRecordWrong: (String) -> Unit,
     onResolveWrong: (String) -> Unit,
+    onTrainingResult: (exerciseId: String, correct: Boolean) -> Unit,
 ) {
     var showQuiz by remember { mutableStateOf(false) }
+    var trainingExercises by remember { mutableStateOf<List<TrainingExercise>?>(null) }
     var reviewQuestion by remember { mutableStateOf<String?>(null) }
     var reviewSession by remember { mutableStateOf<List<Quiz>?>(null) }
     val quizzes = remember {
@@ -84,6 +91,15 @@ fun PracticeScreen(
             },
             onRecordWrong = onRecordWrong,
             onResolveWrong = onResolveWrong,
+        )
+        return
+    }
+    if (trainingExercises != null) {
+        TrainingSessionScreen(
+            exercises = trainingExercises.orEmpty(),
+            onBack = { trainingExercises = null },
+            onOpenWorkbench = { code -> onOpenWorkbench(code) },
+            onResult = onTrainingResult,
         )
         return
     }
@@ -170,7 +186,7 @@ fun PracticeScreen(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable(onClick = onOpenWorkbench)
+                        .clickable { onOpenWorkbench(null) }
                         .padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
@@ -189,6 +205,60 @@ fun PracticeScreen(
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
                     )
+                }
+            }
+        }
+        item {
+            SectionTitle(
+                title = "能力训练",
+                trailing = "已完成 ${completedTrainingIds.size}/${TrainingCatalog.all.size}",
+            )
+        }
+        item {
+            GlassCard {
+                Column(modifier = Modifier.padding(10.dp)) {
+                    TrainingType.entries.forEach { type ->
+                        val allForType = remember(type) { TrainingCatalog.byType(type) }
+                        val completedForType = allForType.count { it.id in completedTrainingIds }
+                        TrainingTypeRow(
+                            type = type,
+                            completed = completedForType,
+                            total = allForType.size,
+                            onClick = { trainingExercises = allForType },
+                        )
+                    }
+                }
+            }
+        }
+        if (wrongTrainingIds.isNotEmpty()) {
+            item {
+                SectionTitle(title = "训练错题", trailing = "${wrongTrainingIds.size} 条待复习")
+            }
+            item {
+                GlassCard {
+                    Column(modifier = Modifier.padding(14.dp)) {
+                        MutedText(
+                            text = "这些是刚才没有通过检查的训练题，重新完成一次就会移出。",
+                            small = false,
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(12.dp))
+                                .clickable {
+                                    trainingExercises = TrainingCatalog.byIds(wrongTrainingIds)
+                                }
+                                .padding(vertical = 10.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = "复习全部训练错题",
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -243,6 +313,34 @@ fun PracticeScreen(
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun TrainingTypeRow(
+    type: TrainingType,
+    completed: Int,
+    total: Int,
+    onClick: () -> Unit,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+            .padding(horizontal = 6.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(text = type.label, fontWeight = FontWeight.Bold)
+            MutedText(text = type.description)
+        }
+        Tag(text = "$completed/$total", active = completed == total)
+        Spacer(modifier = Modifier.width(7.dp))
+        Icon(
+            imageVector = Icons.Filled.ChevronRight,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+        )
     }
 }
 

@@ -3,9 +3,13 @@ package com.pythonlearn.app
 import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.LessonState
+import com.pythonlearn.app.data.TrainingCatalog
+import com.pythonlearn.app.data.TrainingGrader
+import com.pythonlearn.app.data.TrainingType
 import com.pythonlearn.app.runtime.PythonErrorExplainer
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -89,5 +93,44 @@ class CatalogAndRunnerTest {
             traceback = "  File \"<user_code>\", line 2, in <module>\nIndentationError: unexpected indent",
         )
         assertTrue(hint.contains("第 2 行"))
+    }
+
+    @Test
+    fun trainingCatalogCoversEveryV2TrainingMode() {
+        TrainingType.entries.forEach { type ->
+            assertTrue("缺少 $type 训练题", TrainingCatalog.byType(type).isNotEmpty())
+        }
+        TrainingCatalog.all.forEach { exercise ->
+            assertTrue("训练题 id 不应为空", exercise.id.isNotBlank())
+            assertTrue("训练题必须有题目说明", exercise.question.isNotBlank())
+            assertTrue("训练题必须有解析", exercise.explanation.isNotBlank())
+            if (exercise.isCodeTask) {
+                assertNotNull("代码训练必须提供起始代码", exercise.starterCode)
+                assertNotNull("代码训练必须提供参考实现", exercise.referenceSolution)
+                assertTrue("代码训练必须提供检查规则", exercise.requiredSnippets.isNotEmpty())
+            } else {
+                assertTrue("选择题必须有选项", exercise.options.size >= 2)
+                assertTrue("选择题答案下标越界", exercise.answerIndex in exercise.options.indices)
+            }
+        }
+    }
+
+    @Test
+    fun referenceSolutionsPassCodeTraining() {
+        TrainingCatalog.all
+            .filter { it.isCodeTask }
+            .forEach { exercise ->
+                val result = TrainingGrader.checkCode(exercise, exercise.referenceSolution!!)
+                assertTrue("${exercise.id} 的参考实现没有通过检查：${result.message}", result.correct)
+            }
+    }
+
+    @Test
+    fun debugTrainingRejectsKnownWrongSnippet() {
+        val exercise = TrainingCatalog.byId("debug-name")
+        assertNotNull(exercise)
+        val result = TrainingGrader.checkCode(exercise!!, exercise.starterCode!!)
+        assertFalse("未修改的错误代码不应通过", result.correct)
+        assertTrue(result.message.contains("错误写法"))
     }
 }

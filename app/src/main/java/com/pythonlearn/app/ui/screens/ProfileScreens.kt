@@ -50,6 +50,7 @@ import coil.compose.AsyncImage
 import com.pythonlearn.app.data.CourseCatalog
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.ProjectCatalog
+import com.pythonlearn.app.data.TrainingCatalog
 import com.pythonlearn.app.ui.components.GlassCard
 import com.pythonlearn.app.ui.components.BackBar
 import com.pythonlearn.app.ui.components.MutedText
@@ -74,6 +75,8 @@ fun ProfileScreen(
     completedLessonIds: Set<String>,
     completedProjectIds: Set<String>,
     wrongQuizIds: Set<String>,
+    completedTrainingIds: Set<String>,
+    wrongTrainingIds: Set<String>,
 ) {
     var legalDialogOpen by remember { mutableStateOf(false) }
     if (legalDialogOpen) {
@@ -163,7 +166,7 @@ fun ProfileScreen(
                         Spacer(modifier = Modifier.width(8.dp))
                         StatCell("${completedProjectIds.size}", "完成项目", Modifier.weight(1f))
                         Spacer(modifier = Modifier.width(8.dp))
-                        StatCell("${wrongQuizIds.size}", "待复习", Modifier.weight(1f))
+                        StatCell("${wrongQuizIds.size + wrongTrainingIds.size}", "待复习", Modifier.weight(1f))
                     }
                 }
             }
@@ -191,6 +194,10 @@ fun ProfileScreen(
                     SkillLine(
                         name = "项目实战",
                         value = ProjectCatalog.all.count { it.id in completedProjectIds } * 100 / ProjectCatalog.all.size,
+                    )
+                    SkillLine(
+                        name = "编程训练",
+                        value = completedTrainingIds.size * 100 / TrainingCatalog.all.size,
                     )
                 }
             }
