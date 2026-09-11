@@ -46,6 +46,7 @@ import androidx.compose.ui.draw.blur
 import coil.compose.AsyncImage
 import com.pythonlearn.app.data.AiIndependenceEngine
 import com.pythonlearn.app.data.CourseCatalog
+import com.pythonlearn.app.data.DailyLearningStats
 import com.pythonlearn.app.data.LearningDashboard
 import com.pythonlearn.app.data.ReviewTargetType
 import com.pythonlearn.app.ui.screens.AppearanceScreen
@@ -119,6 +120,7 @@ fun PythonLearningApp(
     legalRegion: LegalRegion,
     onLegalRegionChange: (LegalRegion) -> Unit,
     learningDashboard: LearningDashboard,
+    dailyLearningStats: DailyLearningStats,
     favoriteIds: Set<String>,
     onToggleFavorite: (String) -> Unit,
     aiFreeChallengeIds: Set<String>,
@@ -228,6 +230,7 @@ fun PythonLearningApp(
                 onOpenAppearance = { overlays = overlays + AppOverlay.Profile(ProfilePanel.APPEARANCE) },
                 onOpenWallpaper = { overlays = overlays + AppOverlay.Profile(ProfilePanel.WALLPAPER) },
                 learningDashboard = learningDashboard,
+                dailyLearningStats = dailyLearningStats,
                 onOpenLearningHub = { overlays = overlays + AppOverlay.Profile(ProfilePanel.LEARNING) },
                 favoriteIds = favoriteIds,
                 onToggleFavorite = onToggleFavorite,
@@ -419,6 +422,7 @@ private fun MainShell(
     onOpenAppearance: () -> Unit,
     onOpenWallpaper: () -> Unit,
     learningDashboard: LearningDashboard,
+    dailyLearningStats: DailyLearningStats,
     onOpenLearningHub: () -> Unit,
     favoriteIds: Set<String>,
     onToggleFavorite: (String) -> Unit,
@@ -477,6 +481,7 @@ private fun MainShell(
                         onOpenLearningHub = onOpenLearningHub,
                         completedLessonIds = completedLessonIds,
                         dashboard = learningDashboard,
+                        dailyLearningStats = dailyLearningStats,
                     )
                     Destination.COURSES -> CourseScreen(
                         onOpenLesson = onOpenLesson,

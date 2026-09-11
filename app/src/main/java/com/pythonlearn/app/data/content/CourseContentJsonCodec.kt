@@ -33,6 +33,27 @@ object CourseContentValidator {
             errors += "项目内容不能为空"
         }
 
+        content.stages.forEach { stage ->
+            if (stage.label.isBlank()) {
+                errors += "阶段 ${stage.name} 缺少序号"
+            }
+            if (stage.name.isBlank()) {
+                errors += "存在没有名称的课程阶段"
+            }
+            if (stage.lessons.isEmpty()) {
+                errors += "阶段 ${stage.name} 没有知识点"
+            }
+            stage.lessons.forEach { summary ->
+                val lesson = content.lessons[summary.id]
+                if (lesson != null && lesson.stage != stage.name) {
+                    errors += "知识点 ${summary.id} 的阶段 ${lesson.stage} 与阶段 ${stage.name} 不一致"
+                }
+                if (summary.minutes <= 0) {
+                    errors += "知识点 ${summary.id} 的学习时长必须大于 0"
+                }
+            }
+        }
+
         val stageLessonIds = content.stages.flatMap { stage ->
             stage.lessons.map { it.id }
         }
@@ -62,6 +83,11 @@ object CourseContentValidator {
             }
             if (lesson.quiz.answerIndex !in lesson.quiz.options.indices) {
                 errors += "知识点 $lessonId 的练习答案下标越界"
+            }
+            lesson.next.forEach { next ->
+                if (next.id !in content.lessons) {
+                    errors += "知识点 $lessonId 的下一课 ${next.id} 不存在"
+                }
             }
         }
         val projectIds = content.projects.map { it.id }

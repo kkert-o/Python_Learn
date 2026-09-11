@@ -92,6 +92,11 @@ class CatalogAndRunnerTest {
     }
 
     @Test
+    fun completedCourseHasNoNextLesson() {
+        assertEquals(null, CourseCatalog.nextLessonId(CourseCatalog.orderedLessonIds.toSet()))
+    }
+
+    @Test
     fun unknownLessonStaysLocked() {
         assertEquals(LessonState.LOCKED, CourseCatalog.lessonState("not-a-course", emptySet()))
     }
@@ -262,6 +267,25 @@ class CatalogAndRunnerTest {
     }
 
     @Test
+    fun dailyLearningStatsTrackTodayAndStreak() = runBlocking {
+        val dao = FakeProgressDao()
+        val repository = ProgressRepository(dao, now = { 100L })
+
+        repository.completeLesson("python")
+        repeat(4) { index ->
+            repository.recordQuizResult("daily-quiz-$index", correct = index != 3)
+        }
+        repository.recordTrainingResult("predict-add", correct = true)
+
+        val stats = repository.observeDailyLearningStats().first()
+        assertEquals(CourseCatalog.lesson("python")?.minutes, stats.minutes)
+        assertEquals(4, stats.quizAnswers)
+        assertTrue(stats.challengeCompleted)
+        assertEquals(1, stats.streakDays)
+        assertEquals(1, stats.weekDays)
+    }
+
+    @Test
     fun freshLearnerIsRecommendedTheFirstLesson() {
         val dashboard = LearningDashboardEngine.build(
             completedLessonIds = emptySet(),
@@ -284,15 +308,35 @@ class CatalogAndRunnerTest {
             .toDomain()
         val contentLessonIds = content.stages.flatMap { stage -> stage.lessons.map { it.id } }
 
-        assertEquals(contentLessonIds, content.lessons.keys.toList())
+        assertEquals(contentLessonIds.toSet(), content.lessons.keys)
+        assertEquals(2, content.version)
+        assertEquals(16, content.stages.size)
+        assertEquals(56, content.lessons.size)
+        assertEquals("program-computer", contentLessonIds.first())
         assertTrue(content.lessons.size >= CourseCatalog.allLessons.size)
         assertTrue(content.projects.size >= ProjectCatalog.all.size)
         assertEquals(content.projects.map { it.id }, content.projects.map { it.id }.distinct())
+        assertTrue(content.stages.any { it.name == "编程与计算机基础" })
+        assertTrue(content.stages.any { it.name == "编程思维与算法基础" })
         assertTrue(content.stages.any { it.name == "数据分析" })
         assertTrue(content.stages.any { it.name == "数据库与持久化" })
+        assertTrue(content.stages.any { it.name == "自动化与办公自动化" })
         assertTrue(content.stages.any { it.name == "Web 与 API 服务" })
+        assertTrue(content.stages.any { it.name == "Web 开发" })
         assertTrue(content.stages.any { it.name == "AI 与智能应用" })
         assertTrue(content.stages.any { it.name == "测试、Git 与代码质量" })
+        assertTrue(content.stages.any { it.name == "第三方库生态与技术选型" })
+        assertTrue(content.stages.any { it.name == "项目工程与交付" })
+        assertTrue(
+            listOf(
+                "program-computer",
+                "problem-solving",
+                "file-automation",
+                "flask",
+                "library-selection",
+                "project-structure",
+            ).all { it in content.lessons },
+        )
         assertTrue(content.projects.any { it.level.contains("Lv.3") })
         assertTrue(content.projects.any { it.level.contains("Lv.4") })
         assertTrue(content.projects.any { it.level.contains("Lv.5 毕业项目") })

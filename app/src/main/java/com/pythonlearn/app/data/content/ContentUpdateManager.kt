@@ -95,8 +95,13 @@ class ContentUpdateManager(
     private val gson: Gson = Gson(),
 ) {
     fun loadActiveContent(): CourseContent {
+        val bundled = bundledContent()
         val installed = readAndValidate(installedFile)
-        return installed ?: bundledContent()
+        return when {
+            installed == null -> bundled
+            installed.version > bundled.version -> installed
+            else -> bundled
+        }
     }
 
     fun checkForUpdate(manifestUrl: String): ContentUpdateCheck {

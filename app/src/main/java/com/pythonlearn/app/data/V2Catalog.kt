@@ -95,6 +95,16 @@ object LibraryCatalog {
             lessonId = "sqlite",
         ),
         LibraryEntry(
+            id = "flask",
+            name = "Flask",
+            category = LibraryCategory.WEB,
+            summary = "轻量 Web 框架，用路由把 URL 和 Python 函数连接起来。",
+            useCase = "构建小型服务、内部工具、管理页面和 Web 原理学习项目。",
+            install = "pip install flask",
+            example = "from flask import Flask\napp = Flask(__name__)\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}",
+            lessonId = "flask",
+        ),
+        LibraryEntry(
             id = "fastapi",
             name = "FastAPI",
             category = LibraryCategory.WEB,

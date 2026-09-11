@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.lifecycleScope
+import com.pythonlearn.app.data.DailyLearningStats
 import com.pythonlearn.app.data.LearningDashboard
 import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.ui.PythonLearningApp
@@ -85,6 +86,7 @@ class MainActivity : ComponentActivity() {
                     ),
                 )
             }
+            var dailyLearningStats by remember { mutableStateOf(DailyLearningStats()) }
             var favoriteIds by remember {
                 mutableStateOf(prefs.getStringSet(KEY_FAVORITES, emptySet())?.toSet() ?: emptySet())
             }
@@ -127,6 +129,12 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(Unit) {
                 progressRepository.observeLearningDashboard().collect { dashboard ->
                     learningDashboard = dashboard
+                }
+            }
+
+            LaunchedEffect(Unit) {
+                progressRepository.observeDailyLearningStats().collect { stats ->
+                    dailyLearningStats = stats
                 }
             }
 
@@ -220,6 +228,7 @@ class MainActivity : ComponentActivity() {
                     legalRegion = legalRegion,
                     onLegalRegionChange = { legalRegion = it },
                     learningDashboard = learningDashboard,
+                    dailyLearningStats = dailyLearningStats,
                     favoriteIds = favoriteIds,
                     onToggleFavorite = { key ->
                         favoriteIds = if (key in favoriteIds) favoriteIds - key else favoriteIds + key

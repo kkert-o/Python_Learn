@@ -51,6 +51,14 @@ data class LearningDashboard(
     val recommendation: LearningRecommendation,
 )
 
+data class DailyLearningStats(
+    val minutes: Int = 0,
+    val quizAnswers: Int = 0,
+    val challengeCompleted: Boolean = false,
+    val streakDays: Int = 0,
+    val weekDays: Int = 0,
+)
+
 object ReviewScheduler {
     val intervalsInDays: LongArray = longArrayOf(1, 3, 7, 14, 30)
     private const val DAY_MILLIS = 24L * 60L * 60L * 1000L

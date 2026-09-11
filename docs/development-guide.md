@@ -25,11 +25,11 @@
 | 最低 Android | API 26 |
 | 目标 Android | API 36 |
 | Python | Chaquopy 3.11 |
-| 课程内容版本 | `1` |
-| 课程阶段 | 10 |
-| 知识点 | 42 |
+| 课程内容版本 | `2` |
+| 课程阶段 | 16 |
+| 知识点 | 56 |
 | 项目 | 13 |
-| 单元测试 | 30 |
+| 单元测试 | 33 |
 | 数据库版本 | 2 |
 
 文档更新时间：2026-09-11。
@@ -178,6 +178,7 @@ matplotlib
 SQLAlchemy
 pydantic
 fastapi
+flask
 uvicorn
 pytest
 openai
@@ -645,7 +646,7 @@ quiz:<question>
 
 #### learning_event
 
-保存学习事件，用于以后扩展学习时长、连续天数、统计和推荐。
+保存学习事件，用于按天统计学习时长、连续天数、每日任务、统计和推荐。
 
 ```text
 id INTEGER AUTOINCREMENT
@@ -698,6 +699,7 @@ app/src/main/java/com/pythonlearn/app/data/repository/ProgressRepository.kt
 observeProgress()
 observeKnowledgeTree()
 observeLearningDashboard()
+observeDailyLearningStats()
 completeLesson()
 completeProject()
 recordTrainingResult()
@@ -761,6 +763,8 @@ LearningHubScreen
 HomeScreen
 PracticeScreen
 ```
+
+`observeDailyLearningStats()` 根据 `learning_event` 计算当天课程分钟、已作答题目、预测输出挑战、连续学习天数和本周学习天数。首页每日任务与本周进度不再使用手动占位状态。
 
 ---
 
@@ -1465,9 +1469,9 @@ docs/content-update.md
 
 ```json
 {
-  "version": 2,
+  "version": 3,
   "updatedAt": "2026-09-15",
-  "contentUrl": "https://example.com/course_content-v2.json",
+  "contentUrl": "https://example.com/course_content-v3.json",
   "sha256": "sha256-value",
   "minAppVersion": 1
 }
@@ -1582,7 +1586,7 @@ adb install -r app\build\outputs\apk\debug\app-debug.apk
 必须检查：
 
 - 首页推荐卡
-- 课程 10 个阶段
+- 课程 16 个阶段
 - 知识点详情 10 段模板
 - 课程小练习和错题
 - 训练四类
@@ -1869,7 +1873,7 @@ $env:CHAQUOPY_PYTHON="C:\Path\To\Python311\python.exe"
 2. 为 Python 运行增加超时和隔离。
 3. 导出 Room Schema 并补充迁移测试。
 4. 迁移到 Navigation Compose。
-5. 增加学习时长、连续天数和周报。
+5. 增加完整周报、学习时段分析和更精细的时长记录。
 6. 增加课程收藏分组和阅读历史。
 7. 增加项目分步验收和测试记录。
 8. 增加服务端内容发布工具。

@@ -82,7 +82,7 @@ fun CourseScreen(
                         Text(text = "Python 学习路线", fontWeight = FontWeight.Bold)
                         MutedText(
                             text = if (completedLessonIds.isEmpty()) {
-                                "5 个阶段 · 尚未开始"
+                                "${CourseCatalog.stages.size} 个阶段 · 尚未开始"
                             } else {
                                 "已完成 ${completedLessonIds.size} 个知识点"
                             },

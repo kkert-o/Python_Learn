@@ -1,9 +1,13 @@
 package com.pythonlearn.app.data.repository
 
 import com.pythonlearn.app.data.KnowledgeNode
+import com.pythonlearn.app.data.CourseCatalog
+import com.pythonlearn.app.data.DailyLearningStats
 import com.pythonlearn.app.data.LearningDashboard
 import com.pythonlearn.app.data.LearningDashboardEngine
 import com.pythonlearn.app.data.ReviewScheduler
+import com.pythonlearn.app.data.TrainingCatalog
+import com.pythonlearn.app.data.TrainingType
 import com.pythonlearn.app.data.local.LearningEventEntity
 import com.pythonlearn.app.data.local.LessonProgressEntity
 import com.pythonlearn.app.data.local.ProgressDao
@@ -14,6 +18,8 @@ import com.pythonlearn.app.data.local.TrainingProgressEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import java.time.Instant
+import java.time.ZoneId
 
 class ProgressRepository(
     private val dao: ProgressDao,
@@ -47,6 +53,46 @@ class ProgressRepository(
                 quizProgress = quizzes,
                 reviewSchedules = schedules,
                 now = now(),
+            )
+        }
+    }
+
+    fun observeDailyLearningStats(): Flow<DailyLearningStats> {
+        return dao.observeLearningEvents().map { events ->
+            val zone = ZoneId.systemDefault()
+            val today = Instant.ofEpochMilli(now()).atZone(zone).toLocalDate()
+            val datedEvents = events.map { event ->
+                event to Instant.ofEpochMilli(event.occurredAt).atZone(zone).toLocalDate()
+            }
+            val todayEvents = datedEvents.filter { (_, date) -> date == today }
+            val activeDates = datedEvents.map { (_, date) -> date }.toSet()
+            val weekStart = today.minusDays((today.dayOfWeek.value - 1).toLong())
+
+            var streakDays = 0
+            var cursor = today
+            while (cursor in activeDates) {
+                streakDays += 1
+                cursor = cursor.minusDays(1)
+            }
+
+            DailyLearningStats(
+                minutes = todayEvents
+                    .filter { (event, _) -> event.eventType == "lesson_completed" }
+                    .map { (event, _) -> event.targetId }
+                    .distinct()
+                    .sumOf { lessonId -> CourseCatalog.lesson(lessonId)?.minutes ?: 0 },
+                quizAnswers = todayEvents
+                    .filter { (event, _) -> event.eventType == "quiz_result" }
+                    .map { (event, _) -> event.targetId }
+                    .distinct()
+                    .size,
+                challengeCompleted = todayEvents.any { (event, _) ->
+                    event.eventType == "training_result" &&
+                        event.correct &&
+                        TrainingCatalog.byId(event.targetId)?.type == TrainingType.PREDICT_OUTPUT
+                },
+                streakDays = streakDays,
+                weekDays = activeDates.count { date -> !date.isBefore(weekStart) && !date.isAfter(today) },
             )
         }
     }

@@ -18,9 +18,9 @@ assets/content/course_content.json
 
 ```json
 {
-  "version": 2,
+  "version": 3,
   "updatedAt": "2026-09-15",
-  "contentUrl": "https://example.com/content/course_content-v2.json",
+  "contentUrl": "https://example.com/content/course_content-v3.json",
   "sha256": "内容文件的 SHA-256 小写十六进制值",
   "minAppVersion": 1
 }

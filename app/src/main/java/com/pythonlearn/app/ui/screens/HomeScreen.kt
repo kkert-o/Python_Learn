@@ -23,7 +23,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pythonlearn.app.data.DemoStats
 import com.pythonlearn.app.data.CourseCatalog
+import com.pythonlearn.app.data.DailyLearningStats
 import com.pythonlearn.app.data.LearningDashboard
 import com.pythonlearn.app.ui.components.GlassCard
 import com.pythonlearn.app.ui.components.IconAvatar
@@ -47,24 +47,31 @@ fun HomeScreen(
     onOpenLearningHub: () -> Unit,
     completedLessonIds: Set<String>,
     dashboard: LearningDashboard,
+    dailyLearningStats: DailyLearningStats,
 ) {
     val completedCount = completedLessonIds.size
     val nextLessonId = remember(completedLessonIds) {
-        CourseCatalog.nextLessonId(completedLessonIds) ?: "python"
+        CourseCatalog.nextLessonId(completedLessonIds)
     }
-    val nextLesson = CourseCatalog.lesson(nextLessonId)
-    val tasks = remember {
-        listOf(
-            TaskRowData("学习 15 分钟", "学习 Python 是什么", false),
-            TaskRowData("完成 4 道练习", "错题会自动进入复习", false),
-            TaskRowData("完成今日挑战", "判断题目的输出结果", false),
-        )
-    }
-    val doneIds = remember {
-        mutableStateMapOf<Int, Boolean>().apply {
-            tasks.forEachIndexed { index, item -> put(index, item.done) }
-        }
-    }
+    val nextLesson = nextLessonId?.let { CourseCatalog.lesson(it) }
+    val tasks = listOf(
+        TaskRowData(
+            title = "学习 15 分钟",
+            subtitle = "今天已完成 ${dailyLearningStats.minutes} 分钟",
+            done = dailyLearningStats.minutes >= 15,
+        ),
+        TaskRowData(
+            title = "完成 4 道练习",
+            subtitle = "今天已作答 ${dailyLearningStats.quizAnswers.coerceAtMost(4)} / 4 道",
+            done = dailyLearningStats.quizAnswers >= 4,
+        ),
+        TaskRowData(
+            title = "完成今日挑战",
+            subtitle = "完成一次预测输出训练",
+            done = dailyLearningStats.challengeCompleted,
+        ),
+    )
+    val doneCount = tasks.count { it.done }
 
     LazyColumn(
         contentPadding = PaddingValues(start = 18.dp, end = 18.dp, top = 18.dp, bottom = 18.dp),
@@ -91,7 +98,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable(enabled = nextLesson != null) {
-                        onOpenLesson(nextLessonId)
+                        nextLessonId?.let(onOpenLesson)
                     },
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -163,7 +170,7 @@ fun HomeScreen(
                 modifier = if (nextLesson != null) {
                     Modifier
                         .fillMaxWidth()
-                        .clickable { onOpenLesson(nextLessonId) }
+                        .clickable { nextLessonId?.let(onOpenLesson) }
                 } else {
                     Modifier.fillMaxWidth()
                 },
@@ -223,19 +230,18 @@ fun HomeScreen(
         item {
             SectionTitle(
                 title = "今日学习",
-                trailing = if (doneIds.values.all { it }) "已完成" else "进行中",
+                trailing = if (doneCount == tasks.size) "已完成" else "$doneCount / ${tasks.size}",
             )
         }
 
         item {
             GlassCard {
                 Column {
-                    tasks.forEachIndexed { index, task ->
-                        val done = doneIds[index] ?: false
+                    tasks.forEach { task ->
+                        val done = task.done
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable { doneIds[index] = !done }
                                 .padding(horizontal = 14.dp, vertical = 11.dp),
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
@@ -261,7 +267,7 @@ fun HomeScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable(enabled = nextLesson != null) {
-                        onOpenLesson(nextLessonId)
+                        nextLessonId?.let(onOpenLesson)
                     },
             ) {
                 Row(
@@ -275,10 +281,23 @@ fun HomeScreen(
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "从今天开始学习", fontWeight = FontWeight.Bold)
-                        MutedText(text = "完成第一个知识点后开始计算连续天数")
+                        Text(
+                            text = if (dailyLearningStats.streakDays == 0) {
+                                "从今天开始学习"
+                            } else {
+                                "连续学习 ${dailyLearningStats.streakDays} 天"
+                            },
+                            fontWeight = FontWeight.Bold,
+                        )
+                        MutedText(
+                            text = if (dailyLearningStats.streakDays == 0) {
+                                "完成第一个知识点后开始计算连续天数"
+                            } else {
+                                "本周已学习 ${dailyLearningStats.weekDays} 天"
+                            },
+                        )
                     }
-                    Tag(text = "本周目标 0/7", active = true)
+                    Tag(text = "本周 ${dailyLearningStats.weekDays}/7", active = true)
                 }
             }
         }

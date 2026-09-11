@@ -22,7 +22,7 @@ class V2FeatureCatalogTest {
             assertTrue("${entry.id} 缺少示例", entry.example.isNotBlank())
         }
         val bundled = LibraryCatalog.all.filter { it.runtimeAvailable }
-        assertTrue("APK 内置库数量不足", bundled.size >= 12)
+        assertTrue("APK 内置库数量不足", bundled.size >= 13)
         assertFalse(bundled.any { it.id == "ruff" || it.id == "scikit-learn" })
     }
 
@@ -41,6 +41,7 @@ class V2FeatureCatalogTest {
         assertTrue(GlobalSearchEngine.search("NameError").any { it.title.contains("变量名") })
         assertTrue(GlobalSearchEngine.search("Git").any { it.title.contains("Git") })
         assertTrue(GlobalSearchEngine.search("FastAPI").any { it.title.contains("FastAPI") })
+        assertTrue(GlobalSearchEngine.search("Flask").any { it.title.contains("Flask") })
     }
 
     @Test

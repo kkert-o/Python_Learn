@@ -25,16 +25,29 @@ class ContentUpdateManagerTest {
         val bundled = bundledContent()
         val manager = manager(directory, bundled, ContentDownloader { error("不应发起下载") })
 
-        assertEquals(1, manager.loadActiveContent().version)
+        assertEquals(bundled.version, manager.loadActiveContent().version)
+    }
+
+    @Test
+    fun olderInstalledContentDoesNotHideNewBundledContent() {
+        val directory = Files.createTempDirectory("content-manager").toFile()
+        val bundled = bundledContent()
+        val installedFile = File(directory, "content/course_content.json")
+        installedFile.parentFile?.mkdirs()
+        installedFile.writeText(contentJson(version = bundled.version - 1), Charsets.UTF_8)
+        val manager = manager(directory, bundled, ContentDownloader { error("不应发起下载") })
+
+        assertEquals(bundled.version, manager.loadActiveContent().version)
     }
 
     @Test
     fun validUpdateIsInstalledAndBecomesActive() {
         val directory = Files.createTempDirectory("content-manager").toFile()
         val bundled = bundledContent()
-        val updatedJson = contentJson(version = 2)
+        val updatedVersion = bundled.version + 1
+        val updatedJson = contentJson(version = updatedVersion)
         val manifestJson = manifestJson(
-            version = 2,
+            version = updatedVersion,
             contentUrl = CONTENT_URL,
             sha256 = updatedJson.sha256(),
             minAppVersion = 1,
@@ -53,7 +66,7 @@ class ContentUpdateManagerTest {
         assertTrue(check is ContentUpdateCheck.UpdateAvailable)
         val result = manager.downloadAndInstall(MANIFEST_URL)
         assertTrue(result is ContentInstallResult.Installed)
-        assertEquals(2, manager.loadActiveContent().version)
+        assertEquals(updatedVersion, manager.loadActiveContent().version)
         assertTrue(installedFile.isFile)
     }
 
@@ -61,9 +74,9 @@ class ContentUpdateManagerTest {
     fun checksumFailureKeepsBundledContent() {
         val directory = Files.createTempDirectory("content-manager").toFile()
         val bundled = bundledContent()
-        val updatedJson = contentJson(version = 2)
+        val updatedJson = contentJson(version = bundled.version + 1)
         val manifestJson = manifestJson(
-            version = 2,
+            version = bundled.version + 1,
             contentUrl = CONTENT_URL,
             sha256 = "bad-hash",
             minAppVersion = 1,
@@ -79,7 +92,7 @@ class ContentUpdateManagerTest {
 
         val result = manager.downloadAndInstall(MANIFEST_URL)
         assertTrue(result is ContentInstallResult.Failed)
-        assertEquals(1, manager.loadActiveContent().version)
+        assertEquals(bundled.version, manager.loadActiveContent().version)
     }
 
     @Test
@@ -87,7 +100,7 @@ class ContentUpdateManagerTest {
         val directory = Files.createTempDirectory("content-manager").toFile()
         val bundled = bundledContent()
         val manifestJson = manifestJson(
-            version = 2,
+            version = bundled.version + 1,
             contentUrl = CONTENT_URL,
             sha256 = "",
             minAppVersion = 99,

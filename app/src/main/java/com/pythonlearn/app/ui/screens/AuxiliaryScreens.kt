@@ -233,7 +233,7 @@ fun PracticeScreen(
         item {
             SectionTitle(
                 title = "学习工具",
-                trailing = if (dueReviewCount == 0) "复习已清空" else "$dueReviewCount 项到期",
+                trailing = if (dueReviewCount == 0) "今日复习已清空" else "$dueReviewCount 项到期",
             )
         }
         item {

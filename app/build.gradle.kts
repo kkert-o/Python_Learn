@@ -90,6 +90,7 @@ chaquopy {
             install("matplotlib==3.6.0")
             install("SQLAlchemy==2.0.36")
             install("pydantic==1.10.15")
+            install("flask==3.1.2")
             install("fastapi==0.115.5")
             install("uvicorn==0.32.1")
             install("pytest==8.3.3")
