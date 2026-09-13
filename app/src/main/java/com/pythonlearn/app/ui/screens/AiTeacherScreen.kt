@@ -70,7 +70,7 @@ fun AiTeacherScreen(
         mutableStateOf(
             listOf(
                 ChatMessage(
-                    role = "bot",
+                    role = "assistant",
                     text = "你好，我是 Python 学习老师。当前是老师模式：我会先引导你自己想，不会直接替你把作业写完。",
                 ),
             ),
@@ -103,7 +103,7 @@ fun AiTeacherScreen(
             } catch (error: Throwable) {
                 "AI 连接失败：${error.message ?: "未知错误"}\n\n已先用本地引导模式回答：\n${replyFor(trimmed, mode)}"
             }
-            messages = messages + ChatMessage("bot", reply)
+            messages = messages + ChatMessage("assistant", reply)
             waiting = false
         }
     }

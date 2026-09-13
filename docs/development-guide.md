@@ -18,8 +18,8 @@
 
 | 项目 | 当前值 |
 | --- | --- |
-| App 版本 | `0.3.0` |
-| versionCode | `3` |
+| App 版本 | `0.3.1` |
+| versionCode | `4` |
 | applicationId | `com.pythonlearn.app` |
 | UI | Kotlin + Jetpack Compose Material 3 |
 | 最低 Android | API 26 |
@@ -29,7 +29,7 @@
 | 课程阶段 | 16 |
 | 知识点 | 56 |
 | 项目 | 13 |
-| 单元测试 | 33 |
+| 单元测试 | 35 |
 | 数据库版本 | 2 |
 
 文档更新时间：2026-09-11。

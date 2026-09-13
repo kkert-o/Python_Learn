@@ -22,12 +22,17 @@ import com.pythonlearn.app.data.local.QuizProgressEntity
 import com.pythonlearn.app.data.local.ReviewScheduleEntity
 import com.pythonlearn.app.data.local.TrainingProgressEntity
 import com.pythonlearn.app.data.repository.ProgressRepository
+import com.pythonlearn.app.runtime.AiConfig
 import com.pythonlearn.app.runtime.PythonErrorExplainer
+import com.pythonlearn.app.runtime.AiTeacherClient
+import com.sun.net.httpserver.HttpServer
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import java.io.File
+import java.net.InetSocketAddress
+import java.util.concurrent.atomic.AtomicReference
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -119,6 +124,49 @@ class CatalogAndRunnerTest {
             traceback = "  File \"<user_code>\", line 2, in <module>\nIndentationError: unexpected indent",
         )
         assertTrue(hint.contains("第 2 行"))
+    }
+
+    @Test
+    fun aiTeacherNormalizesLegacyBotRole() {
+        assertEquals("assistant", AiTeacherClient.normalizeRole("bot"))
+        assertEquals("assistant", AiTeacherClient.normalizeRole("assistant"))
+        assertEquals("user", AiTeacherClient.normalizeRole("user"))
+        assertEquals("system", AiTeacherClient.normalizeRole("system"))
+    }
+
+    @Test
+    fun aiTeacherSendsOpenAiCompatibleAssistantRole() {
+        val server = HttpServer.create(InetSocketAddress("127.0.0.1", 0), 0)
+        val capturedPayload = AtomicReference("")
+        server.createContext("/chat/completions") { exchange ->
+            capturedPayload.set(
+                exchange.requestBody.use { input ->
+                    input.readBytes().toString(Charsets.UTF_8)
+                },
+            )
+            val response = """{"choices":[{"message":{"content":"测试回复"}}]}"""
+                .toByteArray(Charsets.UTF_8)
+            exchange.sendResponseHeaders(200, response.size.toLong())
+            exchange.responseBody.use { output -> output.write(response) }
+        }
+        server.start()
+        try {
+            val reply = AiTeacherClient.ask(
+                config = AiConfig(
+                    endpoint = "http://127.0.0.1:${server.address.port}/chat/completions",
+                    apiKey = "test-key",
+                ),
+                systemPrompt = "系统提示",
+                history = listOf("bot" to "历史回复"),
+                userText = "你好",
+            )
+
+            assertEquals("测试回复", reply)
+            assertTrue(capturedPayload.get().contains("\"role\":\"assistant\""))
+            assertFalse(capturedPayload.get().contains("\"role\":\"bot\""))
+        } finally {
+            server.stop(0)
+        }
     }
 
     @Test

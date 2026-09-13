@@ -1,7 +1,7 @@
 package com.pythonlearn.app.runtime
 
-import org.json.JSONArray
-import org.json.JSONObject
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -18,6 +18,8 @@ data class AiConfig(
 }
 
 object AiTeacherClient {
+    private val gson = Gson()
+
     fun ask(
         config: AiConfig,
         systemPrompt: String,
@@ -37,20 +39,21 @@ object AiTeacherClient {
             connection.setRequestProperty("Content-Type", "application/json")
             connection.setRequestProperty("Authorization", "Bearer ${config.apiKey.trim()}")
 
-            val messages = JSONArray().apply {
-                put(JSONObject().put("role", "system").put("content", systemPrompt))
+            val messages = buildList {
+                add(mapOf("role" to "system", "content" to systemPrompt))
                 history.forEach { (role, text) ->
-                    put(JSONObject().put("role", role).put("content", text))
+                    add(mapOf("role" to normalizeRole(role), "content" to text))
                 }
-                put(JSONObject().put("role", "user").put("content", userText))
+                add(mapOf("role" to "user", "content" to userText))
             }
-            val payload = JSONObject()
-                .put("model", config.model.trim().ifEmpty { AiConfig.DEFAULT_MODEL })
-                .put("messages", messages)
-                .put("temperature", 0.3)
+            val payload = mapOf(
+                "model" to config.model.trim().ifEmpty { AiConfig.DEFAULT_MODEL },
+                "messages" to messages,
+                "temperature" to 0.3,
+            )
 
             connection.outputStream.use { output ->
-                output.write(payload.toString().toByteArray(Charsets.UTF_8))
+                output.write(gson.toJson(payload).toByteArray(Charsets.UTF_8))
             }
 
             val code = connection.responseCode
@@ -67,15 +70,27 @@ object AiTeacherClient {
     }
 
     private fun parseReply(raw: String): String {
-        val json = JSONObject(raw)
-        val content = json.optJSONArray("choices")
-            ?.optJSONObject(0)
-            ?.optJSONObject("message")
-            ?.optString("content")
+        val content = JsonParser.parseString(raw)
+            .asJsonObject
+            .getAsJsonArray("choices")
+            .firstOrNull()
+            ?.asJsonObject
+            ?.getAsJsonObject("message")
+            ?.get("content")
+            ?.asString
             ?.trim()
         if (content.isNullOrEmpty()) {
             throw IOException("接口没有返回可用内容")
         }
         return content
+    }
+
+    internal fun normalizeRole(role: String): String {
+        return when (role.trim().lowercase()) {
+            "assistant", "bot" -> "assistant"
+            "system" -> "system"
+            "tool" -> "tool"
+            else -> "user"
+        }
     }
 }

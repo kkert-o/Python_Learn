@@ -42,8 +42,8 @@ android {
         applicationId = "com.pythonlearn.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "0.3.0"
+        versionCode = 4
+        versionName = "0.3.1"
         buildConfigField("String", "CONTENT_MANIFEST_URL", "\"$contentManifestUrl\"")
         buildConfigField("boolean", "RELEASE_SIGNING_CONFIGURED", releaseSigningConfigured.toString())
         ndk {
