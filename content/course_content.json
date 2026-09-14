@@ -1,0 +1,4943 @@
+{
+  "version": 2,
+  "updatedAt": "2026-09-11",
+  "stages": [
+    {
+      "label": "第一阶段",
+      "name": "编程与计算机基础",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "program-computer",
+          "title": "程序、代码和计算机",
+          "minutes": 10,
+          "state": "TODO"
+        },
+        {
+          "id": "run-python",
+          "title": "从源代码到运行结果",
+          "minutes": 12,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第二阶段",
+      "name": "Python 基础",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "python",
+          "title": "Python 是什么",
+          "minutes": 8,
+          "state": "TODO"
+        },
+        {
+          "id": "hello",
+          "title": "第一个 Python 程序",
+          "minutes": 12,
+          "state": "LOCKED"
+        },
+        {
+          "id": "print",
+          "title": "print() 输出",
+          "minutes": 10,
+          "state": "LOCKED"
+        },
+        {
+          "id": "input",
+          "title": "input() 输入",
+          "minutes": 11,
+          "state": "LOCKED"
+        },
+        {
+          "id": "variable",
+          "title": "变量",
+          "minutes": 14,
+          "state": "LOCKED"
+        },
+        {
+          "id": "types",
+          "title": "数据类型",
+          "minutes": 16,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第三阶段",
+      "name": "程序控制",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "if",
+          "title": "if 条件判断",
+          "minutes": 18,
+          "state": "LOCKED"
+        },
+        {
+          "id": "for",
+          "title": "for 循环",
+          "minutes": 18,
+          "state": "LOCKED"
+        },
+        {
+          "id": "while",
+          "title": "while 循环",
+          "minutes": 17,
+          "state": "LOCKED"
+        },
+        {
+          "id": "break",
+          "title": "break / continue",
+          "minutes": 12,
+          "state": "LOCKED"
+        },
+        {
+          "id": "nested",
+          "title": "嵌套与综合控制",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第四阶段",
+      "name": "数据结构",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "list",
+          "title": "list 列表",
+          "minutes": 19,
+          "state": "LOCKED"
+        },
+        {
+          "id": "tuple",
+          "title": "tuple 元组",
+          "minutes": 13,
+          "state": "LOCKED"
+        },
+        {
+          "id": "set",
+          "title": "set 集合",
+          "minutes": 15,
+          "state": "LOCKED"
+        },
+        {
+          "id": "dict",
+          "title": "dict 字典",
+          "minutes": 21,
+          "state": "LOCKED"
+        },
+        {
+          "id": "comprehension",
+          "title": "推导式",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第五阶段",
+      "name": "函数与文件",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "function",
+          "title": "函数",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "file",
+          "title": "读写文件",
+          "minutes": 20,
+          "state": "LOCKED"
+        },
+        {
+          "id": "module",
+          "title": "模块",
+          "minutes": 15,
+          "state": "LOCKED"
+        },
+        {
+          "id": "oop",
+          "title": "类与对象",
+          "minutes": 25,
+          "state": "LOCKED"
+        },
+        {
+          "id": "errors",
+          "title": "异常处理",
+          "minutes": 19,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第六阶段",
+      "name": "编程思维与算法基础",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "problem-solving",
+          "title": "问题拆解与伪代码",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "algorithm-basics",
+          "title": "查找、计数、过滤和排序",
+          "minutes": 20,
+          "state": "LOCKED"
+        },
+        {
+          "id": "complexity-choice",
+          "title": "用对数据结构和复杂度",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第七阶段",
+      "name": "网络与爬虫",
+      "progress": 0,
+      "special": true,
+      "lessons": [
+        {
+          "id": "http",
+          "title": "HTTP 请求与响应",
+          "minutes": 18,
+          "state": "LOCKED"
+        },
+        {
+          "id": "requests",
+          "title": "requests 基础",
+          "minutes": 21,
+          "state": "LOCKED"
+        },
+        {
+          "id": "html",
+          "title": "HTML 与 BeautifulSoup",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "session",
+          "title": "Cookie 与 Session",
+          "minutes": 19,
+          "state": "LOCKED"
+        },
+        {
+          "id": "api",
+          "title": "API 的正确用法",
+          "minutes": 17,
+          "state": "LOCKED"
+        },
+        {
+          "id": "legal",
+          "title": "爬虫安全与法律",
+          "minutes": 24,
+          "state": "TODO"
+        }
+      ]
+    },
+    {
+      "label": "第八阶段",
+      "name": "数据分析",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "numpy",
+          "title": "NumPy 数值计算",
+          "minutes": 20,
+          "state": "LOCKED"
+        },
+        {
+          "id": "pandas",
+          "title": "pandas 表格处理",
+          "minutes": 24,
+          "state": "LOCKED"
+        },
+        {
+          "id": "visualization",
+          "title": "数据可视化",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第九阶段",
+      "name": "数据库与持久化",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "sql",
+          "title": "SQL 查询基础",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "sqlite",
+          "title": "SQLite 与 Python",
+          "minutes": 25,
+          "state": "LOCKED"
+        },
+        {
+          "id": "data-model",
+          "title": "数据建模与事务",
+          "minutes": 23,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十阶段",
+      "name": "自动化与办公自动化",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "file-automation",
+          "title": "文件与办公自动化",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "scheduled-automation",
+          "title": "定时任务与可重复执行",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十一阶段",
+      "name": "Web 与 API 服务",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "fastapi",
+          "title": "FastAPI 接口",
+          "minutes": 24,
+          "state": "LOCKED"
+        },
+        {
+          "id": "rest-api",
+          "title": "REST API 设计",
+          "minutes": 20,
+          "state": "LOCKED"
+        },
+        {
+          "id": "deployment",
+          "title": "服务部署与安全",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十二阶段",
+      "name": "Web 开发",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "flask",
+          "title": "Flask Web 入门",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "web-auth-deploy",
+          "title": "Web 鉴权、配置与部署",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十三阶段",
+      "name": "AI 与智能应用",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "machine-learning",
+          "title": "机器学习入门",
+          "minutes": 26,
+          "state": "LOCKED"
+        },
+        {
+          "id": "ai-api",
+          "title": "接入 AI API",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "responsible-ai",
+          "title": "负责任地使用 AI",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十四阶段",
+      "name": "测试、Git 与代码质量",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "git",
+          "title": "Git 版本管理",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "testing",
+          "title": "pytest 自动化测试",
+          "minutes": 24,
+          "state": "LOCKED"
+        },
+        {
+          "id": "quality",
+          "title": "代码质量与重构",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十五阶段",
+      "name": "第三方库生态与技术选型",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "library-selection",
+          "title": "如何选择合适的第三方库",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "venv-dependencies",
+          "title": "虚拟环境与依赖管理",
+          "minutes": 22,
+          "state": "LOCKED"
+        },
+        {
+          "id": "dependency-risk",
+          "title": "版本、升级与供应链风险",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    {
+      "label": "第十六阶段",
+      "name": "项目工程与交付",
+      "progress": 0,
+      "special": false,
+      "lessons": [
+        {
+          "id": "project-structure",
+          "title": "Python 项目结构与配置",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "release-checklist",
+          "title": "从可运行到可交付",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    }
+  ],
+  "lessons": {
+    "python": {
+      "id": "python",
+      "title": "Python 是什么",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 8,
+      "knowledge": [
+        "Python 是一种适合初学者的编程语言：写法接近自然语言，能很快看到运行结果。",
+        "它的应用范围很广，包括自动化、数据处理、爬虫、AI 和 Web 开发。"
+      ],
+      "why": [
+        "先了解“能做什么”，才不会把 Python 当成一堆需要背的语法。",
+        "你可以从写小程序开始，慢慢扩展到处理真实文件、网页和项目。"
+      ],
+      "purpose": "自动整理文件、抓取网页公开数据、生成报告、写 Web 接口，都是 Python 常见用途。",
+      "example": "print(\"Hello Python\")\nprint(\"你好，Python\")",
+      "exampleNotes": [
+        {
+          "left": "print(",
+          "right": "把内容输出到屏幕"
+        },
+        {
+          "left": "\"Hello Python\"",
+          "right": "要显示的文字"
+        }
+      ],
+      "quiz": {
+        "question": "运行 print(\"Hello\") 后，屏幕上会显示什么？",
+        "code": "print(\"Hello\")",
+        "options": [
+          "Hello",
+          "print",
+          "错误",
+          "什么也不显示"
+        ],
+        "answerIndex": 0,
+        "explanation": "print() 会把括号里的文字输出到屏幕，所以显示 Hello。"
+      },
+      "errors": [
+        {
+          "title": "漏掉括号或引号",
+          "detail": "print 后面的括号和字符串引号需要成对出现。",
+          "code": "print(Hello)  # 错\nprint(\"Hello\")  # 对"
+        },
+        {
+          "title": "中英文符号混用",
+          "detail": "Python 代码使用英文标点，中文标点会导致语法错误。",
+          "code": "print（\"Hello\"）  # 错\nprint(\"Hello\")  # 对"
+        }
+      ],
+      "projectCode": "# 第一课先完成一个小目标：\n# 让程序说出一句你想说的话\nprint(\"我学会了 Python\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "本节只介绍 Python 是什么，属于通用编程知识。开始具体项目时再根据访问对象、数据类型和使用目的评估合规性。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-04",
+      "next": [
+        {
+          "id": "hello",
+          "title": "第一个 Python 程序",
+          "minutes": 12,
+          "state": "TODO"
+        },
+        {
+          "id": "print",
+          "title": "print() 输出",
+          "minutes": 10,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "hello": {
+      "id": "hello",
+      "title": "第一个 Python 程序",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 12,
+      "knowledge": [
+        "写第一个程序不用复杂。用 print() 把文字显示出来，程序就运行了。",
+        "文件保存后运行，从上到下逐行执行。"
+      ],
+      "why": [
+        "第一课的目标不是背语法，而是让“写代码 → 运行 → 看到结果”这个循环真实发生一次。"
+      ],
+      "purpose": "每一个自动化和项目都从一个能运行的小程序开始。",
+      "example": "print(\"Hello Python\")\nprint(\"这是你的第一个程序\")",
+      "exampleNotes": [
+        {
+          "left": "print(",
+          "right": "把内容输出到屏幕"
+        },
+        {
+          "left": "print(\"Hello Python\")",
+          "right": "英文和中文文字都能显示"
+        }
+      ],
+      "quiz": {
+        "question": "哪一行程序可以让屏幕显示 Hello?",
+        "code": "# 选一个答案\nprint(\"Hello\")",
+        "options": [
+          "print(\"Hello\")",
+          "print(Hello)",
+          "显示 Hello",
+          "print Hello"
+        ],
+        "answerIndex": 0,
+        "explanation": "print 后需要有括号，文字需要用英文引号包裹。"
+      },
+      "errors": [
+        {
+          "title": "忘记引号",
+          "detail": "字符串需要放在引号里。",
+          "code": "print(Hello)  # 错"
+        },
+        {
+          "title": "文件没有保存",
+          "detail": "改了代码却看到旧结果，通常是运行前没有保存。",
+          "code": "# 保存后再运行"
+        }
+      ],
+      "projectCode": "# 试着把你想说的话放进 print 里\nprint(\"Hello Python\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "这是通用入门编程练习，不涉及第三方数据访问。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-04",
+      "next": [
+        {
+          "id": "print",
+          "title": "print() 输出",
+          "minutes": 10,
+          "state": "TODO"
+        },
+        {
+          "id": "input",
+          "title": "input() 输入",
+          "minutes": 11,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "print": {
+      "id": "print",
+      "title": "print() 输出",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 10,
+      "knowledge": [
+        "print() 是最常用的输出方式，可以把文字、数字和变量显示在屏幕上。",
+        "括号里的多个内容用逗号隔开，输出时自动用空格连接。"
+      ],
+      "why": [
+        "你看到的报错、结果、调试信息，都依赖输出能力。"
+      ],
+      "purpose": "查看运行结果、调试程序、把程序处理后的内容告诉用户。",
+      "example": "print(\"Hello\", \"Python\")\nprint(1 + 1)",
+      "exampleNotes": [
+        {
+          "left": "print(\"Hello\", \"Python\")",
+          "right": "输出 Hello Python"
+        },
+        {
+          "left": "print(1 + 1)",
+          "right": "输出 2"
+        }
+      ],
+      "quiz": {
+        "question": "print(2 + 3) 会输出什么？",
+        "code": "print(2 + 3)",
+        "options": [
+          "2 + 3",
+          "5",
+          "23",
+          "错误"
+        ],
+        "answerIndex": 1,
+        "explanation": "Python 会先计算 2 + 3，再把结果 5 输出。"
+      },
+      "errors": [
+        {
+          "title": "忘记括号",
+          "detail": "print 是一个函数，调用时必须带括号。",
+          "code": "print \"Hello\"  # 错\nprint(\"Hello\")  # 对"
+        },
+        {
+          "title": "忘记引号",
+          "detail": "文字内容需要引号，数字不需要。",
+          "code": "print(Hello)  # 错\nprint(\"Hello\")  # 对"
+        }
+      ],
+      "projectCode": "name = \"Python\"\nprint(\"我在学习\", name)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "输出功能属于通用编程基础。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-04",
+      "next": [
+        {
+          "id": "input",
+          "title": "input() 输入",
+          "minutes": 11,
+          "state": "TODO"
+        },
+        {
+          "id": "variable",
+          "title": "变量",
+          "minutes": 14,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "input": {
+      "id": "input",
+      "title": "input() 输入",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 11,
+      "knowledge": [
+        "input() 会在运行台输入区读取一行内容，并把读取到的内容作为字符串返回。",
+        "它可以帮助程序根据用户不同输入做出不同反应，而不是永远只输出固定内容。"
+      ],
+      "why": [
+        "很多程序的价值来自“接收用户信息再处理”：姓名、成绩、数量、搜索词，都需要输入。",
+        "input() 是你第一次让程序和外界的用户发生真实对话。"
+      ],
+      "purpose": "表单信息收集、命令行工具参数、练习题中的成绩判断、简单问答程序都依赖输入。",
+      "example": "name = input(\"请输入名字：\")\nprint(\"你好\", name)",
+      "exampleNotes": [
+        {
+          "left": "input(\"请输入名字：\")",
+          "right": "先显示提示文字，再等待输入区的内容"
+        },
+        {
+          "left": "name",
+          "right": "变量保存输入后返回的字符串"
+        }
+      ],
+      "quiz": {
+        "question": "运行台输入区填了 小林，运行下面代码会输出什么？",
+        "code": "name = input(\"名字：\")\nprint(\"你好，\" + name)",
+        "options": [
+          "你好，小林",
+          "名字：小林",
+          "小林",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "input 返回小林，字符串相加后得到 你好，小林。"
+      },
+      "errors": [
+        {
+          "title": "忘了输入区内容",
+          "detail": "代码使用 input() 时，运行台输入区至少要有一行内容，否则会提示输入用完。",
+          "code": "name = input()\nprint(name)"
+        },
+        {
+          "title": "把输入内容当数字用",
+          "detail": "input() 返回的是字符串。需要计算时，先转成 int() 或 float()。",
+          "code": "age = input(\"年龄：\")\nage = int(age)"
+        }
+      ],
+      "projectCode": "# 先把名字读进来，再和固定的问候语组合\nname = input(\"你的名字：\")\nprint(\"欢迎学习 Python，\" + name)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "输入功能属于通用编程基础。实际项目收集姓名、年龄等个人信息时，应遵循最小必要、明示目的并取得合法依据。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "variable",
+          "title": "变量",
+          "minutes": 14,
+          "state": "TODO"
+        },
+        {
+          "id": "types",
+          "title": "数据类型",
+          "minutes": 16,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "variable": {
+      "id": "variable",
+      "title": "变量",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 14,
+      "knowledge": [
+        "变量像一个贴了标签的盒子。你可以把文字、数字、列表等数据放进去，之后用标签名来使用它。",
+        "Python 变量不需要提前声明类型，直接赋值即可：变量名 = 值。"
+      ],
+      "why": [
+        "真实程序里的数据是不断变化的：同一个变量今天保存成绩，下一次保存新的成绩。",
+        "不用变量，你就只能写死每一处内容，程序无法处理变化。"
+      ],
+      "purpose": "保存用户输入、计算结果、列表元素，让代码可复用并更容易读懂。",
+      "example": "name = \"小林\"\nage = 18\nscore = age + 2\nprint(name, score)",
+      "exampleNotes": [
+        {
+          "left": "name = \"小林\"",
+          "right": "把文字放进变量 name"
+        },
+        {
+          "left": "score = age + 2",
+          "right": "先计算结果 20，再放进变量 score"
+        },
+        {
+          "left": "print(name, score)",
+          "right": "读取两个变量的值"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码，会输出什么？",
+        "code": "x = 8\nx = x + 5\nprint(x)",
+        "options": [
+          "8",
+          "13",
+          "x + 5",
+          "会报错"
+        ],
+        "answerIndex": 1,
+        "explanation": "x = x + 5 会先取出旧的 8，加 5 得到 13，再存回 x。"
+      },
+      "errors": [
+        {
+          "title": "变量名拼写不一致",
+          "detail": "Python 区分大小写，age 和 Age 是两个不同名称。",
+          "code": "name = \"小林\"\nprint(nmae)  # 拼写错误"
+        },
+        {
+          "title": "给文字内容忘记引号",
+          "detail": "字符串必须加引号，否则 Python 会认为它是变量名。",
+          "code": "city = 北京  # 错\ncity = \"北京\"  # 对"
+        }
+      ],
+      "projectCode": "# 先收集信息，再做一点计算\nname = input(\"名字：\")\nage = int(input(\"年龄：\"))\nprint(name, \"明年\", age + 1, \"岁\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "变量是通用编程知识。用变量保存个人信息时，应当只保存完成任务所需的信息，并限制使用范围。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "types",
+          "title": "数据类型",
+          "minutes": 16,
+          "state": "TODO"
+        },
+        {
+          "id": "if",
+          "title": "if 条件判断",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "types": {
+      "id": "types",
+      "title": "数据类型",
+      "stage": "Python 基础",
+      "level": "入门",
+      "minutes": 16,
+      "knowledge": [
+        "Python 中常见类型有字符串 str、整数 int、浮点数 float、布尔 bool 和列表 list。",
+        "不同类型适合不同操作。字符串用来显示文字，数字用来计算，布尔值表示真或假。"
+      ],
+      "why": [
+        "报错里的 TypeError 大多和类型有关：数字不能直接和文字相加，input 返回的是字符串。",
+        "知道类型，才能判断何时需要 int()、str()、len() 等转换和函数。"
+      ],
+      "purpose": "把用户输入转成数字、生成报告、判断空数据、统计列表长度，类型概念贯穿所有真实程序。",
+      "example": "age = \"18\"\nreal_age = int(age)\nprint(real_age + 1)\nprint(type(real_age))",
+      "exampleNotes": [
+        {
+          "left": "age = \"18\"",
+          "right": "这是字符串，不是数字"
+        },
+        {
+          "left": "int(age)",
+          "right": "把字符串 18 转成整数 18"
+        },
+        {
+          "left": "type(real_age)",
+          "right": "查看当前类型"
+        }
+      ],
+      "quiz": {
+        "question": "运行 int(\"12\") + 3，会得到什么？",
+        "code": "print(int(\"12\") + 3)",
+        "options": [
+          "123",
+          "15",
+          "会报错",
+          "\"12\" 3"
+        ],
+        "answerIndex": 1,
+        "explanation": "int(\"12\") 转成整数 12，再加 3 得到 15。"
+      },
+      "errors": [
+        {
+          "title": "字符串和数字直接相加",
+          "detail": "\"年龄\" + 18 会报 TypeError，需要 str(18) 或先转为数字。",
+          "code": "print(\"年龄\" + 18)  # 错\nprint(\"年龄\" + str(18))  # 对"
+        },
+        {
+          "title": "不能把非数字转成 int",
+          "detail": "int(\"abc\") 没有可转换内容，会报 ValueError。",
+          "code": "int(\"abc\")  # 会报错"
+        }
+      ],
+      "projectCode": "# 收集价格和数量，完成金额计算\nprice = float(input(\"单价：\"))\ncount = int(input(\"数量：\"))\nprint(\"总价\", price * count)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "数据类型是通用编程知识。处理真实数据时，身份、地址、联系方式等个人信息仍应遵循收集与使用的最小必要原则。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "if",
+          "title": "if 条件判断",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "for",
+          "title": "for 循环",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "if": {
+      "id": "if",
+      "title": "if 条件判断",
+      "stage": "程序控制",
+      "level": "基础",
+      "minutes": 18,
+      "knowledge": [
+        "if 让程序走到岔路口时，根据一个“是不是真的”的条件，选择执行其中一部分代码。",
+        "写 if 时，先写条件和冒号，再把符合条件时要运行的代码放进下一层缩进。"
+      ],
+      "why": [
+        "现实中的程序很少只是从上到下执行。用户输入什么、页面返回什么、数据是否为空，都会让程序做出不同的决定。",
+        "if 是把这些决定写下来最基本的方式。"
+      ],
+      "purpose": "成绩判断、表单校验、商品库存检查、根据用户身份显示不同内容，都会用到条件判断。",
+      "example": "score = 85\nif score >= 60:\n    print(\"通过\")\nelse:\n    print(\"继续加油\")",
+      "exampleNotes": [
+        {
+          "left": "score = 85",
+          "right": "保存成绩：右边先计算，再放进左边的变量"
+        },
+        {
+          "left": "if score >= 60:",
+          "right": "条件：成绩是否大于等于 60"
+        },
+        {
+          "left": "    print(\"通过\")",
+          "right": "条件成立时才执行；空格表示它属于 if"
+        },
+        {
+          "left": "else:",
+          "right": "不满足条件时走这一条路"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面的代码，屏幕会输出什么？",
+        "code": "x = 7\nif x % 2 == 0:\n    print(\"偶数\")\nelse:\n    print(\"奇数\")",
+        "options": [
+          "偶数",
+          "奇数",
+          "什么也不输出",
+          "程序报错"
+        ],
+        "answerIndex": 1,
+        "explanation": "7 除以 2 的余数是 1，所以条件为 False，程序会执行 else 后的 print(\"奇数\")。"
+      },
+      "errors": [
+        {
+          "title": "把 = 和 == 混淆",
+          "detail": "= 是赋值，== 才是比较是否相等。if 后面需要用 ==。",
+          "code": "if score = 85:  # 错\nif score == 85:  # 对"
+        },
+        {
+          "title": "忘记冒号",
+          "detail": "if、elif、else 那一行结束时必须有冒号。",
+          "code": "if score >= 60  # 错\nif score >= 60:  # 对"
+        },
+        {
+          "title": "缩进不一致",
+          "detail": "同一段 if 代码要使用同样的缩进，一般统一使用 4 个空格。",
+          "code": "if ok:\n    print(\"A\")\n   print(\"B\")  # 缩进不齐"
+        }
+      ],
+      "projectCode": "guess = int(input(\"猜一个数字：\"))\n\nif guess == secret:\n    print(\"猜对了\")\nelif guess < secret:\n    print(\"再大一点\")\nelse:\n    print(\"再小一点\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "本节只介绍 Python 基础编程知识。学习与在自己程序中编写这些语句通常风险较低。如果后续用程序访问第三方网站或处理第三方数据，需要结合网站规则、数据性质、访问方式和使用目的另行判断。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法",
+      "legalUpdated": "2026-09-04",
+      "next": [
+        {
+          "id": "for",
+          "title": "for 循环",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "while",
+          "title": "while 循环",
+          "minutes": 17,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "for": {
+      "id": "for",
+      "title": "for 循环",
+      "stage": "程序控制",
+      "level": "基础",
+      "minutes": 18,
+      "knowledge": [
+        "for 用来重复做有规律的事情。它会把一个可迭代对象里的元素依次取出来，每取一次执行一次循环体。",
+        "range(1, 6) 会产生 1、2、3、4、5，所以下面的代码会输出 1 到 5。"
+      ],
+      "why": [
+        "处理列表、读取文件每一行时，如果一段代码要执行很多次，不应该把它复制粘贴几十遍。",
+        "for 让你写一次代码，交给程序去重复执行。"
+      ],
+      "purpose": "批量转换数据、遍历列表生成报表、下载多个文件、对多页结果做统一处理，都是 for 的常见场景。",
+      "example": "for i in range(1, 6):\n    print(i)",
+      "exampleNotes": [
+        {
+          "left": "for i in range(1, 6):",
+          "right": "从 range 里依次取出 i"
+        },
+        {
+          "left": "    print(i)",
+          "right": "每取一个数字就执行一次"
+        }
+      ],
+      "quiz": {
+        "question": "range(2, 5) 会产生哪些数字？",
+        "code": "for n in range(2, 5):\n    print(n)",
+        "options": [
+          "2, 3, 4",
+          "2, 3, 4, 5",
+          "3, 4, 5",
+          "1, 2, 3, 4"
+        ],
+        "answerIndex": 0,
+        "explanation": "range(start, stop) 会从 start 开始，到 stop 之前结束，所以这里取到 2、3、4。"
+      },
+      "errors": [
+        {
+          "title": "漏掉冒号",
+          "detail": "for 开头这一行必须以冒号结尾，下一行再写要重复的代码。",
+          "code": "for i in range(3)  # 错\nfor i in range(3):  # 对"
+        },
+        {
+          "title": "循环体没有缩进",
+          "detail": "要重复执行的代码必须比 for 多一层缩进。",
+          "code": "for i in range(3):\nprint(i)  # 需要缩进"
+        },
+        {
+          "title": "把 stop 当包含值",
+          "detail": "range(1, 5) 不包含 5。需要包含它时写成 range(1, 6)。",
+          "code": "range(1, 5)  # 1,2,3,4\nrange(1, 6)  # 1,2,3,4,5"
+        }
+      ],
+      "projectCode": "for level in [\"入门\", \"基础\", \"综合\", \"高级\", \"毕业\"]:\n    print(\"开始\", level, \"项目\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "for 循环属于通用编程技术。学习循环本身不需要特殊法律判断；把它用于实际项目时，再按访问对象和数据用途评估。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-04",
+      "next": [
+        {
+          "id": "while",
+          "title": "while 循环",
+          "minutes": 17,
+          "state": "TODO"
+        },
+        {
+          "id": "break",
+          "title": "break / continue",
+          "minutes": 12,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "while": {
+      "id": "while",
+      "title": "while 循环",
+      "stage": "程序控制",
+      "level": "基础",
+      "minutes": 17,
+      "knowledge": [
+        "while 会在条件为 True 时反复执行循环体，直到条件变成 False 才继续往后走。",
+        "循环体里必须改变条件相关的变量，否则会变成无限循环。"
+      ],
+      "why": [
+        "猜数字要“一直猜，直到猜对”，文件处理要“一直读到没有内容”，这时 while 比 for 更自然。",
+        "while 擅长处理“不知道会重复多少次”的任务。"
+      ],
+      "purpose": "实现直到猜对才停止、重试请求、等待用户输入正确内容等重复逻辑。",
+      "example": "n = 3\nwhile n > 0:\n    print(n)\n    n = n - 1\nprint(\"开始！\")",
+      "exampleNotes": [
+        {
+          "left": "while n > 0:",
+          "right": "每次进入循环前判断条件"
+        },
+        {
+          "left": "n = n - 1",
+          "right": "改变 n，让循环有机会结束"
+        },
+        {
+          "left": "print(\"开始！\")",
+          "right": "条件为 False 后才会执行"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面的代码，第一次输出是什么？",
+        "code": "n = 3\nwhile n > 0:\n    print(n)\n    n = n - 1",
+        "options": [
+          "3",
+          "2",
+          "1",
+          "没有输出"
+        ],
+        "answerIndex": 0,
+        "explanation": "第一次进入循环时 n 还是 3，所以先输出 3，再把 n 改成 2。"
+      },
+      "errors": [
+        {
+          "title": "忘记让条件改变",
+          "detail": "循环体里没有 n = n - 1 之类代码，n 永远是 3，程序不会停下来。",
+          "code": "n = 3\nwhile n > 0:\n    print(n)"
+        },
+        {
+          "title": "条件方向写反",
+          "detail": "如果条件一开始就是 False，循环体一次也不会执行。",
+          "code": "n = 3\nwhile n < 0:\n    print(n)"
+        }
+      ],
+      "projectCode": "answer = 42\nguess = 0\nwhile guess != answer:\n    guess = int(input(\"猜一个数字：\"))\nprint(\"猜对了\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "while 是通用控制流程。真正的风险不来自循环本身，而来自循环访问的对象和数据用途。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "break",
+          "title": "break / continue",
+          "minutes": 12,
+          "state": "TODO"
+        },
+        {
+          "id": "nested",
+          "title": "嵌套与综合控制",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "break": {
+      "id": "break",
+      "title": "break / continue",
+      "stage": "程序控制",
+      "level": "基础",
+      "minutes": 12,
+      "knowledge": [
+        "break 会立即结束当前循环，continue 会跳过本次循环剩下的代码，直接进入下一次。",
+        "它们让循环可以在找到答案时提前停止，或跳过不需要处理的数据。"
+      ],
+      "why": [
+        "搜索到目标后没必要继续遍历全部数据；遇到无效数据时也要跳过而不是停止整个程序。",
+        "这两种语句让循环更精准。"
+      ],
+      "purpose": "提前结束搜索、过滤无效数据、实现退出菜单等。",
+      "example": "for n in range(1, 6):\n    if n == 3:\n        continue\n    if n == 5:\n        break\n    print(n)",
+      "exampleNotes": [
+        {
+          "left": "if n == 3: continue",
+          "right": "遇到 3 时跳过后面的 print"
+        },
+        {
+          "left": "if n == 5: break",
+          "right": "n 到 5 时直接结束循环"
+        },
+        {
+          "left": "print(n)",
+          "right": "会输出 1、2、4"
+        }
+      ],
+      "quiz": {
+        "question": "下面代码会输出哪些数字？",
+        "code": "for n in range(1, 6):\n    if n == 3:\n        continue\n    if n == 5:\n        break\n    print(n)",
+        "options": [
+          "1 2 4",
+          "1 2 3 4",
+          "1 2 3",
+          "1 2 4 5"
+        ],
+        "answerIndex": 0,
+        "explanation": "3 被 continue 跳过，5 触发 break，所以只输出 1、2、4。"
+      },
+      "errors": [
+        {
+          "title": "break 不在循环里",
+          "detail": "break 只能写在 for 或 while 循环内部，否则会报错。",
+          "code": "if n == 3:\n    break  # 不在循环里会报错"
+        },
+        {
+          "title": "continue 后忘记要处理的代码",
+          "detail": "continue 会跳过它之后的所有代码，需要重复执行的代码应写在后面。",
+          "code": "for n in range(3):\n    continue\n    print(n)  # 不会执行"
+        }
+      ],
+      "projectCode": "for user in [\"小明\", \"\", \"小林\"]:\n    if not user:\n        continue\n    print(\"处理\", user)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "break 和 continue 是通用编程知识。在真实项目中提前终止访问或跳过数据，仍要遵守访问对象与数据使用规则。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "nested",
+          "title": "嵌套与综合控制",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "list",
+          "title": "list 列表",
+          "minutes": 19,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "nested": {
+      "id": "nested",
+      "title": "嵌套与综合控制",
+      "stage": "程序控制",
+      "level": "基础",
+      "minutes": 20,
+      "knowledge": [
+        "嵌套是指 if、for、while 等结构彼此包含。外层每执行一次，内层可能完整执行一轮。",
+        "缩进决定代码属于哪一层，写嵌套时要尤其注意。"
+      ],
+      "why": [
+        "真实任务很少只有一层循环：多个班级里的学生、多个页面里的数据，都需要多层处理。",
+        "嵌套把复杂任务拆成“外层分组、内层逐项”的结构。"
+      ],
+      "purpose": "批量处理分组数据、二维表格、多级菜单等。",
+      "example": "for level in [\"入门\", \"进阶\"]:\n    for task in [\"复习\", \"练习\"]:\n        print(level, task)",
+      "exampleNotes": [
+        {
+          "left": "外层循环",
+          "right": "依次取出 入门、进阶"
+        },
+        {
+          "left": "内层循环",
+          "right": "对每个 level 都完整执行一轮"
+        },
+        {
+          "left": "print(level, task)",
+          "right": "一共输出 4 行"
+        }
+      ],
+      "quiz": {
+        "question": "运行上面的两层循环，一共会输出几行？",
+        "code": "for level in [\"入门\", \"进阶\"]:\n    for task in [\"复习\", \"练习\"]:\n        print(level, task)",
+        "options": [
+          "2 行",
+          "4 行",
+          "6 行",
+          "会报错"
+        ],
+        "answerIndex": 1,
+        "explanation": "外层有 2 个值，内层有 2 个值，2 乘 2 等于 4 行。"
+      },
+      "errors": [
+        {
+          "title": "缩进不属于预期层",
+          "detail": "print 多缩进或少缩进，就会改变它属于哪一层循环。",
+          "code": "for a in range(2):\nfor b in range(2):\n    print(a, b)  # 缩进错误"
+        },
+        {
+          "title": "循环层数过深",
+          "detail": "超过三层嵌套后代码很难读。应先把内层逻辑抽成函数。",
+          "code": "# 深嵌套应拆成函数"
+        }
+      ],
+      "projectCode": "products = [[\"可乐\", 3], [\"牛奶\", 5]]\nfor product in products:\n    print(product[0], product[1], \"元\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "嵌套控制属于通用编程技术。批量访问外部对象时，频率、范围和使用目的都应保持合理。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "list",
+          "title": "list 列表",
+          "minutes": 19,
+          "state": "TODO"
+        },
+        {
+          "id": "tuple",
+          "title": "tuple 元组",
+          "minutes": 13,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "list": {
+      "id": "list",
+      "title": "list 列表",
+      "stage": "数据结构",
+      "level": "基础",
+      "minutes": 19,
+      "knowledge": [
+        "列表用方括号表示，可以按顺序保存多个数据：[85, 92, 76]。",
+        "下标从 0 开始，scores[0] 是第一个元素；append() 添加末尾元素，len() 获取长度。"
+      ],
+      "why": [
+        "只有一个成绩变量不够用。真实程序需要把一组商品、用户或日志放在一起遍历。",
+        "列表是 Python 中最常用的“装一组数据”的容器。"
+      ],
+      "purpose": "保存待办列表、批量遍历数据、按位置访问、动态增加元素。",
+      "example": "scores = [85, 92, 76]\nscores.append(88)\nprint(scores[1])\nprint(len(scores))",
+      "exampleNotes": [
+        {
+          "left": "scores[1]",
+          "right": "取第二个元素 92"
+        },
+        {
+          "left": "append(88)",
+          "right": "在末尾新增 88"
+        },
+        {
+          "left": "len(scores)",
+          "right": "长度变成 4"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码会输出什么？",
+        "code": "names = [\"小林\", \"小明\", \"小红\"]\nprint(names[0])",
+        "options": [
+          "小林",
+          "小明",
+          "小红",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "列表下标从 0 开始，names[0] 是第一个元素小林。"
+      },
+      "errors": [
+        {
+          "title": "下标越界",
+          "detail": "列表只有 3 个元素时，names[3] 会报 IndexError。",
+          "code": "names = [\"a\", \"b\", \"c\"]\nprint(names[3])"
+        },
+        {
+          "title": "忘记元素之间的逗号",
+          "detail": "列表元素之间必须用英文逗号分隔。",
+          "code": "scores = [90 85]  # 错\nscores = [90, 85]  # 对"
+        }
+      ],
+      "projectCode": "tasks = []\ntask = input(\"待办：\")\nwhile task:\n    tasks.append(task)\n    task = input(\"继续输入，空行结束：\")\nfor task in tasks:\n    print(\"待办\", task)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "列表是通用数据结构。批量保存联系人、用户等个人信息时，应先确认存储目的与保存期限。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "tuple",
+          "title": "tuple 元组",
+          "minutes": 13,
+          "state": "TODO"
+        },
+        {
+          "id": "set",
+          "title": "set 集合",
+          "minutes": 15,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "tuple": {
+      "id": "tuple",
+      "title": "tuple 元组",
+      "stage": "数据结构",
+      "level": "基础",
+      "minutes": 13,
+      "knowledge": [
+        "元组用圆括号表示，和列表很像，但创建后不能修改：point = (3, 5)。",
+        "不能修改让元组更安全，适合保存一组固定且相关的值。"
+      ],
+      "why": [
+        "坐标、颜色 RGB、函数返回的多个结果，都适合用元组表达“固定的一组值”。",
+        "元组还可以防止代码不小心改写重要配置。"
+      ],
+      "purpose": "保存不会改变的配置、解包多个返回值、作为字典键等。",
+      "example": "point = (3, 5)\nx, y = point\nprint(\"坐标\", x, y)\nprint(len(point))",
+      "exampleNotes": [
+        {
+          "left": "(3, 5)",
+          "right": "创建含两个值的元组"
+        },
+        {
+          "left": "x, y = point",
+          "right": "解包：把 3 给 x，把 5 给 y"
+        },
+        {
+          "left": "len(point)",
+          "right": "元组长度是 2"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码，会发生什么？",
+        "code": "p = (1, 2)\np[0] = 9",
+        "options": [
+          "p 变成 (9, 2)",
+          "会报错",
+          "p 变成 [9, 2]",
+          "没有变化"
+        ],
+        "answerIndex": 1,
+        "explanation": "元组创建后不可修改，执行赋值会抛 TypeError。"
+      },
+      "errors": [
+        {
+          "title": "尝试修改元组",
+          "detail": "需要可变数据时应使用 list，而不是 tuple。",
+          "code": "p = (1, 2)\np[0] = 9  # 会报错"
+        },
+        {
+          "title": "单元素元组漏逗号",
+          "detail": "(1) 只是数字 1，(1,) 才是只有一个元素的元组。",
+          "code": "one = (1)  # int\none = (1,)  # tuple"
+        }
+      ],
+      "projectCode": "rgb = (18, 128, 82)\nred, green, blue = rgb\nprint(\"RGB\", red, green, blue)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "元组是通用数据结构，本节不涉及特殊法律风险。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "set",
+          "title": "set 集合",
+          "minutes": 15,
+          "state": "TODO"
+        },
+        {
+          "id": "dict",
+          "title": "dict 字典",
+          "minutes": 21,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "set": {
+      "id": "set",
+      "title": "set 集合",
+      "stage": "数据结构",
+      "level": "基础",
+      "minutes": 15,
+      "knowledge": [
+        "集合用花括号表示，会自动去掉重复元素，并支持快速判断“元素是否存在”。",
+        "集合元素不能重复，也不能放入列表这种可变数据。"
+      ],
+      "why": [
+        "去重、找共同好友、判断某个词是否已经处理过，这些任务用集合写起来最直接。",
+        "集合在做存在性判断时通常比列表更快。"
+      ],
+      "purpose": "数据去重、集合交集差集、快速判断是否出现过。",
+      "example": "tags = [\"python\", \"基础\", \"python\"]\nunique = set(tags)\nprint(\"python\" in unique)\nprint(len(unique))",
+      "exampleNotes": [
+        {
+          "left": "set(tags)",
+          "right": "去掉重复的 python"
+        },
+        {
+          "left": "\"python\" in unique",
+          "right": "判断元素是否存在"
+        },
+        {
+          "left": "len(unique)",
+          "right": "只剩 2 个不同值"
+        }
+      ],
+      "quiz": {
+        "question": "运行后 len(unique) 是多少？",
+        "code": "values = [\"A\", \"B\", \"A\", \"C\"]\nunique = set(values)\nprint(len(unique))",
+        "options": [
+          "3",
+          "4",
+          "2",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "重复的 A 只保留一个，所以集合里有 A、B、C 共 3 个元素。"
+      },
+      "errors": [
+        {
+          "title": "把列表放进集合",
+          "detail": "列表可修改，不能作为集合元素。",
+          "code": "s = {[1, 2]}  # 会报错"
+        },
+        {
+          "title": "依赖集合顺序",
+          "detail": "集合不保证固定顺序，需要顺序时使用列表。",
+          "code": "# set 的输出顺序可能变化"
+        }
+      ],
+      "projectCode": "crawled = {\"home\", \"list\"}\nnew_url = \"detail\"\nif new_url not in crawled:\n    print(\"需要处理\", new_url)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "集合是通用数据结构。即使做了去重，也不等于访问方式一定合规，仍需确认访问授权和数据用途。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "dict",
+          "title": "dict 字典",
+          "minutes": 21,
+          "state": "TODO"
+        },
+        {
+          "id": "comprehension",
+          "title": "推导式",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "dict": {
+      "id": "dict",
+      "title": "dict 字典",
+      "stage": "数据结构",
+      "level": "基础",
+      "minutes": 21,
+      "knowledge": [
+        "字典用花括号保存键值对：user = {\"name\": \"小林\", \"level\": 2}。",
+        "通过键取值比位置更明确：user[\"name\"] 得到小林；get() 可以在找不到时给默认值。"
+      ],
+      "why": [
+        "真实数据通常不是一堆孤立数字，而是“名称、年龄、地址”这样一组相关属性。",
+        "字典让每条数据有明确含义，也方便按名字查找。"
+      ],
+      "purpose": "保存用户资料、网页返回的 JSON、配置信息、统计结果等。",
+      "example": "user = {\"name\": \"小林\", \"level\": 2}\nprint(user[\"name\"])\nuser[\"score\"] = 100\nprint(user.get(\"city\", \"未知\"))",
+      "exampleNotes": [
+        {
+          "left": "user[\"name\"]",
+          "right": "用键 name 取值"
+        },
+        {
+          "left": "user[\"score\"] = 100",
+          "right": "新增一个键值对"
+        },
+        {
+          "left": "get(\"city\", \"未知\")",
+          "right": "找不到 city 时返回 未知"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码，会输出什么？",
+        "code": "d = {\"a\": 1, \"b\": 2}\nprint(d[\"a\"] + d[\"b\"])",
+        "options": [
+          "3",
+          "12",
+          "ab",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "d[\"a\"] 是 1，d[\"b\"] 是 2，相加得到 3。"
+      },
+      "errors": [
+        {
+          "title": "访问不存在的键",
+          "detail": "直接使用 d[\"city\"] 在键不存在时会报 KeyError，可用 get() 提供默认值。",
+          "code": "user = {\"name\": \"小林\"}\nprint(user[\"city\"])  # KeyError"
+        },
+        {
+          "title": "写键名忘了引号",
+          "detail": "字符串键必须加引号，否则 Python 会当成变量名。",
+          "code": "user = {name: \"小林\"}  # 错\nuser = {\"name\": \"小林\"}  # 对"
+        }
+      ],
+      "projectCode": "record = {\"name\": \"小林\", \"course\": \"Python\", \"score\": 88}\nprint(record[\"name\"], record[\"course\"], record[\"score\"])",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "字典是通用数据结构。用字典保存可识别到个人的信息时，应限制收集范围并保护存储安全。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "comprehension",
+          "title": "推导式",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "function",
+          "title": "函数",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "comprehension": {
+      "id": "comprehension",
+      "title": "推导式",
+      "stage": "数据结构",
+      "level": "基础",
+      "minutes": 18,
+      "knowledge": [
+        "列表推导式用一行代码生成新列表：squares = [n * n for n in range(1, 6)]。",
+        "它本质是“对每个元素做一次转换，再收集结果”。条件还可以用 if 过滤。"
+      ],
+      "why": [
+        "先用 for 循环写出结果，再改成推导式，代码会更短、更接近英语句子。",
+        "推导式能减少临时变量和额外空列表。"
+      ],
+      "purpose": "批量转换成绩、过滤无效数据、快速生成统计列表。",
+      "example": "squares = [n * n for n in range(1, 6)]\nprint(squares)",
+      "exampleNotes": [
+        {
+          "left": "n * n",
+          "right": "对每个 n 做的转换"
+        },
+        {
+          "left": "for n in range(1, 6)",
+          "right": "数据来源"
+        },
+        {
+          "left": "结果",
+          "right": "[1, 4, 9, 16, 25]"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码，会得到什么列表？",
+        "code": "result = [n * 2 for n in range(3)]\nprint(result)",
+        "options": [
+          "[0, 2, 4]",
+          "[2, 4, 6]",
+          "[0, 1, 2]",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "range(3) 依次给 n 赋 0、1、2，乘以 2 后得到 [0, 2, 4]。"
+      },
+      "errors": [
+        {
+          "title": "推导式语法顺序写反",
+          "detail": "表达式要写在 for 前面，过滤条件写在 for 后面。",
+          "code": "[for n in range(3) n]  # 错\n[n for n in range(3)]  # 对"
+        },
+        {
+          "title": "一次写太长",
+          "detail": "超过两层循环或复杂条件时，应改回普通 for 循环，保证别人能读懂。",
+          "code": "# 复杂逻辑用普通循环更清楚"
+        }
+      ],
+      "projectCode": "scores = [58, 92, 76, 49]\npassed = [score for score in scores if score >= 60]\nprint(\"及格名单\", passed)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "推导式是通用语法。对真实名单或个人信息做筛选时，只应保留任务必需的字段。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "function",
+          "title": "函数",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "file",
+          "title": "读写文件",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "function": {
+      "id": "function",
+      "title": "函数",
+      "stage": "函数与文件",
+      "level": "基础",
+      "minutes": 22,
+      "knowledge": [
+        "函数用 def 定义：把一段会重复使用的逻辑包起来，需要时通过函数名调用。",
+        "return 可以把计算结果交回调用处；没有 return 时函数返回 None。"
+      ],
+      "why": [
+        "把重复代码复制粘贴很多次，会让程序越来越难维护。",
+        "函数让一段逻辑只写一次，名字还能表达它的用途。"
+      ],
+      "purpose": "封装计算、格式化输出、校验输入、复用项目里的小工具。",
+      "example": "def greet(name):\n    return \"你好，\" + name\n\nprint(greet(\"小林\"))",
+      "exampleNotes": [
+        {
+          "left": "def greet(name):",
+          "right": "定义名为 greet、接收 name 的函数"
+        },
+        {
+          "left": "return",
+          "right": "把结果交回调用处"
+        },
+        {
+          "left": "greet(\"小林\")",
+          "right": "传入参数并调用函数"
+        }
+      ],
+      "quiz": {
+        "question": "下面的函数调用后输出什么？",
+        "code": "def add(a, b):\n    return a + b\n\nprint(add(2, 3))",
+        "options": [
+          "5",
+          "23",
+          "None",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "add(2, 3) 把参数 a 设为 2、b 设为 3，return 返回 5。"
+      },
+      "errors": [
+        {
+          "title": "忘了 return",
+          "detail": "函数内部只 print 而不 return，调用处拿到的是 None。",
+          "code": "def add(a, b):\n    print(a + b)\n\nresult = add(2, 3)\nprint(result)  # None"
+        },
+        {
+          "title": "定义后没有调用",
+          "detail": "函数不会自己运行，必须用 函数名() 调用。",
+          "code": "def hello():\n    print(\"hi\")\n\nhello()  # 别忘了调用"
+        }
+      ],
+      "projectCode": "def calc_total(price, count):\n    return price * count\n\nprint(\"总价\", calc_total(5.5, 3))",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "函数是通用编程知识。把处理个人信息的逻辑封装进函数时，仍需控制参数范围和输出内容。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "file",
+          "title": "读写文件",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "module",
+          "title": "模块",
+          "minutes": 15,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "file": {
+      "id": "file",
+      "title": "读写文件",
+      "stage": "函数与文件",
+      "level": "基础",
+      "minutes": 20,
+      "knowledge": [
+        "open(path, mode) 打开文件：\"w\" 写入、\"r\" 读取、\"a\" 追加。",
+        "推荐使用 with 语句，程序会在代码块结束后自动关闭文件。"
+      ],
+      "why": [
+        "数据如果只在内存里，程序一关就没了。文件能长期保存记录和结果。",
+        "日志、配置、导出报表都依赖文件读写。"
+      ],
+      "purpose": "保存学习记录、生成报告、读取配置文件、处理批量数据。",
+      "example": "with open(\"memo.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"今天学会了文件读写\\n\")\nwith open(\"memo.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
+      "exampleNotes": [
+        {
+          "left": "\"w\"",
+          "right": "写入模式，会创建或覆盖文件"
+        },
+        {
+          "left": "\"r\"",
+          "right": "读取模式"
+        },
+        {
+          "left": "with ... as f",
+          "right": "代码块结束后自动关闭文件"
+        }
+      ],
+      "quiz": {
+        "question": "使用 with open(\"a.txt\", \"w\") 写入后，如何读取？",
+        "code": "with open(\"a.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"hello\")\nwith open(\"a.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
+        "options": [
+          "hello",
+          "hellohello",
+          "会报错",
+          "None"
+        ],
+        "answerIndex": 0,
+        "explanation": "先写入 hello，再用读取模式读出同一内容。"
+      },
+      "errors": [
+        {
+          "title": "读取不存在的文件",
+          "detail": "用 \"r\" 打开不存在的文件会报 FileNotFoundError，先确认路径或使用异常处理。",
+          "code": "with open(\"no.txt\", \"r\") as f:\n    print(f.read())"
+        },
+        {
+          "title": "忘了指定编码",
+          "detail": "包含中文时最好指定 encoding=\"utf-8\"，否则不同系统可能乱码。",
+          "code": "open(\"memo.txt\", \"w\", encoding=\"utf-8\")"
+        }
+      ],
+      "projectCode": "record = \"小林 完成了猜数字\\n\"\nwith open(\"record.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(record)\nprint(\"记录已保存\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "文件读写是通用技术。保存他人个人信息时，应设置访问权限、限制保存期限并防止文件泄露。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "module",
+          "title": "模块",
+          "minutes": 15,
+          "state": "TODO"
+        },
+        {
+          "id": "oop",
+          "title": "类与对象",
+          "minutes": 25,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "module": {
+      "id": "module",
+      "title": "模块",
+      "stage": "函数与文件",
+      "level": "基础",
+      "minutes": 15,
+      "knowledge": [
+        "模块是包含 Python 代码的文件，通过 import 可以复用别人写好的功能。",
+        "import random 后用 random.randint(...)，或 import math 后用 math.floor(...)。"
+      ],
+      "why": [
+        "很多通用功能不必自己重新实现。Python 标准库和第三方模块能大幅减少重复造轮子。",
+        "模块也帮助你把程序拆成多个文件，方便维护。"
+      ],
+      "purpose": "随机数、日期时间、JSON、正则、网络请求等功能都可以通过模块复用。",
+      "example": "import random\nprint(random.randint(1, 100))",
+      "exampleNotes": [
+        {
+          "left": "import random",
+          "right": "把 random 模块引入程序"
+        },
+        {
+          "left": "random.randint(1, 100)",
+          "right": "生成 1 到 100 之间的随机整数"
+        }
+      ],
+      "quiz": {
+        "question": "运行 math.floor(2.7) 会得到什么？",
+        "code": "import math\nprint(math.floor(2.7))",
+        "options": [
+          "2",
+          "3",
+          "2.7",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "floor 会向下取整，2.7 的下取整结果是 2。"
+      },
+      "errors": [
+        {
+          "title": "模块名拼写错误",
+          "detail": "找不到模块通常是因为名字拼错，或没有安装对应包。",
+          "code": "import randoms  # ModuleNotFoundError"
+        },
+        {
+          "title": "自己的文件覆盖模块",
+          "detail": "文件名不要写成 random.py、math.py 等，否则会覆盖标准模块。",
+          "code": "# random.py 会干扰 import random"
+        }
+      ],
+      "projectCode": "import json\n\ndata = {\"name\": \"小林\", \"score\": 88}\nprint(json.dumps(data, ensure_ascii=False))",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "模块是通用知识。第三方模块应来自可信来源，并关注其授权方式与维护情况。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "oop",
+          "title": "类与对象",
+          "minutes": 25,
+          "state": "TODO"
+        },
+        {
+          "id": "errors",
+          "title": "异常处理",
+          "minutes": 19,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "oop": {
+      "id": "oop",
+      "title": "类与对象",
+      "stage": "函数与文件",
+      "level": "基础",
+      "minutes": 25,
+      "knowledge": [
+        "类是一套设计图，对象是根据设计图创建出的具体实例。",
+        "__init__ 是创建对象时自动执行的方法，self 指“当前对象”。"
+      ],
+      "why": [
+        "当多个数据和方法属于同一个事物时，例如学生有名字、成绩和自我介绍方法，类能让结构更清楚。",
+        "真实项目里 GUI、ORM、请求封装都大量使用类。"
+      ],
+      "purpose": "封装用户、订单、网络客户端等实体和它对应的行为。",
+      "example": "class Student:\n    def __init__(self, name):\n        self.name = name\n    def intro(self):\n        return \"我是\" + self.name\n\ns = Student(\"小林\")\nprint(s.intro())",
+      "exampleNotes": [
+        {
+          "left": "class Student:",
+          "right": "定义类"
+        },
+        {
+          "left": "__init__",
+          "right": "创建对象时设置初始属性"
+        },
+        {
+          "left": "self.name",
+          "right": "把参数保存到当前对象上"
+        },
+        {
+          "left": "s.intro()",
+          "right": "调用对象的方法"
+        }
+      ],
+      "quiz": {
+        "question": "运行下面代码会输出什么？",
+        "code": "class Student:\n    def __init__(self, name):\n        self.name = name\n\ns = Student(\"小林\")\nprint(s.name)",
+        "options": [
+          "小林",
+          "name",
+          "Student",
+          "会报错"
+        ],
+        "answerIndex": 0,
+        "explanation": "创建 s 时把 小林 存到 s.name，所以输出小林。"
+      },
+      "errors": [
+        {
+          "title": "方法定义漏掉 self",
+          "detail": "实例方法的第一个参数必须写 self，否则调用时参数数量不匹配。",
+          "code": "def intro():  # 应写 def intro(self):\n    ..."
+        },
+        {
+          "title": "创建对象漏括号",
+          "detail": "Student 是类，Student() 才会创建对象。",
+          "code": "s = Student  # 类本身，不是对象\ns = Student(\"小林\")  # 对象"
+        }
+      ],
+      "projectCode": "class Task:\n    def __init__(self, title):\n        self.title = title\n        self.done = False\n    def finish(self):\n        self.done = True\n\nt = Task(\"复习函数\")\nt.finish()\nprint(t.title, t.done)",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "类与对象是通用编程概念。用它建模真实用户信息时，仍应遵循最小必要和授权访问。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法、数据安全法",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "errors",
+          "title": "异常处理",
+          "minutes": 19,
+          "state": "TODO"
+        },
+        {
+          "id": "problem-solving",
+          "title": "问题拆解与伪代码",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "errors": {
+      "id": "errors",
+      "title": "异常处理",
+      "stage": "函数与文件",
+      "level": "基础",
+      "minutes": 19,
+      "knowledge": [
+        "程序遇到错误会抛出异常。try 里放可能出错的代码，except 负责处理某种异常。",
+        "异常处理让程序在遇到输入错误或网络失败时继续运行，而不是直接崩溃。"
+      ],
+      "why": [
+        "用户可能输入 abc，文件可能不存在，网络可能断掉。真实程序必须为这些情况做准备。",
+        "只把 print 包起来而不处理，不能称为异常处理。"
+      ],
+      "purpose": "转换用户输入、处理缺失文件、重试网络请求、返回友好提示。",
+      "example": "try:\n    number = int(\"abc\")\nexcept ValueError:\n    print(\"不是数字\")\nprint(\"程序继续\")",
+      "exampleNotes": [
+        {
+          "left": "try:",
+          "right": "尝试执行可能出错的代码"
+        },
+        {
+          "left": "except ValueError:",
+          "right": "只捕获数字转换错误"
+        },
+        {
+          "left": "程序继续",
+          "right": "捕获后不会崩溃"
+        }
+      ],
+      "quiz": {
+        "question": "下面代码会输出什么？",
+        "code": "try:\n    number = int(\"abc\")\nexcept ValueError:\n    print(\"不是数字\")\nprint(\"完成\")",
+        "options": [
+          "不是数字 完成",
+          "abc",
+          "只输出完成",
+          "会崩溃"
+        ],
+        "answerIndex": 0,
+        "explanation": "int(\"abc\") 抛 ValueError，被 except 捕获后输出不是数字，最后输出完成。"
+      },
+      "errors": [
+        {
+          "title": "捕获范围太宽",
+          "detail": "bare except: 会吞掉所有错误，让人看不出真正问题。至少写明异常类型。",
+          "code": "try:\n    ...\nexcept:  # 太宽\n    pass"
+        },
+        {
+          "title": "except 后继续用无效变量",
+          "detail": "转换失败时 number 可能不存在，后续使用前要处理默认值。",
+          "code": "try:\n    number = int(input())\nexcept ValueError:\n    number = 0  # 给默认值"
+        }
+      ],
+      "projectCode": "def to_int(text):\n    try:\n        return int(text)\n    except ValueError:\n        return 0\n\nprint(to_int(\"abc\"), to_int(\"42\"))",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "异常处理是通用编程知识。捕获异常不应用来绕过访问限制或隐藏不合规行为。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "problem-solving",
+          "title": "问题拆解与伪代码",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "algorithm-basics",
+          "title": "查找、计数、过滤和排序",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "http": {
+      "id": "http",
+      "title": "HTTP 请求与响应",
+      "stage": "网络与爬虫",
+      "level": "基础",
+      "minutes": 18,
+      "knowledge": [
+        "HTTP 是浏览器和网站之间通信的规则：客户端发请求，服务器返回状态码和内容。",
+        "常见状态码包括 200 成功、404 找不到、403 无权限、500 服务器错误。"
+      ],
+      "why": [
+        "爬虫不是凭空“读取网页”，而是模拟一次受允许的请求并处理返回内容。",
+        "看懂请求和状态码，才能判断是网络问题、地址问题还是权限问题。"
+      ],
+      "purpose": "读取公开接口、检查目标是否可访问、理解服务器返回结果。",
+      "example": "import urllib.request\n\ntry:\n    response = urllib.request.urlopen(\"https://www.python.org\", timeout=8)\n    print(\"状态码\", response.status)\nexcept Exception as e:\n    print(\"请求失败\", e)",
+      "exampleNotes": [
+        {
+          "left": "urlopen(...)",
+          "right": "发起一次 HTTP GET 请求"
+        },
+        {
+          "left": "response.status",
+          "right": "服务器返回的状态码"
+        },
+        {
+          "left": "timeout=8",
+          "right": "8 秒内没响应就放弃"
+        }
+      ],
+      "quiz": {
+        "question": "服务器返回 404，通常表示什么？",
+        "code": "# 状态码 404",
+        "options": [
+          "找不到页面或资源",
+          "请求成功",
+          "没有权限",
+          "服务器崩溃"
+        ],
+        "answerIndex": 0,
+        "explanation": "404 表示服务器找不到请求的 URL 对应资源。"
+      },
+      "errors": [
+        {
+          "title": "网址拼错",
+          "detail": "缺少 https://、多了空格，都会让请求失败。",
+          "code": "urlopen(\"www.python.org\")  # 建议写完整 https:// 地址"
+        },
+        {
+          "title": "把状态码当成内容",
+          "detail": "response.status 只是状态码，正文还需要调用读取内容的方法。",
+          "code": "html = response.read()  # 读取响应正文"
+        }
+      ],
+      "projectCode": "import urllib.request\n\ntry:\n    with urllib.request.urlopen(\"https://www.python.org\", timeout=8) as r:\n        print(\"状态码\", r.status)\nexcept Exception as e:\n    print(\"请求失败\", e)",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "发起网络请求本身是中性的，但应遵守网站服务条款、robots 规则和访问频率要求。不要绕过登录、验证码或访问控制。",
+      "legalBasis": "参考原则：民法典、网络安全法、数据安全法、个人信息保护法；不同地区可能另有规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "requests",
+          "title": "requests 基础",
+          "minutes": 21,
+          "state": "TODO"
+        },
+        {
+          "id": "html",
+          "title": "HTML 与 BeautifulSoup",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "requests": {
+      "id": "requests",
+      "title": "requests 基础",
+      "stage": "网络与爬虫",
+      "level": "基础",
+      "minutes": 21,
+      "knowledge": [
+        "requests 是 Python 常用的 HTTP 请求库，代码比 urllib 更简洁。",
+        "requests.get(url) 发 GET 请求，response.status_code 看状态码，response.text 看正文。"
+      ],
+      "why": [
+        "把请求代码写得简短清晰，才能把精力放在真正要处理的数据上。",
+        "requests 是很多爬虫与 API 项目的基础。"
+      ],
+      "purpose": "请求公开网页、调用 API、携带参数或 Headers、处理响应文本。",
+      "example": "import requests\n\ntry:\n    r = requests.get(\"https://www.python.org\", timeout=8)\n    print(\"状态码\", r.status_code)\n    print(\"前 40 个字符\", r.text[:40])\nexcept requests.RequestException as e:\n    print(\"请求失败\", e)",
+      "exampleNotes": [
+        {
+          "left": "requests.get(url)",
+          "right": "发起 GET 请求"
+        },
+        {
+          "left": "r.status_code",
+          "right": "状态码"
+        },
+        {
+          "left": "r.text",
+          "right": "响应文本"
+        }
+      ],
+      "quiz": {
+        "question": "requests.get 成功返回后，怎么看状态码？",
+        "code": "r = requests.get(url)\nprint(?)",
+        "options": [
+          "r.status_code",
+          "r.code",
+          "r.response",
+          "status(r)"
+        ],
+        "answerIndex": 0,
+        "explanation": "requests 响应对象的 status_code 属性保存 HTTP 状态码。"
+      },
+      "errors": [
+        {
+          "title": "未安装 requests",
+          "detail": "requests 不是标准库，需要先安装到项目依赖中。",
+          "code": "import requests  # ModuleNotFoundError 表示未安装"
+        },
+        {
+          "title": "不看状态码就解析",
+          "detail": "请求失败时响应内容可能是错误页，先检查 status_code 再处理。",
+          "code": "if r.status_code == 200:\n    html = r.text"
+        }
+      ],
+      "projectCode": "import requests\n\ntry:\n    r = requests.get(\"https://www.python.org\", timeout=8)\n    if r.status_code == 200:\n        print(\"页面长度\", len(r.text))\n    else:\n        print(\"状态码\", r.status_code)\nexcept requests.RequestException as e:\n    print(\"请求失败\", e)",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "requests 只是工具。使用前应确认访问对象是否允许程序化访问，控制频率并尊重数据所有者权利。",
+      "legalBasis": "参考原则：民法典、网络安全法、数据安全法、个人信息保护法；不同地区可能另有规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "html",
+          "title": "HTML 与 BeautifulSoup",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "session",
+          "title": "Cookie 与 Session",
+          "minutes": 19,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "html": {
+      "id": "html",
+      "title": "HTML 与 BeautifulSoup",
+      "stage": "网络与爬虫",
+      "level": "基础",
+      "minutes": 22,
+      "knowledge": [
+        "HTML 是网页的结构文本，标签通常成对出现，例如 <div>...</div>。",
+        "BeautifulSoup 可以把 HTML 字符串解析成对象，再用选择器取出内容。"
+      ],
+      "why": [
+        "直接对整段 HTML 做字符串截取很容易出错。解析库能按标签结构稳定提取。",
+        "BeautifulSoup 适合处理不严格规范的 HTML。"
+      ],
+      "purpose": "从页面中提取标题、链接、列表内容，作为后续结构化数据。",
+      "example": "from bs4 import BeautifulSoup\n\nhtml = \"<div class='news'>Python 课程</div>\"\nsoup = BeautifulSoup(html, \"html.parser\")\nprint(soup.select_one(\".news\").get_text())",
+      "exampleNotes": [
+        {
+          "left": "BeautifulSoup(html, \"html.parser\")",
+          "right": "解析 HTML 字符串"
+        },
+        {
+          "left": "select_one(\".news\")",
+          "right": "按 CSS class 找到第一个元素"
+        },
+        {
+          "left": "get_text()",
+          "right": "取出元素里的文字"
+        }
+      ],
+      "quiz": {
+        "question": "拿到一个 BeautifulSoup 对象后，怎么取出标签文字？",
+        "code": "soup = BeautifulSoup(html, \"html.parser\")\nelement = soup.select_one(\".title\")",
+        "options": [
+          "element.get_text()",
+          "element.text()",
+          "element.content",
+          "get(element)"
+        ],
+        "answerIndex": 0,
+        "explanation": "BeautifulSoup 元素用 get_text() 获取其中文字。"
+      },
+      "errors": [
+        {
+          "title": "选择器写错",
+          "detail": "类名选择器要写 .类名，标签直接写标签名，id 写 #id。",
+          "code": "soup.select_one(\"news\")  # 少了 .\nsoup.select_one(\".news\")  # 对"
+        },
+        {
+          "title": "对空结果调用 get_text",
+          "detail": "没有找到元素时返回 None，先判断再取文字。",
+          "code": "element = soup.select_one(\".missing\")\nif element:\n    print(element.get_text())"
+        }
+      ],
+      "projectCode": "from bs4 import BeautifulSoup\n\nhtml = \"<ul><li>标题一</li><li>标题二</li></ul>\"\nsoup = BeautifulSoup(html, \"html.parser\")\nfor li in soup.find_all(\"li\"):\n    print(li.get_text())",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "解析公开页面结构本身不违法，但只应解析你有权访问的页面，并尊重网站规则与著作权。",
+      "legalBasis": "参考原则：民法典、著作权法、网络安全法、数据安全法；不同地区可能另有规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "session",
+          "title": "Cookie 与 Session",
+          "minutes": 19,
+          "state": "TODO"
+        },
+        {
+          "id": "api",
+          "title": "API 的正确用法",
+          "minutes": 17,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "session": {
+      "id": "session",
+      "title": "Cookie 与 Session",
+      "stage": "网络与爬虫",
+      "level": "基础",
+      "minutes": 19,
+      "knowledge": [
+        "Session 常用来保持同一客户端的一系列状态，比如登录后连续访问多个页面。",
+        "requests.Session() 会自动保存服务器下发的 Cookie，供后续请求使用。"
+      ],
+      "why": [
+        "很多需要登录的页面不能每发一次请求都重新登录。Session 让状态可以延续。",
+        "但 Session 也意味着权限边界，绝不能擅自绕过登录或访问控制。"
+      ],
+      "purpose": "保持 Cookie、模拟带登录状态的多步骤访问、管理会话请求头。",
+      "example": "import requests\n\nsession = requests.Session()\nsession.headers.update({\"User-Agent\": \"PythonLearner/1.0\"})\nprint(\"Session 已创建\")",
+      "exampleNotes": [
+        {
+          "left": "requests.Session()",
+          "right": "创建可复用会话"
+        },
+        {
+          "left": "headers.update(...)",
+          "right": "为后续请求统一设置请求头"
+        },
+        {
+          "left": "作用",
+          "right": "会话会保存返回的 Cookie"
+        }
+      ],
+      "quiz": {
+        "question": "requests.Session() 主要帮助解决什么问题？",
+        "code": "session = requests.Session()",
+        "options": [
+          "保持 Cookie 等会话状态",
+          "自动破解验证码",
+          "隐藏来源地址",
+          "绕过访问权限"
+        ],
+        "answerIndex": 0,
+        "explanation": "Session 会保存 Cookie 并保持会话状态，但不能也不应用于绕过访问控制。"
+      },
+      "errors": [
+        {
+          "title": "把 Session 当匿名工具",
+          "detail": "登录状态只代表服务端已经授权当前会话，不代表可以随意复制或抓取数据。",
+          "code": "# 有权限后仍要遵守用途限制"
+        },
+        {
+          "title": "每个请求都新建 Session",
+          "detail": "新建 Session 会丢失上一个请求保存的 Cookie。",
+          "code": "session = requests.Session()  # 复用同一个 session"
+        }
+      ],
+      "projectCode": "import requests\n\nsession = requests.Session()\nsession.headers.update({\"User-Agent\": \"PythonLearner/1.0\"})\n# 只在服务端允许的范围和使用目的内使用会话",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "管理自己的登录会话属于常见技术。禁止利用他人凭据、绕过访问控制或超出授权范围处理数据。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法、计算机信息系统相关法律；不同地区可能另有规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "api",
+          "title": "API 的正确用法",
+          "minutes": 17,
+          "state": "TODO"
+        },
+        {
+          "id": "legal",
+          "title": "爬虫安全与法律",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "api": {
+      "id": "api",
+      "title": "API 的正确用法",
+      "stage": "网络与爬虫",
+      "level": "基础",
+      "minutes": 17,
+      "knowledge": [
+        "API 是服务方公开的“接口”，返回通常是 JSON。调用前应阅读文档、注册授权并遵守限额。",
+        "调用者身份通常通过 Key、Token 或 OAuth 验证；Key 属于账号凭证，不能公开。"
+      ],
+      "why": [
+        "比起解析 HTML，使用官方 API 更稳定、更合规，也更尊重数据所有者。",
+        "很多网站明确鼓励开发者通过 API 获取数据。"
+      ],
+      "purpose": "获取天气、地图、翻译等公开服务数据，完成项目与自动化。",
+      "example": "import requests\n\ntry:\n    r = requests.get(\"https://jsonplaceholder.typicode.com/todos/1\", timeout=8)\n    print(\"状态码\", r.status_code)\n    print(r.json().get(\"title\", \"\"))\nexcept requests.RequestException as e:\n    print(\"请求失败\", e)",
+      "exampleNotes": [
+        {
+          "left": "requests.get(url)",
+          "right": "调用示例接口"
+        },
+        {
+          "left": "r.json()",
+          "right": "把 JSON 转成字典/列表"
+        },
+        {
+          "left": "timeout=8",
+          "right": "设置超时"
+        }
+      ],
+      "quiz": {
+        "question": "调用需要密钥的 API 时，正确做法是什么？",
+        "code": "# 请求头",
+        "options": [
+          "密钥保存在服务端配置中",
+          "把密钥发给别人",
+          "密钥写进公开教程",
+          "不设权限"
+        ],
+        "answerIndex": 0,
+        "explanation": "API 密钥是账号凭证，应保存在服务端或安全的本地配置中，不能公开。"
+      },
+      "errors": [
+        {
+          "title": "不阅读限额就高频请求",
+          "detail": "API 通常会限制频率，超限会被限流或封禁。应遵守文档速率限制并加延时。",
+          "code": "# 按文档控制请求频率"
+        },
+        {
+          "title": "把 Key 写进代码仓库",
+          "detail": "Key 一旦泄露可能被滥用。应从环境变量或安全配置读取。",
+          "code": "api_key = os.environ[\"API_KEY\"]  # 不写死"
+        }
+      ],
+      "projectCode": "import os\nimport requests\n\n# 在真实项目里从安全配置读取 Key，不写进代码\nendpoint = \"https://example.com/api\"\ntry:\n    r = requests.get(endpoint, timeout=8)\n    if r.status_code == 200:\n        print(r.json())\n    else:\n        print(\"状态码\", r.status_code)\nexcept requests.RequestException as e:\n    print(\"请求失败\", e)",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "使用 API 必须遵守服务条款与授权范围。密钥泄漏、绕过限额、抓取非授权数据都可能带来合规风险。",
+      "legalBasis": "参考原则：民法典、网络安全法、数据安全法、个人信息保护法；不同地区可能另有规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "legal",
+          "title": "爬虫安全与法律",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "numpy",
+          "title": "NumPy 数值计算",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "legal": {
+      "id": "legal",
+      "title": "爬虫安全与法律",
+      "stage": "网络与爬虫",
+      "level": "安全与合规",
+      "minutes": 24,
+      "knowledge": [
+        "判断一次数据采集是否合适，要看访问对象、数据类型、用途和方式，而不是把爬虫工具本身当违法工具。",
+        "公开可见不等于可以任意复制；登录状态、个人数据、商业数据库需要更谨慎评估。"
+      ],
+      "why": [
+        "爬虫课程的价值不只是“能抓到”，而是知道什么能访问、如何访问、抓到的数据能做什么。",
+        "法律内容会随地区和案例变化，本课程只给检查清单，不构成法律意见。"
+      ],
+      "purpose": "在真实项目开始前做访问目的、权限、频率、数据用途和保存期限的自查。",
+      "example": "# 项目开始前先回答这些问题：\n# 1. 我是否获得授权或使用公开 API？\n# 2. 请求频率是否合理？\n# 3. 数据是否含个人信息或受著作权保护？\n# 4. 采集后的用途和保存期限是什么？",
+      "exampleNotes": [
+        {
+          "left": "授权",
+          "right": "优先使用 API 和服务条款允许的方式"
+        },
+        {
+          "left": "频率",
+          "right": "低频率、按需请求，避免影响对方服务"
+        },
+        {
+          "left": "数据",
+          "right": "区分公开信息、个人数据与受版权保护内容"
+        }
+      ],
+      "quiz": {
+        "question": "下面哪种情况最需要先做合规评估？",
+        "code": "# 选择更谨慎的场景",
+        "options": [
+          "采集含姓名、电话的个人信息",
+          "读取自己项目中的配置文件",
+          "在本地练习 for 循环",
+          "打印一行问候文字"
+        ],
+        "answerIndex": 0,
+        "explanation": "处理个人信息会涉及隐私和数据保护规则，应优先评估合法性依据与用途限制。"
+      },
+      "errors": [
+        {
+          "title": "把“公开可见”等同于任意使用",
+          "detail": "公开可见不等于数据不受著作权、隐私或网站规则保护。",
+          "code": "# 公开页面也要看授权和使用目的"
+        },
+        {
+          "title": "只改请求头就认为合规",
+          "detail": "合规主要看访问对象、数据性质和用途，伪造请求头不能解决访问授权问题。",
+          "code": "# User-Agent 不决定是否合规"
+        }
+      ],
+      "projectCode": "# 我的合规自查清单\n# 访问对象：\n# 使用目的：\n# 授权方式：\n# 请求频率：\n# 数据类型：\n# 保存期限：",
+      "legalRisk": "⚠️ 需要结合场景判断",
+      "legalNote": "本模块只提供学习性检查清单，不构成法律意见。不同国家/地区对网页抓取、个人数据与商业数据的规定不同，应结合具体项目咨询专业意见。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法、著作权法、民法典；日本/美国/欧盟另有相应规则",
+      "legalUpdated": "2026-09-05",
+      "next": [
+        {
+          "id": "numpy",
+          "title": "NumPy 数值计算",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "pandas",
+          "title": "pandas 表格处理",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "numpy": {
+      "id": "numpy",
+      "title": "NumPy 数值计算",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 20,
+      "knowledge": [
+        "NumPy 用 ndarray 保存同类型的大批数据，整组运算不需要写 for 循环。",
+        "shape 表示数组形状，索引和切片可以取出行、列或一部分数据。"
+      ],
+      "why": [
+        "大量数值数据使用 Python 列表逐项计算会慢且啰嗦。NumPy 能把运算交给优化后的底层实现。",
+        "pandas、机器学习和科学计算都建立在数组思维之上。"
+      ],
+      "purpose": "批量计算成绩、归一化数据、处理矩阵，以及为机器学习准备数值特征。",
+      "example": "import numpy as np\nscores = np.array([72, 88, 95, 61])\nprint(scores.mean())\nprint((scores - scores.mean()).round(2))",
+      "exampleNotes": [
+        {
+          "left": "np.array([...])",
+          "right": "把普通列表变成数组"
+        },
+        {
+          "left": "scores.mean()",
+          "right": "一次计算平均值"
+        },
+        {
+          "left": "scores - scores.mean()",
+          "right": "整组数据同时减去平均值"
+        }
+      ],
+      "quiz": {
+        "question": "NumPy 数组相比 Python 列表最主要的优势是什么？",
+        "code": "values = np.array([1, 2, 3])",
+        "options": [
+          "适合批量数值运算",
+          "可以保存无限数据",
+          "不需要安装",
+          "自动联网"
+        ],
+        "answerIndex": 0,
+        "explanation": "NumPy 的优势是高效的批量数值计算和清晰的多维数组操作。"
+      },
+      "errors": [
+        {
+          "title": "把数组当列表逐项追加",
+          "detail": "频繁 append 会失去向量化优势。应尽量用数组运算或预分配结果。",
+          "code": "values = values * 2  # 整组计算\n# 不要习惯性逐项循环"
+        },
+        {
+          "title": "忽略形状",
+          "detail": "矩阵运算前要确认 shape，形状不兼容会报维度错误。",
+          "code": "print(a.shape, b.shape)"
+        }
+      ],
+      "projectCode": "import numpy as np\n\nscores = np.array([72, 88, 95, 61])\nprint(\"平均分\", scores.mean())\nprint(\"高于平均\", scores[scores > scores.mean()])",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "数值计算属于通用技术。分析真实数据时仍需确认数据来源、授权和处理目的。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "pandas",
+          "title": "pandas 表格处理",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "visualization",
+          "title": "数据可视化",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "pandas": {
+      "id": "pandas",
+      "title": "pandas 表格处理",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 24,
+      "knowledge": [
+        "DataFrame 是带行列标签的二维表格，Series 是其中一列数据。",
+        "read_csv 读取数据，head / info / describe 先理解数据，再进行筛选和聚合。"
+      ],
+      "why": [
+        "真实数据经常有缺失、重复和类型不一致，直接写循环很难维护。",
+        "pandas 把筛选、分组、聚合和连接变成可以连续阅读的代码。"
+      ],
+      "purpose": "分析 CSV 和 Excel，清洗记录，按班级或月份汇总，生成报告数据。",
+      "example": "import pandas as pd\n\ndf = pd.DataFrame({\"class\": [\"A\", \"A\", \"B\"], \"score\": [82, 91, 77]})\nprint(df.groupby(\"class\")[\"score\"].mean())",
+      "exampleNotes": [
+        {
+          "left": "pd.DataFrame(...)",
+          "right": "创建带列名的表格"
+        },
+        {
+          "left": "groupby(\"class\")",
+          "right": "按班级分组"
+        },
+        {
+          "left": "mean()",
+          "right": "计算每组成绩平均值"
+        }
+      ],
+      "quiz": {
+        "question": "读取 CSV 后，最先检查数据结构常用哪组代码？",
+        "code": "df = pd.read_csv(path)",
+        "options": [
+          "df.head(); df.info()",
+          "df.delete()",
+          "print(CSV)",
+          "open(path)"
+        ],
+        "answerIndex": 0,
+        "explanation": "head 查看样例，info 查看列、类型和缺失情况，是分析前的基础检查。"
+      },
+      "errors": [
+        {
+          "title": "直接计算而不看缺失值",
+          "detail": "缺失值可能影响平均值和分组结果。计算前先检查并明确如何处理。",
+          "code": "print(df.isna().sum())"
+        },
+        {
+          "title": "修改切片触发警告",
+          "detail": "对筛选结果直接赋值可能没有改到原表。优先使用 loc 和明确的赋值规则。",
+          "code": "df.loc[df[\"score\"] < 60, \"status\"] = \"补考\""
+        }
+      ],
+      "projectCode": "import pandas as pd\n\ndf = pd.DataFrame({\"name\": [\"小林\", \"小王\"], \"score\": [88, 56]})\ndf[\"passed\"] = df[\"score\"] >= 60\nprint(df)",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "处理含姓名、成绩等个人数据时，应明确使用目的、访问范围和保存期限，避免不必要的数据复制。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "visualization",
+          "title": "数据可视化",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "sql",
+          "title": "SQL 查询基础",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "visualization": {
+      "id": "visualization",
+      "title": "数据可视化",
+      "stage": "数据分析",
+      "level": "进阶",
+      "minutes": 18,
+      "knowledge": [
+        "图表不是装饰，而是帮助读者比较大小、观察趋势和发现异常。",
+        "折线图适合时间趋势，柱状图适合分类比较，散点图适合观察两个变量的关系。"
+      ],
+      "why": [
+        "同样的数据，选错图表会误导读者。",
+        "一张清晰图表往往比一段长篇数字更快传达结论。"
+      ],
+      "purpose": "生成成绩分布、使用趋势、销量比较和相关性分析图。",
+      "example": "import matplotlib.pyplot as plt\n\nmonths = [\"1月\", \"2月\", \"3月\"]\nminutes = [120, 180, 160]\nplt.plot(months, minutes)\nplt.title(\"学习时间\")\nplt.savefig(\"study.png\")",
+      "exampleNotes": [
+        {
+          "left": "plt.plot(...)",
+          "right": "绘制折线"
+        },
+        {
+          "left": "plt.title(...)",
+          "right": "添加标题"
+        },
+        {
+          "left": "plt.savefig(...)",
+          "right": "保存图片便于验证"
+        }
+      ],
+      "quiz": {
+        "question": "展示一年中每月体重的变化，最适合哪种图？",
+        "code": "# 选择图表类型",
+        "options": [
+          "折线图",
+          "饼图",
+          "散点图",
+          "热力图"
+        ],
+        "answerIndex": 0,
+        "explanation": "随时间变化的连续趋势优先使用折线图。"
+      },
+      "errors": [
+        {
+          "title": "图表没有标题和单位",
+          "detail": "读者无法确定时间和数值含义。标题、坐标轴和单位应完整。",
+          "code": "plt.xlabel(\"月份\")\nplt.ylabel(\"分钟\")"
+        },
+        {
+          "title": "用饼图比较太多分类",
+          "detail": "分类过多时饼图难以阅读，可改用排序后的柱状图。",
+          "code": "plt.bar(labels, values)"
+        }
+      ],
+      "projectCode": "import matplotlib.pyplot as plt\n\nlabels = [\"周一\", \"周二\", \"周三\"]\nvalues = [25, 40, 30]\nplt.bar(labels, values)\nplt.title(\"每日学习分钟\")\nplt.savefig(\"weekly.png\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "可视化本身风险较低。发布包含个人信息的图表前应匿名化并确认展示权限。",
+      "legalBasis": "参考原则：个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "sql",
+          "title": "SQL 查询基础",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "sqlite",
+          "title": "SQLite 与 Python",
+          "minutes": 25,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "sql": {
+      "id": "sql",
+      "title": "SQL 查询基础",
+      "stage": "数据库与持久化",
+      "level": "进阶",
+      "minutes": 22,
+      "knowledge": [
+        "关系数据库用表保存记录，每行是一条记录，每列有确定的数据含义。",
+        "SELECT 查询，WHERE 筛选，ORDER BY 排序，GROUP BY 聚合，JOIN 组合多张表。"
+      ],
+      "why": [
+        "数据量变大后，靠文本文件查找会变慢且容易出错。",
+        "SQL 是 Python 后端、数据分析和数据采集项目的通用数据接口。"
+      ],
+      "purpose": "保存用户、订单、学习记录，并按条件查询和统计。",
+      "example": "SELECT name, score\nFROM students\nWHERE score >= 60\nORDER BY score DESC;",
+      "exampleNotes": [
+        {
+          "left": "SELECT",
+          "right": "选择要返回的列"
+        },
+        {
+          "left": "WHERE",
+          "right": "筛选满足条件的记录"
+        },
+        {
+          "left": "ORDER BY",
+          "right": "按成绩从高到低排序"
+        }
+      ],
+      "quiz": {
+        "question": "只想返回 score 大于等于 60 的记录，应使用哪个子句？",
+        "code": "SELECT * FROM students ?",
+        "options": [
+          "WHERE score >= 60",
+          "ORDER BY score",
+          "LIMIT 60",
+          "JOIN score"
+        ],
+        "answerIndex": 0,
+        "explanation": "WHERE 用于筛选行；ORDER BY 只负责排序。"
+      },
+      "errors": [
+        {
+          "title": "忘记 WHERE 导致全表更新或删除",
+          "detail": "UPDATE 和 DELETE 前先用 SELECT 验证条件，并确认备份或事务策略。",
+          "code": "SELECT * FROM students WHERE id = 1;"
+        },
+        {
+          "title": "用字符串拼接 SQL",
+          "detail": "直接拼接用户输入会引入 SQL 注入。应使用参数化查询。",
+          "code": "cursor.execute(\"SELECT * FROM users WHERE name = ?\", (name,))"
+        }
+      ],
+      "projectCode": "SELECT category, COUNT(*) AS total\nFROM study_records\nGROUP BY category\nORDER BY total DESC;",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "数据库可能保存个人信息和业务数据。权限、最小必要、备份和删除策略都需要明确。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "sqlite",
+          "title": "SQLite 与 Python",
+          "minutes": 25,
+          "state": "TODO"
+        },
+        {
+          "id": "data-model",
+          "title": "数据建模与事务",
+          "minutes": 23,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "sqlite": {
+      "id": "sqlite",
+      "title": "SQLite 与 Python",
+      "stage": "数据库与持久化",
+      "level": "进阶",
+      "minutes": 25,
+      "knowledge": [
+        "SQLite 是无需单独服务器的嵌入式数据库，适合移动应用、桌面工具和小型项目。",
+        "Python 标准库 sqlite3 可以建立连接、执行 SQL、提交事务和关闭连接。"
+      ],
+      "why": [
+        "程序第一次结束就丢失数据，无法成为真正可用的工具。",
+        "SQLite 让本地项目立刻拥有持久化能力，不需要额外安装数据库服务。"
+      ],
+      "purpose": "保存学习记录、通讯录、记账数据和桌面项目配置。",
+      "example": "import sqlite3\n\nwith sqlite3.connect(\"study.db\") as connection:\n    connection.execute(\"CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY, text TEXT)\")\n    connection.execute(\"INSERT INTO notes(text) VALUES (?)\", (\"学习 SQLite\",))",
+      "exampleNotes": [
+        {
+          "left": "sqlite3.connect(...)",
+          "right": "连接数据库文件"
+        },
+        {
+          "left": "CREATE TABLE IF NOT EXISTS",
+          "right": "安全地创建表"
+        },
+        {
+          "left": "?",
+          "right": "参数占位符，避免 SQL 注入"
+        }
+      ],
+      "quiz": {
+        "question": "写入 SQLite 时，为什么使用 ? 占位符？",
+        "code": "connection.execute(sql, values)",
+        "options": [
+          "避免 SQL 注入并正确转义",
+          "让执行速度变成无限快",
+          "自动联网",
+          "不需要提交"
+        ],
+        "answerIndex": 0,
+        "explanation": "参数化查询把 SQL 结构和数据分开，是数据库操作的基本安全措施。"
+      },
+      "errors": [
+        {
+          "title": "忘记提交事务",
+          "detail": "某些连接模式下不 commit 就不会持久保存。使用 with 连接上下文或明确 commit。",
+          "code": "connection.commit()"
+        },
+        {
+          "title": "拼接用户输入",
+          "detail": "不要把变量直接拼进 SQL 字符串，必须使用参数占位符。",
+          "code": "execute(\"INSERT INTO notes(text) VALUES (?)\", (text,))"
+        }
+      ],
+      "projectCode": "import sqlite3\n\nwith sqlite3.connect(\"study.db\") as db:\n    db.execute(\"CREATE TABLE IF NOT EXISTS records(id INTEGER PRIMARY KEY, minutes INTEGER)\")\n    db.execute(\"INSERT INTO records(minutes) VALUES (?)\", (30,))\n    print(db.execute(\"SELECT SUM(minutes) FROM records\").fetchone()[0])",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "本地数据库也可能保存敏感信息。应减少收集、限制访问，并为备份、导出和删除建立明确规则。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "data-model",
+          "title": "数据建模与事务",
+          "minutes": 23,
+          "state": "TODO"
+        },
+        {
+          "id": "file-automation",
+          "title": "文件与办公自动化",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "data-model": {
+      "id": "data-model",
+      "title": "数据建模与事务",
+      "stage": "数据库与持久化",
+      "level": "高级",
+      "minutes": 23,
+      "knowledge": [
+        "数据建模先确定实体、字段和关系，再决定表和主键，避免把所有内容塞进一张大表。",
+        "事务保证一组操作要么全部成功，要么全部回滚，常见于转账、订单和批量导入。"
+      ],
+      "why": [
+        "结构清晰的数据表更容易查询、校验和扩展。",
+        "事务能防止程序中途失败后留下半完成数据。"
+      ],
+      "purpose": "设计订单、记账、课程进度和带关联关系的数据系统。",
+      "example": "BEGIN TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;",
+      "exampleNotes": [
+        {
+          "left": "BEGIN TRANSACTION",
+          "right": "开始一组原子操作"
+        },
+        {
+          "left": "两条 UPDATE",
+          "right": "转账出账和入账"
+        },
+        {
+          "left": "COMMIT",
+          "right": "全部成功后提交"
+        }
+      ],
+      "quiz": {
+        "question": "事务最重要的保证是什么？",
+        "code": "BEGIN; ... COMMIT;",
+        "options": [
+          "一组操作要么全部成功要么回滚",
+          "永久不产生错误",
+          "自动替用户做决定",
+          "不需要数据库"
+        ],
+        "answerIndex": 0,
+        "explanation": "事务的原子性确保中途失败时不会留下部分完成的数据。"
+      },
+      "errors": [
+        {
+          "title": "一张表保存所有内容",
+          "detail": "重复字段和混乱关系会让查询与更新变难。应按实体拆分并建立外键。",
+          "code": "orders / order_items / products"
+        },
+        {
+          "title": "没有回滚路径",
+          "detail": "事务中发生异常应回滚，避免半完成写入。",
+          "code": "try:\n    ...\n    connection.commit()\nexcept:\n    connection.rollback()"
+        }
+      ],
+      "projectCode": "# 设计三张表：\n# students(id, name)\n# courses(id, title)\n# records(student_id, course_id, score)\n# 先写字段、主键和关系，再开始写 Python。",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "数据建模涉及收集必要性、访问权限和保留期限。不要为了“以后可能有用”而收集无关个人数据。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "file-automation",
+          "title": "文件与办公自动化",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "scheduled-automation",
+          "title": "定时任务与可重复执行",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "fastapi": {
+      "id": "fastapi",
+      "title": "FastAPI 接口",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 24,
+      "knowledge": [
+        "FastAPI 使用 Python 类型提示声明请求和响应结构，并自动生成接口文档。",
+        "路由函数接收参数、调用业务逻辑并返回字典或模型，过程清晰可测试。"
+      ],
+      "why": [
+        "把 Python 能力做成接口后，网页、手机 App 和其他程序都能调用。",
+        "类型提示和自动文档能减少参数错误，让接口更容易维护。"
+      ],
+      "purpose": "为学习 App、数据工具和 AI 应用提供后端接口。",
+      "example": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True}",
+      "exampleNotes": [
+        {
+          "left": "FastAPI()",
+          "right": "创建应用"
+        },
+        {
+          "left": "@app.get",
+          "right": "声明 GET 路由"
+        },
+        {
+          "left": "return {...}",
+          "right": "返回 JSON 响应"
+        }
+      ],
+      "quiz": {
+        "question": "FastAPI 中，@app.get(\"/health\") 的作用是什么？",
+        "code": "@app.get(\"/health\")",
+        "options": [
+          "注册 GET 路由",
+          "启动数据库",
+          "下载文件",
+          "删除代码"
+        ],
+        "answerIndex": 0,
+        "explanation": "装饰器把下面的函数注册为 /health 路径的 GET 接口。"
+      },
+      "errors": [
+        {
+          "title": "同步函数中执行长时间阻塞任务",
+          "detail": "耗时任务会拖住请求。应控制耗时，必要时使用后台任务或异步方案。",
+          "code": "# 对请求设置合理超时和并发限制"
+        },
+        {
+          "title": "直接返回数据库密码或内部异常",
+          "detail": "接口错误不应暴露密钥、路径和堆栈。对外返回受控错误信息。",
+          "code": "raise HTTPException(status_code=500, detail=\"服务暂时不可用\")"
+        }
+      ],
+      "projectCode": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True, \"service\": \"python-learning\"}",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "公开接口需要身份验证、访问频率控制、日志脱敏和隐私说明。不要收集与服务无关的个人信息。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "rest-api",
+          "title": "REST API 设计",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "deployment",
+          "title": "服务部署与安全",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "rest-api": {
+      "id": "rest-api",
+      "title": "REST API 设计",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 20,
+      "knowledge": [
+        "REST 用资源路径和 HTTP 方法表达操作：GET 读取、POST 创建、PUT/PATCH 更新、DELETE 删除。",
+        "状态码表达请求结果，200 成功、201 创建、400 参数错误、401 未认证、404 不存在、409 冲突。"
+      ],
+      "why": [
+        "一致接口让前后端和第三方开发者能预测行为，减少沟通成本。",
+        "清晰状态码能让客户端准确处理成功与失败。"
+      ],
+      "purpose": "设计学习记录、项目任务、用户资料等增删改查接口。",
+      "example": "GET    /api/lessons\nPOST   /api/lessons/{lesson_id}/progress\nDELETE /api/favorites/{item_id}",
+      "exampleNotes": [
+        {
+          "left": "GET /api/lessons",
+          "right": "读取课程列表"
+        },
+        {
+          "left": "POST .../progress",
+          "right": "创建学习进度"
+        },
+        {
+          "left": "DELETE .../favorites",
+          "right": "删除收藏"
+        }
+      ],
+      "quiz": {
+        "question": "创建一条新记录通常使用哪个 HTTP 方法？",
+        "code": "? /api/projects",
+        "options": [
+          "POST",
+          "GET",
+          "DELETE",
+          "HEAD"
+        ],
+        "answerIndex": 0,
+        "explanation": "POST 常用于创建资源；GET 用于读取。"
+      },
+      "errors": [
+        {
+          "title": "所有错误都返回 200",
+          "detail": "客户端无法区分成功和失败。应使用准确状态码和稳定错误结构。",
+          "code": "{\"error\": {\"code\": \"INVALID_INPUT\", \"message\": \"...\"}}"
+        },
+        {
+          "title": "接口可以访问其他用户数据",
+          "detail": "每个资源操作都要校验当前身份和资源所有权。",
+          "code": "# 检查 resource.user_id == current_user.id"
+        }
+      ],
+      "projectCode": "# 设计接口清单：\n# GET /api/projects\n# GET /api/projects/{id}\n# POST /api/projects\n# PATCH /api/projects/{id}\n# DELETE /api/projects/{id}\n# 每个接口写清权限、输入、输出和错误。",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "接口权限和授权范围是合规基础。不得通过可猜测 ID 或缺少鉴权的方式访问他人数据。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "deployment",
+          "title": "服务部署与安全",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "flask",
+          "title": "Flask Web 入门",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "deployment": {
+      "id": "deployment",
+      "title": "服务部署与安全",
+      "stage": "Web 与 API 服务",
+      "level": "高级",
+      "minutes": 22,
+      "knowledge": [
+        "部署需要固定依赖版本、配置环境变量、准备启动命令并观察日志。",
+        "HTTPS、鉴权、限流、备份和最小权限是上线后的基础安全边界。"
+      ],
+      "why": [
+        "在电脑上能运行不等于服务能稳定对外运行。",
+        "配置、密钥、日志和依赖都可能成为安全风险。"
+      ],
+      "purpose": "把自己完成的 API 部署到受控服务器，并提供可恢复的运行环境。",
+      "example": "# requirements.txt\nfastapi==0.115.0\nuvicorn==0.30.6\n\n# 启动\nuvicorn app:app --host 127.0.0.1 --port 8000",
+      "exampleNotes": [
+        {
+          "left": "requirements.txt",
+          "right": "记录可复现依赖"
+        },
+        {
+          "left": "环境变量",
+          "right": "保存数据库地址和密钥，不写进仓库"
+        },
+        {
+          "left": "127.0.0.1",
+          "right": "只监听本机，再由受控反向代理对外"
+        }
+      ],
+      "quiz": {
+        "question": "API Key 和数据库密码应该放在哪里？",
+        "code": "app = FastAPI()",
+        "options": [
+          "服务端环境变量或密钥管理",
+          "公开 GitHub 仓库",
+          "聊天记录",
+          "前端代码"
+        ],
+        "answerIndex": 0,
+        "explanation": "敏感配置应放在服务端安全配置中，不能进入公开代码或客户端。"
+      },
+      "errors": [
+        {
+          "title": "使用 latest 依赖版本",
+          "detail": "线上环境可能因依赖更新突然变化。应固定版本并验证升级。",
+          "code": "fastapi==0.115.0"
+        },
+        {
+          "title": "日志记录密码和 Token",
+          "detail": "日志可能被多人查看。敏感字段必须脱敏或不记录。",
+          "code": "# log user_id 和错误码，不记录 Authorization"
+        }
+      ],
+      "projectCode": "# 部署检查表\n# 固定依赖\n# 环境变量保存密钥\n# 开启 HTTPS\n# 设置限流和日志脱敏\n# 准备备份与回滚方案",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "对公众提供服务可能涉及网络安全、隐私政策、数据跨境和日志留存义务，应在上线前进行专项评估。",
+      "legalBasis": "参考原则：网络安全法、数据安全法、个人信息保护法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "flask",
+          "title": "Flask Web 入门",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "web-auth-deploy",
+          "title": "Web 鉴权、配置与部署",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "machine-learning": {
+      "id": "machine-learning",
+      "title": "机器学习入门",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 26,
+      "knowledge": [
+        "机器学习从示例数据中寻找规律，再用规律预测新数据。",
+        "训练集用于学习，测试集用于评估泛化能力，不能只看训练集准确率。"
+      ],
+      "why": [
+        "理解数据、特征、模型和评估，才能判断 AI 结果是否可信。",
+        "AI 应用不是只调用接口，还需要知道模型适合解决什么问题。"
+      ],
+      "purpose": "完成分类、回归和推荐系统的第一版，并正确评估结果。",
+      "example": "from sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\nprint(model.score(X_test, y_test))",
+      "exampleNotes": [
+        {
+          "left": "train_test_split",
+          "right": "划分训练和测试数据"
+        },
+        {
+          "left": "model.fit",
+          "right": "用训练集学习"
+        },
+        {
+          "left": "model.score",
+          "right": "在未见数据上评估"
+        }
+      ],
+      "quiz": {
+        "question": "为什么不能只用训练集准确率判断模型好坏？",
+        "code": "model.score(X_train, y_train)",
+        "options": [
+          "模型可能记住训练数据，无法保证新数据表现",
+          "训练集不能计算",
+          "准确率没有意义",
+          "必须使用 GPU"
+        ],
+        "answerIndex": 0,
+        "explanation": "测试集衡量模型对未见数据的泛化能力，是评估模型的关键。"
+      },
+      "errors": [
+        {
+          "title": "测试数据混入训练",
+          "detail": "数据泄漏会高估效果。任何预处理都应在训练集上拟合，再应用到测试集。",
+          "code": "train_test_split(..., stratify=y)"
+        },
+        {
+          "title": "只追求准确率",
+          "detail": "类别不平衡时，准确率可能掩盖问题。应同时看召回率、精确率和混淆矩阵。",
+          "code": "confusion_matrix(y_test, predictions)"
+        }
+      ],
+      "projectCode": "# 用 scikit-learn 完成一个小分类任务：\n# 1. 明确标签是什么\n# 2. 查看类别是否平衡\n# 3. 划分训练集和测试集\n# 4. 训练模型并报告测试指标",
+      "legalRisk": "🟡 需要注意",
+      "legalNote": "训练数据可能包含个人信息或受版权保护内容。必须确认来源、授权和用途，并避免用敏感特征做不公平决策。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法、著作权法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "ai-api",
+          "title": "接入 AI API",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "responsible-ai",
+          "title": "负责任地使用 AI",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "ai-api": {
+      "id": "ai-api",
+      "title": "接入 AI API",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 22,
+      "knowledge": [
+        "AI API 通常接收提示词和上下文，返回文本、结构化数据或向量。",
+        "密钥、超时、重试、成本和输入输出校验都属于应用设计的一部分。"
+      ],
+      "why": [
+        "AI 能力只有在应用约束下才可靠：输入要验证，输出要检查，失败要降级。",
+        "把模型密钥放在服务端可以避免客户端泄露。"
+      ],
+      "purpose": "在写作、总结、分类和学习助手应用中接入大模型。",
+      "example": "from openai import OpenAI\nimport os\n\nclient = OpenAI(api_key=os.environ[\"OPENAI_API_KEY\"])\nreply = client.chat.completions.create(\n    model=\"gpt-4.1-mini\",\n    messages=[{\"role\": \"user\", \"content\": \"解释变量\"}],\n)\nprint(reply.choices[0].message.content)",
+      "exampleNotes": [
+        {
+          "left": "os.environ",
+          "right": "从环境变量读取密钥"
+        },
+        {
+          "left": "messages",
+          "right": "向模型提供对话上下文"
+        },
+        {
+          "left": "choices[0]",
+          "right": "解析返回结果前仍需校验结构"
+        }
+      ],
+      "quiz": {
+        "question": "客户端 App 需要调用 AI 时，最安全的基本做法是什么？",
+        "code": "# 架构选择题",
+        "options": [
+          "通过自己的服务端代理并保护密钥",
+          "把服务商主密钥写进 APK",
+          "公开密钥方便调试",
+          "不使用鉴权"
+        ],
+        "answerIndex": 0,
+        "explanation": "服务端代理可以隐藏密钥、控制权限、限流并记录必要日志。"
+      },
+      "errors": [
+        {
+          "title": "把模型输出直接当可信数据",
+          "detail": "模型可能产生错误或格式不符。必须校验、限制长度并处理失败。",
+          "code": "if not isinstance(result, dict): ..."
+        },
+        {
+          "title": "无限重试导致费用失控",
+          "detail": "网络失败应有限重试并设置超时、预算和降级路径。",
+          "code": "# max_retries=2, timeout=20"
+        }
+      ],
+      "projectCode": "# AI 功能需求模板\n# 输入：用户提供什么？\n# 输出：需要什么结构？\n# 限制：长度、费用、敏感数据？\n# 失败：超时和格式错误时怎么办？\n# 隐私：哪些内容不能发送给第三方？",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "将数据发送给第三方模型服务前，应确认服务条款、数据用途、保存位置和是否用于训练；敏感个人信息应避免上传。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "responsible-ai",
+          "title": "负责任地使用 AI",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "git",
+          "title": "Git 版本管理",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "responsible-ai": {
+      "id": "responsible-ai",
+      "title": "负责任地使用 AI",
+      "stage": "AI 与智能应用",
+      "level": "高级",
+      "minutes": 18,
+      "knowledge": [
+        "AI 输出是概率生成的建议，不天然等于事实、正确答案或有权限使用的内容。",
+        "偏见、幻觉、隐私、版权和过度依赖都需要在功能设计时主动处理。"
+      ],
+      "why": [
+        "学习 App 的目标是增强能力，不是替代思考。",
+        "AI 应用一旦影响他人权益，错误结果的成本会明显提高。"
+      ],
+      "purpose": "为 AI 功能设计风险提示、数据边界、人工复核和独立练习机制。",
+      "example": "# AI 功能上线前：\n# 1. 明确它回答什么、绝不回答什么\n# 2. 提示用户核对高风险结论\n# 3. 设置独立完成模式\n# 4. 不收集与功能无关的敏感数据",
+      "exampleNotes": [
+        {
+          "left": "能力边界",
+          "right": "说明适用和不适用范围"
+        },
+        {
+          "left": "人工复核",
+          "right": "重要结论不能完全依赖模型"
+        },
+        {
+          "left": "独立练习",
+          "right": "保留用户自己分析和编码的机会"
+        }
+      ],
+      "quiz": {
+        "question": "AI 给出一个看似完整的法律分析，最合理的做法是什么？",
+        "code": "# 选择更负责的做法",
+        "options": [
+          "核对可靠来源并说明不构成专业意见",
+          "直接当作最终法律结论",
+          "删除所有来源",
+          "公开用户隐私数据验证"
+        ],
+        "answerIndex": 0,
+        "explanation": "AI 不能代替专业法律意见，高风险结论必须核对权威来源。"
+      },
+      "errors": [
+        {
+          "title": "把 AI 输出署名为自己原创",
+          "detail": "生成内容可能涉及版权和学术诚信问题。应遵守使用平台规则和发布场景要求。",
+          "code": "# 明确标注 AI 辅助并人工审核"
+        },
+        {
+          "title": "为了效果收集全部聊天记录",
+          "detail": "过度收集增加泄露风险。只保留完成功能所需的数据并明确保存期限。",
+          "code": "# data minimization by default"
+        }
+      ],
+      "projectCode": "# 我的 AI 使用原则\n# 先自己分析\n# 用 AI 检查遗漏\n# 对高风险信息查权威来源\n# 不向 AI 发送密钥和个人隐私",
+      "legalRisk": "🟠 较高风险",
+      "legalNote": "AI 应用可能涉及隐私、版权、歧视、消费者保护和行业监管。上线前应根据地区和场景进行专项评估。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法、著作权法；不同地区另有 AI 规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "git",
+          "title": "Git 版本管理",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "testing",
+          "title": "pytest 自动化测试",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "git": {
+      "id": "git",
+      "title": "Git 版本管理",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 22,
+      "knowledge": [
+        "Git 保存项目在每次提交时的快照，让修改有历史、可比较、可回退。",
+        "工作区保存当前修改，暂存区选择本次提交内容，仓库保存已经提交的历史。"
+      ],
+      "why": [
+        "没有版本管理，错误修改可能覆盖可用代码，也无法解释某次变化为什么发生。",
+        "分支让新功能可以独立开发，测试通过后再合并。"
+      ],
+      "purpose": "管理个人项目、多人协作、发布版本和排查“哪天改坏了什么”。",
+      "example": "git status\ngit diff\ngit add app.py\ngit commit -m \"Fix score validation\"\ngit log --oneline",
+      "exampleNotes": [
+        {
+          "left": "git status",
+          "right": "查看工作区状态"
+        },
+        {
+          "left": "git diff",
+          "right": "检查具体修改"
+        },
+        {
+          "left": "git commit",
+          "right": "保存一组完整修改"
+        }
+      ],
+      "quiz": {
+        "question": "提交前最应该先执行什么？",
+        "code": "git ?",
+        "options": [
+          "git status 和 git diff",
+          "git reset --hard",
+          "删除 .git",
+          "git push --force"
+        ],
+        "answerIndex": 0,
+        "explanation": "先确认变更范围和内容，才能避免把密钥、临时文件或错误修改提交进去。"
+      },
+      "errors": [
+        {
+          "title": "把密钥提交到仓库",
+          "detail": "一旦提交可能永久留在历史。使用 .gitignore，泄漏后立即吊销并更换密钥。",
+          "code": ".env\nkeystore.properties\nlocal.properties"
+        },
+        {
+          "title": "所有修改挤在一个提交",
+          "detail": "提交范围过大难以审查和回退。一次提交只做一个明确目的。",
+          "code": "git add -p"
+        }
+      ],
+      "projectCode": "# 功能分支流程\n# git switch -c feature/project-filter\n# 完成修改并测试\n# git diff\n# git add <files>\n# git commit -m \"Add project filter\"\n# 合并前再次运行测试",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "版本库中不要保存密钥、个人信息和未授权数据。公开仓库前必须检查提交历史。",
+      "legalBasis": "参考原则：个人信息保护法、网络安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "testing",
+          "title": "pytest 自动化测试",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "quality",
+          "title": "代码质量与重构",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "testing": {
+      "id": "testing",
+      "title": "pytest 自动化测试",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 24,
+      "knowledge": [
+        "测试用可重复的代码验证函数、接口或流程是否保持预期行为。",
+        "一个测试通常包含准备数据、执行操作和断言结果三个阶段。"
+      ],
+      "why": [
+        "手动点击只能证明某一次运行正常，自动化测试可以在每次修改后快速重验。",
+        "测试能提前暴露边界和回归问题，降低修一个功能坏另一个功能的风险。"
+      ],
+      "purpose": "验证计算函数、数据清洗规则、API 状态码和项目关键流程。",
+      "example": "def add(a, b):\n    return a + b\n\ndef test_add():\n    assert add(2, 3) == 5\n    assert add(-1, 1) == 0",
+      "exampleNotes": [
+        {
+          "left": "test_ 开头",
+          "right": "pytest 默认发现测试函数"
+        },
+        {
+          "left": "assert",
+          "right": "断言实际结果符合预期"
+        },
+        {
+          "left": "多个用例",
+          "right": "覆盖正常和边界输入"
+        }
+      ],
+      "quiz": {
+        "question": "断言 add(2, 3) 得到 5，正确写法是什么？",
+        "code": "def test_add():",
+        "options": [
+          "assert add(2, 3) == 5",
+          "print(add(2, 3))",
+          "return 5",
+          "if add(2, 3): pass"
+        ],
+        "answerIndex": 0,
+        "explanation": "测试使用 assert 明确验证结果，失败时 pytest 会给出定位信息。"
+      },
+      "errors": [
+        {
+          "title": "只测试正常输入",
+          "detail": "空值、零、负数、超长文本往往才是错误来源。应补边界测试。",
+          "code": "assert add(0, 0) == 0"
+        },
+        {
+          "title": "测试依赖执行顺序",
+          "detail": "每个测试应能独立运行，不依赖上一个测试留下的状态。",
+          "code": "def test_x():\n    data = create_fresh_data()"
+        }
+      ],
+      "projectCode": "def normalize_score(score):\n    if score < 0 or score > 100:\n        raise ValueError(\"score out of range\")\n    return score\n\n# 为正常值、边界值 0/100 和越界值分别写测试。",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "测试数据应使用虚构或匿名数据，不要复制真实用户隐私到测试仓库。",
+      "legalBasis": "参考原则：个人信息保护法、数据安全法；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "quality",
+          "title": "代码质量与重构",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "library-selection",
+          "title": "如何选择合适的第三方库",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "quality": {
+      "id": "quality",
+      "title": "代码质量与重构",
+      "stage": "测试、Git 与代码质量",
+      "level": "工程基础",
+      "minutes": 20,
+      "knowledge": [
+        "高质量代码首先是容易理解和修改的代码，不是行数最少或技巧最多的代码。",
+        "重构是在不改变外部行为的前提下，改善结构、命名和重复逻辑。"
+      ],
+      "why": [
+        "项目功能增加后，坏命名和重复代码会让每次修改都更危险。",
+        "先有测试，再重构，可以在改结构时确认行为没有变化。"
+      ],
+      "purpose": "整理毕业项目、减少重复、拆分长函数并提高后续开发速度。",
+      "example": "def average(values):\n    if not values:\n        raise ValueError(\"values cannot be empty\")\n    return sum(values) / len(values)",
+      "exampleNotes": [
+        {
+          "left": "清晰函数名",
+          "right": "直接说明职责"
+        },
+        {
+          "left": "边界检查",
+          "right": "空列表有明确行为"
+        },
+        {
+          "left": "单一职责",
+          "right": "只做平均值计算"
+        }
+      ],
+      "quiz": {
+        "question": "重构的正确前提是什么？",
+        "code": "# 重构顺序",
+        "options": [
+          "先有测试确认现有行为",
+          "先删除所有旧代码",
+          "先改变功能需求",
+          "先关闭版本控制"
+        ],
+        "answerIndex": 0,
+        "explanation": "测试提供行为基线，使重构可以安全地改善结构而不改变功能。"
+      },
+      "errors": [
+        {
+          "title": "一个函数负责所有事情",
+          "detail": "读取输入、计算、打印和保存混在一起会难以测试。按职责拆分。",
+          "code": "parse_input()\ncalculate()\nrender_result()"
+        },
+        {
+          "title": "复制粘贴后分别修改",
+          "detail": "重复逻辑容易修一处漏一处。提取参数化函数或数据配置。",
+          "code": "def calculate_total(items, tax_rate): ..."
+        }
+      ],
+      "projectCode": "# 重构检查\n# 1. 函数名是否说明职责\n# 2. 是否存在复制粘贴逻辑\n# 3. 错误路径是否明确\n# 4. 测试是否全部通过\n# 5. 每次只做一个小改动",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "代码质量属于通用工程实践。使用第三方代码或模板时仍需遵守许可证和归属要求。",
+      "legalBasis": "参考原则：著作权法及开源许可证条款；不同地区另有规则",
+      "legalUpdated": "2026-09-10",
+      "next": [
+        {
+          "id": "library-selection",
+          "title": "如何选择合适的第三方库",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "venv-dependencies",
+          "title": "虚拟环境与依赖管理",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "program-computer": {
+      "id": "program-computer",
+      "title": "程序、代码和计算机",
+      "stage": "编程与计算机基础",
+      "level": "入门",
+      "minutes": 10,
+      "knowledge": [
+        "程序是一组有顺序、可执行的指令，计算机按这些指令完成任务。",
+        "代码是写给人和计算机共同阅读的程序文本，人要维护它，解释器要执行它。"
+      ],
+      "why": [
+        "先理解程序在做什么，后面学习变量、条件和循环时才不会只记语法。",
+        "真实项目也是把复杂任务拆成许多小步骤，再让计算机逐项执行。"
+      ],
+      "purpose": "理解输入、处理、输出这条基本链路，为自动化、数据分析、爬虫和 Web 项目建立共同基础。",
+      "example": "print(\"程序开始\")\nprint(\"读取数据\")\nprint(\"输出结果\")\nprint(\"程序结束\")",
+      "exampleNotes": [
+        {
+          "left": "print(\"程序开始\")",
+          "right": "输出第一条执行结果"
+        },
+        {
+          "left": "三行处理步骤",
+          "right": "可以看作程序的指令序列"
+        },
+        {
+          "left": "从上到下",
+          "right": "普通程序通常按顺序执行"
+        }
+      ],
+      "quiz": {
+        "question": "下面哪句话最准确地描述“程序”？",
+        "code": "",
+        "options": [
+          "一组让计算机按步骤执行的指令",
+          "电脑里的所有文件",
+          "一种显示器品牌",
+          "只保存文字的资料"
+        ],
+        "answerIndex": 0,
+        "explanation": "程序的核心是一组可执行指令，计算机根据顺序和规则处理数据。"
+      },
+      "errors": [
+        {
+          "title": "把代码理解成普通文字",
+          "detail": "代码既给人阅读，也会被解释器或编译器按语法执行，标点和缩进都可能影响结果。",
+          "code": "print(\"结果\")  # 会被执行\n\"结果\"          # 只产生一个值，不会自动显示"
+        },
+        {
+          "title": "跳过问题拆分直接敲代码",
+          "detail": "没有先确定输入、处理和输出，代码越多越难判断哪一步错了。",
+          "code": "# 先写：输入什么 -> 处理什么 -> 输出什么\n# 再把每一步转换成 Python"
+        }
+      ],
+      "projectCode": "# 用注释写下一个小程序的步骤\n# 1. 接收名字\n# 2. 生成欢迎语\n# 3. 输出欢迎语\nprint(\"欢迎学习 Python\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "本节只介绍程序与计算机的基础概念，属于通用知识。",
+      "legalBasis": "参考原则：本模块不构成法律意见",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "run-python",
+          "title": "从源代码到运行结果",
+          "minutes": 12,
+          "state": "TODO"
+        },
+        {
+          "id": "python",
+          "title": "Python 是什么",
+          "minutes": 8,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "run-python": {
+      "id": "run-python",
+      "title": "从源代码到运行结果",
+      "stage": "编程与计算机基础",
+      "level": "入门",
+      "minutes": 12,
+      "knowledge": [
+        "Python 源文件通常以 .py 结尾，解释器读取代码并逐行执行。",
+        "编辑、保存、运行、观察输出，是学习过程中最基本的反馈循环。"
+      ],
+      "why": [
+        "知道代码如何运行，出现错误时才能判断是文件、语法还是运行环境的问题。",
+        "先建立可重复运行的流程，再做项目时才不会依赖“某次碰巧成功”。"
+      ],
+      "purpose": "运行脚本、定位源文件并确认输出，是所有 Python 工具和项目的第一项基础能力。",
+      "example": "message = \"Hello from Python\"\nprint(message)\nprint(\"程序运行完成\")",
+      "exampleNotes": [
+        {
+          "left": "message = ...",
+          "right": "先把文字保存到变量"
+        },
+        {
+          "left": "print(message)",
+          "right": "输出变量当前保存的值"
+        },
+        {
+          "left": "运行完成",
+          "right": "确认执行已经走到最后一步"
+        }
+      ],
+      "quiz": {
+        "question": "Python 源文件最常见的扩展名是什么？",
+        "code": "",
+        "options": [
+          ".py",
+          ".python",
+          ".txt",
+          ".exe"
+        ],
+        "answerIndex": 0,
+        "explanation": "Python 源文件通常使用 .py 扩展名，解释器执行其中保存的代码。"
+      },
+      "errors": [
+        {
+          "title": "修改后忘记保存",
+          "detail": "编辑器里看到新代码，但运行的是磁盘上的旧版本时，输出不会变化。",
+          "code": "# 修改代码后确认文件没有未保存标记\n# 再重新运行脚本"
+        },
+        {
+          "title": "找不到脚本文件",
+          "detail": "终端运行文件时，如果当前目录不对，会提示文件不存在。",
+          "code": "# 先确认当前目录和脚本路径\n# 再运行 python 路径/文件名.py"
+        }
+      ],
+      "projectCode": "# 修改下面的文字并重新运行\nprint(\"我第一次运行了 Python 脚本\")",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "本地运行学习代码属于通用开发活动。不要把密码、密钥等敏感内容写进示例文件。",
+      "legalBasis": "参考原则：最小必要与敏感信息保护",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "python",
+          "title": "Python 是什么",
+          "minutes": 8,
+          "state": "TODO"
+        },
+        {
+          "id": "hello",
+          "title": "第一个 Python 程序",
+          "minutes": 12,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "problem-solving": {
+      "id": "problem-solving",
+      "title": "问题拆解与伪代码",
+      "stage": "编程思维与算法基础",
+      "level": "基础",
+      "minutes": 18,
+      "knowledge": [
+        "解题先明确输入、处理规则、输出和边界条件，再把大问题拆成小步骤。",
+        "伪代码用接近自然语言的方式描述步骤，不追求最终语法。"
+      ],
+      "why": [
+        "会写语法不等于会解决问题，拆解能力决定能否把陌生需求变成程序。",
+        "先写伪代码可以发现遗漏条件，编码时更少反复推翻。"
+      ],
+      "purpose": "把需求文档拆成可以逐个实现、运行和验证的小任务。",
+      "example": "def average(numbers):\n    if not numbers:\n        return None\n    return sum(numbers) / len(numbers)\n\nprint(average([80, 90, 100]))",
+      "exampleNotes": [
+        {
+          "left": "输入 numbers",
+          "right": "明确函数处理的数据"
+        },
+        {
+          "left": "空列表判断",
+          "right": "先处理边界条件"
+        },
+        {
+          "left": "return",
+          "right": "把处理结果交给调用者"
+        }
+      ],
+      "quiz": {
+        "question": "开始写代码前，最应该先确认什么？",
+        "code": "",
+        "options": [
+          "输入、处理规则、输出和边界条件",
+          "代码一共有多少行",
+          "编辑器使用什么颜色",
+          "变量名必须有多长"
+        ],
+        "answerIndex": 0,
+        "explanation": "先明确问题边界和期望结果，才能选择合适的步骤和数据结构。"
+      },
+      "errors": [
+        {
+          "title": "只写正常情况",
+          "detail": "空数据、缺字段、错误输入和重复数据常常才是程序失败的来源。",
+          "code": "# 先问：没有数据怎么办？\n# 数据格式不对怎么办？\n# 重复执行会发生什么？"
+        },
+        {
+          "title": "一个函数做完整系统",
+          "detail": "所有逻辑塞在一起后，单步测试和定位错误都会变得困难。",
+          "code": "# 将读取、计算、保存、显示拆成独立函数\n# 每个函数只负责一个明确结果"
+        }
+      ],
+      "projectCode": "# 先写伪代码，再实现\n# 1. 读取成绩列表\n# 2. 过滤无效成绩\n# 3. 计算平均分\n# 4. 输出结果",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "问题拆解属于通用编程方法。处理真实业务数据时，仍要遵守数据最小必要和授权范围。",
+      "legalBasis": "参考原则：数据最小必要和目的限定",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "algorithm-basics",
+          "title": "查找、计数、过滤和排序",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "complexity-choice",
+          "title": "用对数据结构和复杂度",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "algorithm-basics": {
+      "id": "algorithm-basics",
+      "title": "查找、计数、过滤和排序",
+      "stage": "编程思维与算法基础",
+      "level": "基础",
+      "minutes": 20,
+      "knowledge": [
+        "常见数据处理动作可以归纳为查找、计数、求和、最大值、去重、过滤、排序和分组。",
+        "优先使用 Python 内置函数和清晰表达式，再考虑自己实现复杂算法。"
+      ],
+      "why": [
+        "识别任务属于哪类动作，可以快速联想到合适的数据结构和标准库。",
+        "先保证正确和可读，再根据真实数据量优化。"
+      ],
+      "purpose": "用少量可验证的步骤完成成绩统计、日志过滤、标签去重等基础数据任务。",
+      "example": "scores = [88, 72, 95, 60, 88]\npassed = [score for score in scores if score >= 60]\nprint(\"人数\", len(scores))\nprint(\"通过\", len(passed))\nprint(\"最高分\", max(scores))\nprint(\"去重排序\", sorted(set(scores)))",
+      "exampleNotes": [
+        {
+          "left": "len(scores)",
+          "right": "统计元素数量"
+        },
+        {
+          "left": "列表推导式",
+          "right": "按条件过滤数据"
+        },
+        {
+          "left": "set(scores)",
+          "right": "去掉重复值"
+        },
+        {
+          "left": "sorted(...)",
+          "right": "生成排序后的新列表"
+        }
+      ],
+      "quiz": {
+        "question": "要去掉列表中的重复值，最直接的做法是什么？",
+        "code": "scores = [88, 72, 88, 95]",
+        "options": [
+          "把列表转换成 set",
+          "把每个数字加 1",
+          "输出列表长度",
+          "把数字都变成字符串"
+        ],
+        "answerIndex": 0,
+        "explanation": "set 只保留唯一元素，适合做去重；需要稳定顺序时再配合 sorted 或专门逻辑。"
+      },
+      "errors": [
+        {
+          "title": "为了去重改变原数据",
+          "detail": "set 会丢失顺序，如果需要保留原顺序，要使用额外集合记录见过的元素。",
+          "code": "unique = list(set(scores))  # 顺序可能变化\nseen = set()\nunique = [x for x in scores if not (x in seen or seen.add(x))]"
+        },
+        {
+          "title": "手写所有基础算法",
+          "detail": "Python 已经提供 sum、max、min、sorted 等可靠工具，重复造轮子会增加错误。",
+          "code": "total = sum(scores)  # 优先使用清晰的内置能力"
+        }
+      ],
+      "projectCode": "records = [12, 7, 19, 7, 5, 12]\n# 完成：总数、最大值、去重、升序排序\nprint(len(records), max(records), sorted(set(records)))",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "基础算法与数据结构选择属于通用技术。数据规模较大时，不要收集与目标无关的个人信息。",
+      "legalBasis": "参考原则：最小必要和目的限定",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "complexity-choice",
+          "title": "用对数据结构和复杂度",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "http",
+          "title": "HTTP 请求与响应",
+          "minutes": 18,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "complexity-choice": {
+      "id": "complexity-choice",
+      "title": "用对数据结构和复杂度",
+      "stage": "编程思维与算法基础",
+      "level": "进阶",
+      "minutes": 18,
+      "knowledge": [
+        "O(1) 表示工作量基本不随数据量增长，O(n) 表示通常要遍历一遍，O(n²) 常见于两层完整循环。",
+        "成员查找、去重和键值查询优先考虑 set 或 dict，需要顺序和索引时使用 list。"
+      ],
+      "why": [
+        "同样正确的结果，数据量变大后可能从瞬间完成变成无法运行。",
+        "先选对结构，往往比花时间微调语法更有效。"
+      ],
+      "purpose": "在查找标签、统计关键词、判断用户是否出现等任务中快速选择更合适的容器。",
+      "example": "student_ids = [101, 102, 103]\nstudent_id_set = set(student_ids)\nprint(103 in student_ids)\nprint(103 in student_id_set)\nprint(\"list 适合顺序，set 适合快速判断是否存在\")",
+      "exampleNotes": [
+        {
+          "left": "in list",
+          "right": "通常需要从头查找"
+        },
+        {
+          "left": "set(...)",
+          "right": "建立可快速判断成员关系的集合"
+        },
+        {
+          "left": "in set",
+          "right": "平均情况下查找更快"
+        }
+      ],
+      "quiz": {
+        "question": "程序需要频繁判断“这个用户 ID 是否已经出现”，优先考虑什么结构？",
+        "code": "",
+        "options": [
+          "set 或 dict",
+          "只有 list",
+          "多个独立字符串",
+          "随机数"
+        ],
+        "answerIndex": 0,
+        "explanation": "set 和 dict 适合快速成员判断，Python 的平均查找成本明显优于逐个扫描 list。"
+      },
+      "errors": [
+        {
+          "title": "两层循环检查重复",
+          "detail": "每个元素都和之前所有元素比较，数据量大时容易出现 O(n²)。",
+          "code": "seen = set()\nfor item in items:\n    if item in seen:\n        continue\n    seen.add(item)"
+        },
+        {
+          "title": "还没有正确结果就优化",
+          "detail": "应先用清晰版本验证规则，再测量热点，不能凭感觉重写全部代码。",
+          "code": "# 正确 -> 测试 -> 测量 -> 只优化真正的瓶颈"
+        }
+      ],
+      "projectCode": "items = [\"a\", \"b\", \"a\", \"c\"]\nseen = set()\nunique = []\n# 保留首次出现顺序并去重",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "性能优化属于通用软件工程活动。处理个人数据时，优化不能突破原有授权和保留期限。",
+      "legalBasis": "参考原则：目的限定和数据安全",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "http",
+          "title": "HTTP 请求与响应",
+          "minutes": 18,
+          "state": "TODO"
+        },
+        {
+          "id": "requests",
+          "title": "requests 基础",
+          "minutes": 21,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "file-automation": {
+      "id": "file-automation",
+      "title": "文件与办公自动化",
+      "stage": "自动化与办公自动化",
+      "level": "进阶",
+      "minutes": 22,
+      "knowledge": [
+        "pathlib 用对象表示路径，可以获取文件名、扩展名、父目录并安全拼接路径。",
+        "批量整理文件前先列出将要处理的对象并执行 dry-run，确认范围后再修改。"
+      ],
+      "why": [
+        "重复的改名、分类、汇总和报表工作适合交给程序，减少机械操作和遗漏。",
+        "自动化一旦写错影响范围可能很大，所以必须先预览和备份。"
+      ],
+      "purpose": "整理下载目录、按类型分类文件、批量生成报表和统一处理文件名。",
+      "example": "from pathlib import Path\n\nfiles = [Path(\"report.csv\"), Path(\"photo.png\"), Path(\"notes.txt\")]\nfor path in files:\n    print(path.name, path.suffix, path.stem)",
+      "exampleNotes": [
+        {
+          "left": "Path(...)",
+          "right": "把字符串路径转换成路径对象"
+        },
+        {
+          "left": "path.name",
+          "right": "取得文件名"
+        },
+        {
+          "left": "path.suffix",
+          "right": "取得扩展名"
+        },
+        {
+          "left": "path.stem",
+          "right": "取得不含扩展名的主体"
+        }
+      ],
+      "quiz": {
+        "question": "批量移动或删除文件前，最应该先做什么？",
+        "code": "",
+        "options": [
+          "先输出 dry-run 清单并确认目标范围",
+          "直接最快地删除",
+          "把路径写死在所有函数里",
+          "关闭所有异常提示"
+        ],
+        "answerIndex": 0,
+        "explanation": "dry-run 能在真正修改前暴露错误路径和错误筛选条件。"
+      },
+      "errors": [
+        {
+          "title": "直接递归删除目录",
+          "detail": "路径拼错或变量为空时，可能删除错误位置的文件。",
+          "code": "print(path.resolve())\n# 确认绝对路径仍位于目标目录后，再执行修改"
+        },
+        {
+          "title": "手工拼接路径分隔符",
+          "detail": "Windows 和 Linux 的分隔符不同，应该使用 pathlib 或 os.path。",
+          "code": "path = folder / \"report.csv\""
+        }
+      ],
+      "projectCode": "from pathlib import Path\n\n# 1. 先输出待处理文件清单\n# 2. 按扩展名分类\n# 3. 跳过隐藏文件\n# 4. 先 dry-run，再执行移动",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "自动化处理文件前要确认文件归属和授权。涉及个人信息、商业机密或删除操作时，应先备份并限制处理范围。",
+      "legalBasis": "参考原则：数据安全法、个人信息保护法及最小必要原则",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "scheduled-automation",
+          "title": "定时任务与可重复执行",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "fastapi",
+          "title": "FastAPI 接口",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "scheduled-automation": {
+      "id": "scheduled-automation",
+      "title": "定时任务与可重复执行",
+      "stage": "自动化与办公自动化",
+      "level": "进阶",
+      "minutes": 20,
+      "knowledge": [
+        "定时任务要明确触发时间、任务边界、失败处理和重复执行的后果。",
+        "幂等任务重复运行不会产生重复账单、重复消息或重复记录。"
+      ],
+      "why": [
+        "很多自动化不是只运行一次，而是每天、每小时或数据更新后持续执行。",
+        "任务失败后必须能重试，且不能因为重试破坏业务数据。"
+      ],
+      "purpose": "定时同步数据、生成日报、检查文件、发送提醒并记录每次运行结果。",
+      "example": "from datetime import datetime\n\ndef should_run(now):\n    return now.hour == 9 and now.minute == 0\n\nprint(should_run(datetime(2026, 9, 11, 9, 0)))",
+      "exampleNotes": [
+        {
+          "left": "datetime",
+          "right": "表示具体日期和时间"
+        },
+        {
+          "left": "should_run",
+          "right": "把触发判断拆成可测试函数"
+        },
+        {
+          "left": "返回布尔值",
+          "right": "明确是否开始任务"
+        }
+      ],
+      "quiz": {
+        "question": "为什么定时任务最好设计成幂等的？",
+        "code": "",
+        "options": [
+          "重复执行时不会额外产生重复数据或副作用",
+          "这样代码一定更短",
+          "这样就不需要日志",
+          "这样永远不会有错误"
+        ],
+        "answerIndex": 0,
+        "explanation": "网络抖动、进程重启或失败重试都可能让任务再次运行，幂等可以避免重复副作用。"
+      },
+      "errors": [
+        {
+          "title": "失败后无限快速重试",
+          "detail": "服务不可用时不断重试会放大故障和限流风险。",
+          "code": "# 使用有限次数、递增等待和最终失败记录"
+        },
+        {
+          "title": "没有记录运行结果",
+          "detail": "没有开始时间、结束时间、处理数量和错误原因，故障很难追踪。",
+          "code": "print({\"task\": \"daily-report\", \"status\": \"success\", \"count\": 12})"
+        }
+      ],
+      "projectCode": "# 设计每日任务的运行记录\n# started_at / finished_at / status / processed_count / error",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "定时自动化本身风险较低。若任务会发送消息、处理个人信息或修改生产数据，必须设置授权、限速和回滚方案。",
+      "legalBasis": "参考原则：最小权限、可审计和可恢复",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "fastapi",
+          "title": "FastAPI 接口",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "rest-api",
+          "title": "REST API 设计",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "flask": {
+      "id": "flask",
+      "title": "Flask Web 入门",
+      "stage": "Web 开发",
+      "level": "高级",
+      "minutes": 24,
+      "knowledge": [
+        "Flask 用路由把 URL 和 Python 函数对应起来，请求进入后由函数生成响应。",
+        "Web 应用基础链路是客户端请求、路由处理、业务逻辑、数据访问和响应返回。"
+      ],
+      "why": [
+        "并非所有项目都需要大型框架，Flask 适合理解 Web 最小模型和小型服务。",
+        "理解 Flask 后，再学习 FastAPI 或 Django 时能看到它们共有的请求与响应结构。"
+      ],
+      "purpose": "制作内部工具、简单 API、管理页面和原型服务。",
+      "example": "from flask import Flask\n\napp = Flask(__name__)\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}\n\nprint(\"路由 /health -> health()\")",
+      "exampleNotes": [
+        {
+          "left": "Flask(__name__)",
+          "right": "创建 Web 应用对象"
+        },
+        {
+          "left": "@app.get",
+          "right": "把 GET 请求路径绑定到函数"
+        },
+        {
+          "left": "return",
+          "right": "返回响应内容"
+        }
+      ],
+      "quiz": {
+        "question": "访问 /health 时，Flask 会调用哪个函数？",
+        "code": "@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}",
+        "options": [
+          "health()",
+          "Flask()",
+          "get()",
+          "不会调用任何函数"
+        ],
+        "answerIndex": 0,
+        "explanation": "路由装饰器把路径和 HTTP 方法绑定到 health 函数。"
+      },
+      "errors": [
+        {
+          "title": "路由函数没有返回响应",
+          "detail": "视图函数必须返回可序列化的响应、字符串或 Response 对象。",
+          "code": "@app.get(\"/\")\ndef home():\n    return {\"message\": \"hello\"}"
+        },
+        {
+          "title": "把 HTML 和业务逻辑混在路由里",
+          "detail": "路由只负责请求和响应，复杂计算与数据库访问应拆到服务层。",
+          "code": "# route -> service -> repository\n# 让核心逻辑可以脱离 Web 框架单独测试"
+        }
+      ],
+      "projectCode": "from flask import Flask\n\napp = Flask(__name__)\n\n# 1. 增加 /health\n# 2. 增加 /tasks 查询接口\n# 3. 增加输入校验\n# 4. 将任务逻辑拆出路由函数",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "搭建 Web 服务会接收用户数据。应明确收集字段、访问权限、日志范围和数据保留时间，不记录密码或完整令牌。",
+      "legalBasis": "参考原则：网络安全法、个人信息保护法和最小必要原则",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "web-auth-deploy",
+          "title": "Web 鉴权、配置与部署",
+          "minutes": 24,
+          "state": "TODO"
+        },
+        {
+          "id": "machine-learning",
+          "title": "机器学习入门",
+          "minutes": 26,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "web-auth-deploy": {
+      "id": "web-auth-deploy",
+      "title": "Web 鉴权、配置与部署",
+      "stage": "Web 开发",
+      "level": "高级",
+      "minutes": 24,
+      "knowledge": [
+        "认证回答“你是谁”，授权回答“你能操作什么”，两者必须在服务端执行。",
+        "密码只能使用专用算法保存哈希，密钥、令牌和数据库密码不能写进源码。"
+      ],
+      "why": [
+        "很多 Web 漏洞不是算法错误，而是错误信任客户端、泄漏密钥或缺少权限检查。",
+        "部署能力决定项目能否在别人设备上稳定运行，而不只是在开发机演示。"
+      ],
+      "purpose": "为项目加入安全的配置读取、登录状态、权限检查和 HTTPS 部署基线。",
+      "example": "import secrets\n\nsession_token = secrets.token_urlsafe(24)\nprint(\"已生成随机会话标识，长度\", len(session_token))\nprint(\"不要把真实令牌打印到生产日志\")",
+      "exampleNotes": [
+        {
+          "left": "secrets",
+          "right": "使用适合安全场景的随机数工具"
+        },
+        {
+          "left": "token_urlsafe",
+          "right": "生成 URL 安全字符组成的随机标识"
+        },
+        {
+          "left": "打印提示",
+          "right": "示例只显示长度，不泄漏真实值"
+        }
+      ],
+      "quiz": {
+        "question": "用户密码在服务端应如何保存？",
+        "code": "",
+        "options": [
+          "使用 bcrypt、scrypt 或 Argon2 等专用算法保存哈希",
+          "直接保存明文",
+          "使用可逆 Base64 编码",
+          "只保存到前端 localStorage"
+        ],
+        "answerIndex": 0,
+        "explanation": "密码需要专用慢哈希算法并加盐，不能明文保存，也不能把普通编码当作加密。"
+      },
+      "errors": [
+        {
+          "title": "只在前端隐藏管理按钮",
+          "detail": "攻击者可以绕过界面直接请求接口，权限检查必须在服务端完成。",
+          "code": "# if current_user.is_admin:\n#     执行管理操作\n# else:\n#     返回 403"
+        },
+        {
+          "title": "把密钥提交到 Git",
+          "detail": "密钥进入提交历史后很难彻底撤回，应立即轮换并使用环境变量或密钥管理服务。",
+          "code": "# 正确：从环境变量读取\n# API_KEY = os.environ[\"API_KEY\"]"
+        }
+      ],
+      "projectCode": "# 上线前配置清单\n# 1. 所有密钥来自环境变量\n# 2. 核心接口有服务端鉴权\n# 3. HTTPS 与安全响应头\n# 4. 日志脱敏\n# 5. 错误信息不泄漏内部细节",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "身份、权限和安全配置涉及服务安全与个人信息保护。应遵循最小权限、加密传输、日志脱敏和密钥轮换原则。",
+      "legalBasis": "参考原则：网络安全法、个人信息保护法和密码安全实践",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "machine-learning",
+          "title": "机器学习入门",
+          "minutes": 26,
+          "state": "TODO"
+        },
+        {
+          "id": "ai-api",
+          "title": "接入 AI API",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "library-selection": {
+      "id": "library-selection",
+      "title": "如何选择合适的第三方库",
+      "stage": "第三方库生态与技术选型",
+      "level": "进阶",
+      "minutes": 20,
+      "knowledge": [
+        "选库顺序是明确需求、检查标准库、比较候选库、验证维护状态和平台兼容性。",
+        "热门不代表适合，许可证、文档、发布时间、问题列表和依赖规模都要看。"
+      ],
+      "why": [
+        "错误的依赖可能带来维护停滞、安全风险和大量安装问题。",
+        "会选工具比记住所有库更重要，第三方生态会持续变化。"
+      ],
+      "purpose": "根据网络、数据、Web、AI 或自动化任务选择可维护、可替换的依赖。",
+      "example": "import importlib.util\n\ncandidates = [\"json\", \"requests\", \"pandas\", \"fastapi\"]\nfor name in candidates:\n    available = importlib.util.find_spec(name) is not None\n    print(name, \"可用\" if available else \"未安装\")",
+      "exampleNotes": [
+        {
+          "left": "importlib.util",
+          "right": "在不导入模块的情况下检查是否可用"
+        },
+        {
+          "left": "candidates",
+          "right": "把候选依赖集中管理"
+        },
+        {
+          "left": "available",
+          "right": "根据当前环境输出安装状态"
+        }
+      ],
+      "quiz": {
+        "question": "选择第三方库时，哪一项不是合理的优先判断标准？",
+        "code": "",
+        "options": [
+          "只是网络上出现次数最多",
+          "是否解决当前明确需求",
+          "是否持续维护并支持目标 Python 版本",
+          "许可证、文档和依赖规模是否可接受"
+        ],
+        "answerIndex": 0,
+        "explanation": "流行度可以参考，但不能替代需求匹配、维护、安全和许可证检查。"
+      },
+      "errors": [
+        {
+          "title": "为了一个小功能引入大依赖",
+          "detail": "依赖越重，安装、升级、兼容和安全维护成本越高。",
+          "code": "# 先检查标准库能否完成\n# 再比较候选库的依赖与维护状态"
+        },
+        {
+          "title": "复制代码却不看许可证",
+          "detail": "第三方代码可能带有分发或商业使用条件，项目发布前必须确认许可要求。",
+          "code": "# 记录库名、版本、来源、许可证和用途"
+        }
+      ],
+      "projectCode": "# 依赖选型记录\n# 需求：\n# 候选库 A / B：\n# 当前维护状态：\n# 许可证：\n# 平台兼容：\n# 最终选择理由：",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "开源许可证和第三方依赖会影响项目的使用、修改与分发。使用前应阅读具体许可证并保留必要声明。",
+      "legalBasis": "参考原则：著作权与开源许可证合规",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "venv-dependencies",
+          "title": "虚拟环境与依赖管理",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "dependency-risk",
+          "title": "版本、升级与供应链风险",
+          "minutes": 20,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "venv-dependencies": {
+      "id": "venv-dependencies",
+      "title": "虚拟环境与依赖管理",
+      "stage": "第三方库生态与技术选型",
+      "level": "工程基础",
+      "minutes": 22,
+      "knowledge": [
+        "虚拟环境为单个项目隔离 Python 包，避免不同项目互相覆盖版本。",
+        "requirements.txt、pyproject.toml 和 lock 文件记录项目需要安装什么以及实际解析出的版本。"
+      ],
+      "why": [
+        "同一个库的新版本可能改变行为，项目需要可重复安装的环境。",
+        "新成员或部署环境按清单安装，才能减少“我这里能运行”的问题。"
+      ],
+      "purpose": "创建项目环境、安装依赖并通过清单和锁文件复现运行环境。",
+      "example": "import sys\n\nprint(\"Python\", \".\".join(map(str, sys.version_info[:3])))\nprint(\"项目依赖应记录在 requirements.txt 或 pyproject.toml 中\")",
+      "exampleNotes": [
+        {
+          "left": "sys.version_info",
+          "right": "查看当前解释器版本"
+        },
+        {
+          "left": "项目隔离",
+          "right": "每个项目独立管理依赖"
+        },
+        {
+          "left": "依赖清单",
+          "right": "让安装过程可以重复"
+        }
+      ],
+      "quiz": {
+        "question": "为每个 Python 项目创建独立虚拟环境的主要原因是什么？",
+        "code": "",
+        "options": [
+          "隔离不同项目的依赖版本",
+          "让代码自动没有错误",
+          "替代 Git 版本管理",
+          "让程序不再需要 Python"
+        ],
+        "answerIndex": 0,
+        "explanation": "虚拟环境隔离依赖，避免项目之间因版本差异互相影响。"
+      },
+      "errors": [
+        {
+          "title": "所有项目都安装到全局环境",
+          "detail": "升级一个项目的库可能破坏另一个项目，且很难判断某个依赖是谁安装的。",
+          "code": "# 每个项目创建独立 venv\n# 激活后只安装该项目需要的依赖"
+        },
+        {
+          "title": "只写库名不记录版本",
+          "detail": "未来重新安装可能得到不同版本，行为也会变化。",
+          "code": "# 应用项目通常固定直接依赖并保存 lock 文件\n# 库项目则根据兼容策略设置版本范围"
+        }
+      ],
+      "projectCode": "# 从空目录开始\n# 1. 创建并激活虚拟环境\n# 2. 安装依赖\n# 3. 导出或维护依赖清单\n# 4. 在全新环境按清单重装验证",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "依赖管理本身风险较低。安装第三方包前仍应确认来源、许可证和供应链可信度。",
+      "legalBasis": "参考原则：软件供应链安全与许可证合规",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "dependency-risk",
+          "title": "版本、升级与供应链风险",
+          "minutes": 20,
+          "state": "TODO"
+        },
+        {
+          "id": "project-structure",
+          "title": "Python 项目结构与配置",
+          "minutes": 22,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "dependency-risk": {
+      "id": "dependency-risk",
+      "title": "版本、升级与供应链风险",
+      "stage": "第三方库生态与技术选型",
+      "level": "工程基础",
+      "minutes": 20,
+      "knowledge": [
+        "版本升级要区分补丁、功能和安全更新，并在测试后发布。",
+        "依赖风险包括漏洞、许可证变化、维护停止、恶意包和过大的传递依赖。"
+      ],
+      "why": [
+        "依赖不是安装一次就永久安全，漏洞和兼容问题会随生态变化出现。",
+        "可重复构建和持续更新之间需要稳定的策略。"
+      ],
+      "purpose": "为项目建立依赖审计、升级测试、锁文件和安全公告跟踪流程。",
+      "example": "def is_newer(current, minimum):\n    current_parts = tuple(map(int, current.split(\".\")))\n    minimum_parts = tuple(map(int, minimum.split(\".\")))\n    return current_parts >= minimum_parts\n\nprint(is_newer(\"2.1.0\", \"2.0.0\"))",
+      "exampleNotes": [
+        {
+          "left": "current / minimum",
+          "right": "比较当前版本和最低要求"
+        },
+        {
+          "left": "tuple(...)",
+          "right": "把版本字符串转换成可比较的数字元组"
+        },
+        {
+          "left": "练习简化",
+          "right": "真实项目优先使用成熟版本解析库"
+        }
+      ],
+      "quiz": {
+        "question": "lock 文件的主要价值是什么？",
+        "code": "",
+        "options": [
+          "记录一次解析得到的精确依赖版本，帮助复现环境",
+          "加密项目源码",
+          "替代自动化测试",
+          "自动修复所有漏洞"
+        ],
+        "answerIndex": 0,
+        "explanation": "lock 文件让不同机器安装时可复现同一组解析结果，但它不能代替测试和漏洞处理。"
+      },
+      "errors": [
+        {
+          "title": "每次构建都无条件安装最新版",
+          "detail": "线上行为可能在没有代码修改时突然变化。",
+          "code": "# 常规构建使用锁定依赖\n# 在独立升级任务中更新并运行完整测试"
+        },
+        {
+          "title": "发现漏洞后直接跳过测试",
+          "detail": "安全修复也可能引入兼容变化，需要同时验证功能和发布回滚方案。",
+          "code": "# 升级 -> 测试 -> 灰度 -> 监控 -> 保留回滚版本"
+        }
+      ],
+      "projectCode": "# 依赖审计记录\n# 包名 / 当前版本 / 最新安全版本 / 影响 / 升级测试 / 回滚方式",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "依赖漏洞和许可证变化可能带来安全与合规责任。应保留依赖清单、版本记录和升级审计信息。",
+      "legalBasis": "参考原则：网络安全法、软件供应链安全与开源许可证合规",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "project-structure",
+          "title": "Python 项目结构与配置",
+          "minutes": 22,
+          "state": "TODO"
+        },
+        {
+          "id": "release-checklist",
+          "title": "从可运行到可交付",
+          "minutes": 24,
+          "state": "LOCKED"
+        }
+      ]
+    },
+    "project-structure": {
+      "id": "project-structure",
+      "title": "Python 项目结构与配置",
+      "stage": "项目工程与交付",
+      "level": "工程基础",
+      "minutes": 22,
+      "knowledge": [
+        "典型项目会分离源代码、测试、数据、文档、配置和项目说明。",
+        "入口负责组织流程，核心模块负责业务逻辑，配置和密钥不写死在源码里。"
+      ],
+      "why": [
+        "清晰的目录让新成员知道代码放在哪里，也让测试和部署更容易自动化。",
+        "项目变大后，结构问题会比单行语法错误更影响维护。"
+      ],
+      "purpose": "从空目录创建可测试、可配置、可运行和可交付的 Python 项目。",
+      "example": "structure = [\"src\", \"tests\", \"data\", \"docs\", \"config\", \"README.md\", \"pyproject.toml\", \".gitignore\"]\nfor item in structure:\n    print(item)",
+      "exampleNotes": [
+        {
+          "left": "src",
+          "right": "项目源代码"
+        },
+        {
+          "left": "tests",
+          "right": "自动化测试"
+        },
+        {
+          "left": "config / .gitignore",
+          "right": "配置模板和不应提交的文件规则"
+        },
+        {
+          "left": "README / pyproject",
+          "right": "运行说明、依赖和项目元数据"
+        }
+      ],
+      "quiz": {
+        "question": "项目测试代码最应该放在哪里？",
+        "code": "",
+        "options": [
+          "tests 目录",
+          "和所有密钥放在一起",
+          "数据库生产表中",
+          "随意散落在源码根目录"
+        ],
+        "answerIndex": 0,
+        "explanation": "独立 tests 目录便于发现、运行和维护测试，也能与生产代码保持边界。"
+      },
+      "errors": [
+        {
+          "title": "所有代码都写在 main.py",
+          "detail": "入口文件不断膨胀后，循环依赖、复用困难和测试成本都会增加。",
+          "code": "# main.py：组织流程\n# service.py：业务规则\n# repository.py：数据访问"
+        },
+        {
+          "title": "把真实密钥提交到配置目录",
+          "detail": "仓库中只保留 .env.example，真实值通过环境变量或密钥管理服务注入。",
+          "code": "# .env.example 可以提交\n# .env 和密钥文件应加入 .gitignore"
+        }
+      ],
+      "projectCode": "# project/\n# ├── src/\n# ├── tests/\n# ├── data/\n# ├── docs/\n# ├── config/\n# ├── README.md\n# ├── pyproject.toml\n# └── .gitignore",
+      "legalRisk": "🟡 需评估",
+      "legalNote": "项目配置可能包含密钥、连接信息或个人数据路径。仓库应区分示例配置与真实秘密，并限制数据目录访问。",
+      "legalBasis": "参考原则：最小权限、敏感信息保护和安全配置管理",
+      "legalUpdated": "2026-09-11",
+      "next": [
+        {
+          "id": "release-checklist",
+          "title": "从可运行到可交付",
+          "minutes": 24,
+          "state": "TODO"
+        }
+      ]
+    },
+    "release-checklist": {
+      "id": "release-checklist",
+      "title": "从可运行到可交付",
+      "stage": "项目工程与交付",
+      "level": "工程基础",
+      "minutes": 24,
+      "knowledge": [
+        "交付标准包括功能验收、错误处理、测试、文档、版本、配置、安全和回滚。",
+        "可重复运行比开发机上的偶然成功更重要，发布前必须从干净环境验证。"
+      ],
+      "why": [
+        "毕业项目需要让别人看懂、运行、验证并在出错时恢复。",
+        "发布清单把容易忘记的工程步骤固定下来，减少上线事故。"
+      ],
+      "purpose": "完成项目验收、版本说明、部署检查、监控与回滚准备。",
+      "example": "checks = {\n    \"tests\": True,\n    \"readme\": True,\n    \"secrets_removed\": False,\n}\nfailed = [name for name, passed in checks.items() if not passed]\nprint(\"可以发布\" if not failed else f\"发布被阻止：{failed}\")",
+      "exampleNotes": [
+        {
+          "left": "checks",
+          "right": "把发布条件转成可检查项目"
+        },
+        {
+          "left": "failed",
+          "right": "列出未通过的阻塞项"
+        },
+        {
+          "left": "条件判断",
+          "right": "任何一个关键项失败都不能发布"
+        }
+      ],
+      "quiz": {
+        "question": "发布检查发现源码中仍包含真实 API Key，应该怎么做？",
+        "code": "",
+        "options": [
+          "立即移出源码、轮换密钥并检查提交历史",
+          "只要项目能运行就继续发布",
+          "把 Key 改名后继续提交",
+          "只删除 README 中的说明"
+        ],
+        "answerIndex": 0,
+        "explanation": "已经暴露的密钥必须视为失效并轮换，同时清理配置和检查历史记录。"
+      },
+      "errors": [
+        {
+          "title": "只在自己电脑验证",
+          "detail": "依赖、路径、权限和环境变量可能在别人机器上不同。",
+          "code": "# 在干净虚拟环境或新机器按 README 从零运行"
+        },
+        {
+          "title": "没有回滚方案",
+          "detail": "新版本失败时如果无法恢复旧版本，会扩大故障影响。",
+          "code": "# 发布前记录版本、数据迁移和回滚步骤\n# 发布后观察关键日志与错误率"
+        }
+      ],
+      "projectCode": "release_checks = {\n    \"验收标准\": True,\n    \"自动化测试\": True,\n    \"README\": True,\n    \"密钥检查\": True,\n    \"回滚方案\": True,\n}\n# 每一项都真实执行，不能只勾选",
+      "legalRisk": "🟢 较低风险",
+      "legalNote": "发布检查本身风险较低。正式服务还需要隐私说明、数据保留策略、许可证声明和安全事件处理流程。",
+      "legalBasis": "参考原则：网络安全、个人信息保护和开源许可证合规",
+      "legalUpdated": "2026-09-11",
+      "next": []
+    }
+  },
+  "projects": [
+    {
+      "id": "guess",
+      "title": "猜数字",
+      "level": "Lv.1 入门项目",
+      "goal": "编写一个 1~100 的猜数字游戏。程序随机生成答案，用户每次输入一个数字，程序提示偏大或偏小，猜对后结束并显示猜测次数。",
+      "requirements": [
+        "程序随机生成 1 到 100 之间的整数",
+        "用户输入数字并转换为整数",
+        "比较猜的数字和答案，并提示大小",
+        "猜错时继续，猜对后结束",
+        "记录并显示猜测次数"
+      ],
+      "knowledge": [
+        "random",
+        "input",
+        "if",
+        "while",
+        "变量"
+      ],
+      "hints": [
+        "先写“生成答案 → 接收输入 → 比较 → 结束”的骨架，再考虑重复。",
+        "需要重复的是接收输入和比较。想想哪一种循环适合“猜对了才停”。",
+        "每猜一次用一个变量 +1，最后打印出来。先跑通再优化。"
+      ],
+      "starter": "print(\"我已经想好一个 1~100 的数字\")\n\n# 1. 生成答案\n# 2. 用变量记录次数\n# 3. 接收用户输入并比较\n# 4. 猜对后结束"
+    },
+    {
+      "id": "calculator",
+      "title": "计算器",
+      "level": "Lv.1 入门项目",
+      "goal": "做一个支持加减乘除的文本计算器。程序接收两个数字和运算符号，输出正确结果，并处理除数为 0 的情况。",
+      "requirements": [
+        "接收第一个数字、运算符号和第二个数字",
+        "把输入内容转换为数字",
+        "根据运算符号完成加减乘除",
+        "除数为 0 时给出友好提示，不让程序崩溃",
+        "输出完整计算式与结果"
+      ],
+      "knowledge": [
+        "input",
+        "变量",
+        "if",
+        "float",
+        "异常处理"
+      ],
+      "hints": [
+        "先只处理两个数字和一种运算，跑通后再补其他运算。",
+        "运算符号可以存到变量里，再用 if / elif 判断。",
+        "输入 abc 时 int() 会报错，可先做异常处理。"
+      ],
+      "starter": "# 1. 接收两个数字和运算符号\n# 2. 转换为数字\n# 3. 用 if 判断运算并计算结果\n# 4. 输出结果"
+    },
+    {
+      "id": "bmi",
+      "title": "BMI 计算器",
+      "level": "Lv.1 入门项目",
+      "goal": "接收身高和体重，计算 BMI，并根据结果给出偏瘦、正常、偏胖等提示。",
+      "requirements": [
+        "接收身高（米）和体重（千克）",
+        "BMI = 体重 ÷ 身高 ÷ 身高",
+        "用条件判断输出对应的文字结果",
+        "身高或体重输入不合法时给提示"
+      ],
+      "knowledge": [
+        "float",
+        "input",
+        "变量",
+        "if",
+        "异常处理"
+      ],
+      "hints": [
+        "先算 BMI，再把它放进多个条件判断里。",
+        "身体结果只是学习示例，不代表医学建议。",
+        "可以先给数值范围，再判断是否合理。"
+      ],
+      "starter": "# 1. 接收身高\n# 2. 接收体重\n# 3. 计算 BMI\n# 4. 用 if 输出分类"
+    },
+    {
+      "id": "contacts",
+      "title": "通讯录",
+      "level": "Lv.2 基础项目",
+      "goal": "做一个临时通讯录，能新增联系人、列出所有联系人，并按姓名查询电话号码。",
+      "requirements": [
+        "用字典保存联系人姓名和电话",
+        "提供新增联系人功能",
+        "提供列出全部联系人功能",
+        "提供按姓名查询电话功能",
+        "程序结束时给出退出提示"
+      ],
+      "knowledge": [
+        "dict",
+        "list",
+        "while",
+        "input",
+        "函数"
+      ],
+      "hints": [
+        "先用字典 contacts = {}，再用 name = input() 作为键。",
+        "重复操作可以用 while True，退出时用 break。",
+        "先实现新增和列出，再补查询。"
+      ],
+      "starter": "contacts = {}\nprint(\"欢迎使用通讯录\")\n# 用 while True 提供菜单\n# 输入 1 新增，2 列出，3 查询，0 退出"
+    },
+    {
+      "id": "sqlite-manager",
+      "title": "SQLite 学习记录系统",
+      "level": "Lv.3 综合项目",
+      "goal": "把课程完成记录、学习分钟和训练结果保存到 SQLite，并提供查询和统计。",
+      "requirements": [
+        "设计学习记录表并说明字段和主键",
+        "支持新增一条学习记录",
+        "支持按日期和知识点查询",
+        "支持统计总时长、连续天数和完成数量",
+        "所有 SQL 使用参数化查询"
+      ],
+      "knowledge": [
+        "sqlite",
+        "sql",
+        "函数",
+        "异常处理",
+        "datetime"
+      ],
+      "hints": [
+        "先画清楚一条学习记录包含哪些字段，再建表。",
+        "把数据库连接、插入和查询拆成独立函数。",
+        "统计可以先在 SQL 中做，也可以读出后用 Python 聚合，比较两种方式。"
+      ],
+      "starter": "import sqlite3\n\n# 1. 设计 records 表\n# 2. 实现 add_record / query_records / summary\n# 3. 为正常、空数据和错误日期写测试"
+    },
+    {
+      "id": "weather-api",
+      "title": "天气 API 查询工具",
+      "level": "Lv.3 综合项目",
+      "goal": "读取天气服务 API 文档，根据用户输入查询天气并格式化显示结果。",
+      "requirements": [
+        "从环境变量读取 API Key",
+        "设置请求超时并检查状态码",
+        "解析 JSON 中的温度和天气描述",
+        "处理城市不存在、网络超时和服务限流",
+        "输出不包含任何密钥"
+      ],
+      "knowledge": [
+        "api",
+        "requests",
+        "dict",
+        "异常处理",
+        "环境变量"
+      ],
+      "hints": [
+        "先用最小请求确认响应结构，再写展示逻辑。",
+        "把网络请求和格式化输出分成两个函数，便于测试。",
+        "错误信息要告诉用户下一步，例如检查城市名或稍后重试。"
+      ],
+      "starter": "import os\nimport requests\n\n# 1. 从环境变量读取 Key\n# 2. 请求天气接口\n# 3. 检查状态码\n# 4. 提取并显示天气信息"
+    },
+    {
+      "id": "excel-automation",
+      "title": "Excel 报表自动化",
+      "level": "Lv.3 综合项目",
+      "goal": "读取成绩表，清洗重复和缺失数据，生成班级统计报表。",
+      "requirements": [
+        "读取 CSV 或 Excel 数据",
+        "统计重复学号和缺失成绩",
+        "按班级计算平均分和及格率",
+        "输出新的报表文件",
+        "处理空表和字段缺失"
+      ],
+      "knowledge": [
+        "pandas",
+        "file",
+        "data-model",
+        "testing"
+      ],
+      "hints": [
+        "先检查列名、数据类型和缺失值数量。",
+        "把清洗规则写成小函数，并为边界情况写测试。",
+        "输出后重新读取文件验证，而不是只看程序成功结束。"
+      ],
+      "starter": "# 1. 读取表格\n# 2. 校验字段\n# 3. 清洗缺失和重复\n# 4. 分组统计\n# 5. 输出并重新验证"
+    },
+    {
+      "id": "crawler-project",
+      "title": "合规数据采集工具",
+      "level": "Lv.4 高级项目",
+      "goal": "在获得授权或使用公开 API 的前提下，采集结构化数据并保存为 CSV。",
+      "requirements": [
+        "先写数据来源、授权依据和用途说明",
+        "优先使用官方 API",
+        "控制请求频率并设置超时",
+        "记录失败项目并支持有限重试",
+        "输出字段稳定且不包含无关个人信息"
+      ],
+      "knowledge": [
+        "requests",
+        "api",
+        "pandas",
+        "file",
+        "legal"
+      ],
+      "hints": [
+        "先采集 5 条数据并人工核对，再扩大到完整范围。",
+        "每个字段都要有来源和含义，不抓取用不到的隐私数据。",
+        "把采集、解析、清洗和保存拆开，任何一步失败都容易定位。"
+      ],
+      "starter": "# 采集前检查\n# 数据源：\n# 授权方式：\n# 请求频率：\n# 字段用途：\n# 保存期限：\n\n# 再开始写采集代码"
+    },
+    {
+      "id": "gui-app",
+      "title": "桌面 GUI 工具",
+      "level": "Lv.4 高级项目",
+      "goal": "把一个小型 Python 工具做成有输入框、按钮、结果区和错误提示的桌面应用。",
+      "requirements": [
+        "窗口包含输入区、操作按钮和结果区",
+        "耗时操作不能阻塞界面",
+        "输入错误必须给出可理解提示",
+        "核心业务逻辑与界面代码分离",
+        "核心函数有自动化测试"
+      ],
+      "knowledge": [
+        "oop",
+        "function",
+        "testing",
+        "errors",
+        "quality"
+      ],
+      "hints": [
+        "先实现不含界面的核心函数和测试。",
+        "界面只负责收集输入和展示输出，不把业务规则塞进按钮回调。",
+        "错误提示说明发生了什么和用户可以怎么处理。"
+      ],
+      "starter": "# 选择 Tkinter、PySide 或 Flet\n# 1. 画最小界面\n# 2. 接入已完成的核心函数\n# 3. 增加输入校验和错误提示\n# 4. 补自动化测试"
+    },
+    {
+      "id": "web-api-project",
+      "title": "学习数据 Web API",
+      "level": "Lv.4 高级项目",
+      "goal": "实现带数据库、身份识别、输入校验和自动文档的 REST API。",
+      "requirements": [
+        "提供课程、进度和统计接口",
+        "使用请求模型校验输入",
+        "实现基本鉴权和资源归属检查",
+        "统一错误结构与状态码",
+        "提供 API 文档和最小测试集"
+      ],
+      "knowledge": [
+        "fastapi",
+        "rest-api",
+        "sqlite",
+        "testing",
+        "deployment"
+      ],
+      "hints": [
+        "先定义资源、接口和数据库表，再写路由。",
+        "从 /health 和一个只读接口开始，逐步增加写操作。",
+        "每个接口都问：谁可以调用、可以操作谁的数据、失败返回什么。"
+      ],
+      "starter": "from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"ok\": True}\n\n# 继续设计课程与进度资源"
+    },
+    {
+      "id": "complete-crawler",
+      "title": "完整合规采集与报告系统",
+      "level": "Lv.5 毕业方向",
+      "goal": "从合法数据源采集数据，清洗后生成可复现的数据报告和图表。",
+      "requirements": [
+        "有明确授权依据和数据用途说明",
+        "采集、解析、清洗、分析和报告分层",
+        "支持断点恢复和有限重试",
+        "数据质量检查覆盖缺失、重复和异常值",
+        "附带运行记录、测试和合规自查清单"
+      ],
+      "knowledge": [
+        "requests",
+        "pandas",
+        "visualization",
+        "sqlite",
+        "testing",
+        "legal"
+      ],
+      "hints": [
+        "先做 10 条数据的端到端小版本，再扩大范围。",
+        "报告中的每个结论都要能追溯到原始字段和清洗规则。",
+        "先以官方 API 或自己的测试站点完成流程，再考虑真实数据。"
+      ],
+      "starter": "# pipeline.py\n# fetch -> validate -> clean -> store -> analyze -> report\n# 每一步保存输入规模、输出规模和失败原因"
+    },
+    {
+      "id": "ai-app",
+      "title": "AI 学习助手",
+      "level": "Lv.5 毕业方向",
+      "goal": "构建一个能解释代码、出题和检查思路，并保留用户独立练习的 AI 应用。",
+      "requirements": [
+        "AI 密钥只保存在服务端",
+        "提供老师模式、只给思路和只指出错误三种策略",
+        "输入和模型输出都进行长度、格式与敏感信息检查",
+        "超时或模型失败时提供本地引导或明确错误",
+        "记录 AI 使用频率和独立完成数据，不训练用户产生依赖"
+      ],
+      "knowledge": [
+        "ai-api",
+        "responsible-ai",
+        "fastapi",
+        "testing",
+        "quality"
+      ],
+      "hints": [
+        "先做“解释一段报错”的单一功能，并记录完整输入输出。",
+        "系统提示词控制教学策略，服务端负责敏感信息过滤和费用限制。",
+        "不要用 AI 结果替代核心业务的数据校验和测试。"
+      ],
+      "starter": "# AI 功能最小闭环\n# 输入 -> 敏感信息检查 -> 提示词策略 -> 模型调用\n# -> 结构校验 -> 展示 -> 用户反馈"
+    },
+    {
+      "id": "graduation-project",
+      "title": "Python 综合毕业项目",
+      "level": "Lv.5 毕业项目",
+      "goal": "自主选择一个真实需求，完成需求分析、设计、实现、测试、优化和发布。",
+      "requirements": [
+        "需求文档：用户、场景、目标和明确不做的范围",
+        "功能需求：至少包含课程、数据保存、查询和统计中的三类能力",
+        "界面要求：关键流程可操作，错误状态有提示，移动与桌面方案明确",
+        "数据库要求：实体关系、主键、索引、备份和迁移策略",
+        "API 要求：鉴权、输入校验、错误结构、超时和限流",
+        "测试要求：核心逻辑、边界输入、失败路径和端到端流程",
+        "交付要求：README、运行方式、测试结果、已知限制和发布版本"
+      ],
+      "knowledge": [
+        "全部课程",
+        "project",
+        "git",
+        "testing",
+        "quality",
+        "deployment"
+      ],
+      "hints": [
+        "先交出只有一项核心功能的可运行版本，再扩展，不要一开始搭空架子。",
+        "先写验收标准，再写代码；每完成一项就运行对应验证。",
+        "让一个不了解项目的人按 README 从零运行，记录所有卡点并修复。"
+      ],
+      "starter": "# 毕业项目工作区\n# 1. 需求分析\n# 2. 架构与数据设计\n# 3. 最小可运行版本\n# 4. 测试与调试\n# 5. 性能与安全检查\n# 6. 发布说明"
+    }
+  ]
+}
