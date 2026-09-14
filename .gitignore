@@ -1,3 +1,4 @@
+# Python Windows desktop
 .venv/
 __pycache__/
 *.py[cod]
@@ -13,3 +14,20 @@ release/
 .vscode/
 local.db
 .tmp*
+
+# Android application
+*.iml
+.gradle/
+.kotlin/
+/local.properties
+gradle/gradle-daemon-jvm.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+app/build/
+/keystore.properties
+*.jks
+*.keystore
